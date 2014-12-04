@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Iris.Model.PostDetailModel>
+<div style="text-align: right;">
+    @foreach (var post in Model)
+    {
+        <div style="margin: 20px;">
+            <div>@Html.ActionLink(post.Title, MVC.Post.ActionNames.Index, MVC.Post.Name, new { id = post.Id, title = Html.ResolveTitleForUrl(post.Title) }, null)
+            </div>
+            <div>
+                <span class="label">@Html.ConvertToPersianString(post.VisitedCount) بازدید</span>
+                <span class="label label-warning">@Html.ConvertToPersianString(post.CommnetCount) دیدگاه</span>
+                <span class="label label-info"><span class="unicode">@Html.ConvertToPersianString(post.LikeCount)</span> امتیاز</span>
+                <span class="label label-important"><span class="unicode">@Html.ConvertToPersianDateTime(post.PostedDate, "D")</span></span>
+            </div>
+        </div>
+    }
+
+    <!-- begin page navigation section -->
+    <!-- end page navigation section -->
+</div>

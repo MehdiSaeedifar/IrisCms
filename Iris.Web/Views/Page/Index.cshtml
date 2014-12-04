@@ -1,0 +1,93 @@
+﻿@model Iris.DomainClasses.Entities.Page
+@{
+    ViewBag.Title = Model.Title;
+    ViewBag.Keywords = Model.Keyword;
+    ViewBag.Description = Model.Description;
+}
+@section metatags{
+    <meta http-equiv="last-modified" content="@(Model.ModifiedDate ?? Model.CreatedDate)" />
+    <meta name="author" content="@Model.User.UserName (@string.Format("{0}://{1}", Request.Url.Scheme, Request.Url.Host))" />
+}
+<div id="post-book-container">
+    <div id="post-book-info">
+        <div id="post-book-info-header">
+            <div id="post-book-info-title">
+                <h1>
+                    @Model.Title
+                </h1>
+            </div>
+        </div>
+        <div class="container-fluid" id="post-book-writer-info">
+            <div class="pull-right">
+                <i class="icon-calendar"></i>
+                <span>تاریخ: </span><span class="unicode">@Html.ConvertToPersianDateTime(Model.CreatedDate, "H,W")</span>
+            </div>
+            <div class="pull-right" style="margin-right: 15px;">
+                <i class="icon-pencil"></i>
+                <span>توسط: </span><span>@Html.ActionLink(Model.User.UserName, MVC.User.ActionNames.Index, MVC.User.Name, new { userName = Model.User.UserName }, new { title = string.Format("صفحه کاربری {0}", Model.User.UserName) })</span>
+            </div>
+            <div class="pull-right" style="margin-right: 15px;">
+                <i class="icon-thumbs-up"></i>
+                <span>امتیاز: </span><span class="unicode" id="like-count">@Html.ConvertToPersianString(Model.LikeCount)</span>
+            </div>
+        </div>
+        <!-- end data and writer info -->
+
+        <div class="span11" id="post-book-description">
+            @Html.Raw(Model.Body)
+        </div>
+        <div class="clear"></div>
+
+        <div class="container-fluid">
+            <div class="pull-right" id="post-book-visited-count">
+                <i class="icon-refresh"></i>
+                <span>تعداد بازدید: </span><span>@Html.ConvertToPersianString(Model.VisitedCount)</span>
+            </div>
+            <div class="pull-right" id="post-book-comment-count" style="margin-right: 30px;">
+                <i class="icon-comment"></i>
+                <span>دیدگاه ها: </span><span>@Html.ConvertToPersianString(Model.Comments.Count)</span>
+            </div>
+        </div>
+        <div id="like-result" style="width:60%;" data-loading-image="@Url.Content("~/Content/Images/loading2.gif")"></div>
+        <div class="pull-right span4" id="post-book-like">
+            <!-- begin post-book-like div -->
+            <div id="post-like" title="می پسندم">
+                <img src="@Links.Content.Images.thumbs_up_png" alt="like">
+                <span data-href="@Url.Action(MVC.Page.ActionNames.Like, MVC.Page.Name, new { id = Model.Id })" >می پسندم</span>
+            </div>
+            <div id="post-dis-like" title="به درد نمی خوره">
+                <img src="@Links.Content.Images.thumbs_down_png" alt="dislike">
+                <span data-href="@Url.Action(MVC.Page.ActionNames.DisLike, MVC.Page.Name, new { id = Model.Id })" >به درد نمی خوره</span>
+            </div>
+        </div>
+        <!-- end post-book-like div -->
+        <div id="post-book-share-wrapper" class="span3">
+            <div id="post-book-share">
+                <div>
+                    <a target="_blank" rel="nofollow" href="@string.Format("http://www.facebook.com/share.php?t={0}&u={1}", Model.Title, Request.Url.AbsoluteUri)" title="اشتراک در facebook">
+                        <img src="@Links.Content.Images.facebook_png" alt="Facebook" />
+                    </a>
+                    <a rel="nofollow" href="https://plus.google.com/share?url=@Request.Url.AbsoluteUri" onclick="javascript:window.open(this.href,
+  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" title="اشتراک در +Google">
+                        <img src="@Links.Content.Images.google_plus_png" alt="google-plus">
+                    </a>
+                    <a target="_blank" rel="nofollow" title="اشتراک در Twitter" href="@string.Format("https://twitter.com/intent/tweet?text={0}&url={1}&via=MY-TWITTER-HANDLE", Model.Title, Request.Url.AbsoluteUri)">
+                        <img src="@Links.Content.Images.twitter_png" alt="Twitter">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <!-- end post-book-info div -->
+</div>
+
+
+<div id="comment-container">
+    <!-- begin comment div -->
+    <fieldset>
+        <legend>نظرات کاربران</legend>
+        @Html.Action(MVC.Comment.ActionNames.PageComments, MVC.Comment.Name, new { id = Model.Id })
+    </fieldset>
+</div>
+<!-- end comment div -->

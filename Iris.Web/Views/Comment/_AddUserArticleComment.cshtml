@@ -1,0 +1,25 @@
+﻿@model Iris.Model.AddUserCommentModel
+<div class="comment-reply" id="commentReply">
+    <!-- begin commnet-erply div -->
+    @using (Ajax.BeginForm(MVC.Comment.ActionNames.AddUserArticleComment, MVC.Comment.Name, new AjaxOptions { HttpMethod = "POST", OnSuccess = "AddComment.onSuccess", LoadingElementDuration = 300, LoadingElementId = "loadingMessage" }, new { @class = "form-horizontal", id = "frmCommentReply" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.Hidden("replyId", ViewBag.ReplyId as string)
+        @Html.Hidden("id", ViewBag.PageId as string)
+        <div class="control-group">
+            <label class="control-label" style="width: 10px;" for="Body">متن</label>
+            <div class="controls" style="margin-right: 70px; text-align: right;">
+                @Html.TextAreaFor(comment => comment.Body, new { cols = "10", placeholder = "دیدگاه خود را بنویسید..." })
+            </div>
+        </div>
+        <div class="comment-send-btn" style="margin-top: -2px;">
+            <button type="submit" class="btn btn-primary pull-right btn-mini">ارسال</button>
+        </div>
+        <div style="display: none" id="loading1">
+            <img src="~/Content/Images/loading1.gif" />
+        </div>
+        <div id="addCommentResult" class="pull-right">@Html.ValidationSummary()</div>
+    }
+    <div class="clear"></div>
+</div>
+<!-- end comment-reply -->

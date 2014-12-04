@@ -1,0 +1,188 @@
+﻿<error errorId="07390670-a484-4a26-9be4-634a718dc241" application="/LM/W3SVC/18/ROOT" host="MEHDI-PC" type="System.Web.HttpException" message="The controller for path '/25f7d5976c5e459b97dd247cfe4b28e6/arterySignalR/ping' was not found or does not implement IController." source="System.Web.Mvc" detail="System.Web.HttpException (0x80004005): The controller for path '/25f7d5976c5e459b97dd247cfe4b28e6/arterySignalR/ping' was not found or does not implement IController.&#xD;&#xA;   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)&#xD;&#xA;   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController&amp; controller, IControllerFactory&amp; factory)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)&#xD;&#xA;   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()&#xD;&#xA;   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously)" user="admin" time="2014-11-16T18:10:28.8618215Z" statusCode="404">
+  <serverVariables>
+    <item name="ALL_HTTP">
+      <value string="HTTP_CONNECTION:keep-alive&#xD;&#xA;HTTP_CONTENT_TYPE:application/x-www-form-urlencoded; charset=UTF-8&#xD;&#xA;HTTP_ACCEPT:text/plain, */*; q=0.01&#xD;&#xA;HTTP_ACCEPT_ENCODING:gzip,deflate,sdch&#xD;&#xA;HTTP_ACCEPT_LANGUAGE:en-US,en;q=0.8&#xD;&#xA;HTTP_COOKIE:test123=419D440FE5076AC6779DF226EB9C4750D7E803F9A680B8EE751A27D47DF6A37303801944C4407032B81124F38847F66D1C0F18532D29FDD3B1EE829959014E74197BC144C378B81B8184C46C524515B3741D8AA37748DA623EA6866BFF234E4C2C3D538446760D468238A54A67DE5AF072C5C84C06789A6FFC7F28676BAC8FB7128FF681893F255FC924C87C7D3DC04862280E2D7972E15211E69E54C990B317EAE72399CC4AC62DEB482640CFB5F7E7; .ASPXAUTH=03321D4DE516B86E723ABF317FB7BC5EE03F7D7B69EDC7EBEDEC38EFB3BA269C535B73D985764AC4B310734D03C17C39EC91EC3FC1CEE4840484B1C264F62BB9D16C37897B7ABE72E19D0D0280C7B6FB90F278F497135BC289321B3B017B57701AAE58DF70193EB22B164AB5E8E8B971; __RequestVerificationToken=UF4PklgQljVy_koMDRQR2KN1ZCx99vfS0_GpF4CGKRg-xFG-VTuRdIQLIcjbrn0s3imq8dwg8kEX4bMIL0_mxASZiGJGzDnb_wXWxl3DjM81; i1r2i4s6b7l8u9e=275EEE05A9CD5CA9C8AAFB338F0796AA940B2E72A82D6F49899D482101927C911E31D749C03C7F4D8D5EAF94A0F762D4B505F04609BF62A43759263B04CD7EEEB98BC7F7EB956A164EF7C039386CF499B4537C6F301290BCBB66D3B402E6ACF44A2D0A39554A2069AE12131124DD111F332CFC0B2ADF62CD8C80C05EEDAFE45C6CF0A0067DB567CF0C54D7AA4C315F39AC498C116224936F898F0209910066E9CED36743C1B65512A2D0CCEC87A30EC151A527E0902F87199C30EF240F0CC1793013A73A89F6051AB593456779909DA98F6693476771F34BA122BEB3351350F976F1A7C00A2BBC9C094227665548D23C&#xD;&#xA;HTTP_HOST:localhost:18600&#xD;&#xA;HTTP_REFERER:http://localhost:18600/admin&#xD;&#xA;HTTP_USER_AGENT:Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.122 Safari/537.36&#xD;&#xA;HTTP_X_REQUESTED_WITH:XMLHttpRequest&#xD;&#xA;" />
+    </item>
+    <item name="ALL_RAW">
+      <value string="Connection: keep-alive&#xD;&#xA;Content-Type: application/x-www-form-urlencoded; charset=UTF-8&#xD;&#xA;Accept: text/plain, */*; q=0.01&#xD;&#xA;Accept-Encoding: gzip,deflate,sdch&#xD;&#xA;Accept-Language: en-US,en;q=0.8&#xD;&#xA;Cookie: test123=419D440FE5076AC6779DF226EB9C4750D7E803F9A680B8EE751A27D47DF6A37303801944C4407032B81124F38847F66D1C0F18532D29FDD3B1EE829959014E74197BC144C378B81B8184C46C524515B3741D8AA37748DA623EA6866BFF234E4C2C3D538446760D468238A54A67DE5AF072C5C84C06789A6FFC7F28676BAC8FB7128FF681893F255FC924C87C7D3DC04862280E2D7972E15211E69E54C990B317EAE72399CC4AC62DEB482640CFB5F7E7; .ASPXAUTH=03321D4DE516B86E723ABF317FB7BC5EE03F7D7B69EDC7EBEDEC38EFB3BA269C535B73D985764AC4B310734D03C17C39EC91EC3FC1CEE4840484B1C264F62BB9D16C37897B7ABE72E19D0D0280C7B6FB90F278F497135BC289321B3B017B57701AAE58DF70193EB22B164AB5E8E8B971; __RequestVerificationToken=UF4PklgQljVy_koMDRQR2KN1ZCx99vfS0_GpF4CGKRg-xFG-VTuRdIQLIcjbrn0s3imq8dwg8kEX4bMIL0_mxASZiGJGzDnb_wXWxl3DjM81; i1r2i4s6b7l8u9e=275EEE05A9CD5CA9C8AAFB338F0796AA940B2E72A82D6F49899D482101927C911E31D749C03C7F4D8D5EAF94A0F762D4B505F04609BF62A43759263B04CD7EEEB98BC7F7EB956A164EF7C039386CF499B4537C6F301290BCBB66D3B402E6ACF44A2D0A39554A2069AE12131124DD111F332CFC0B2ADF62CD8C80C05EEDAFE45C6CF0A0067DB567CF0C54D7AA4C315F39AC498C116224936F898F0209910066E9CED36743C1B65512A2D0CCEC87A30EC151A527E0902F87199C30EF240F0CC1793013A73A89F6051AB593456779909DA98F6693476771F34BA122BEB3351350F976F1A7C00A2BBC9C094227665548D23C&#xD;&#xA;Host: localhost:18600&#xD;&#xA;Referer: http://localhost:18600/admin&#xD;&#xA;User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.122 Safari/537.36&#xD;&#xA;X-Requested-With: XMLHttpRequest&#xD;&#xA;" />
+    </item>
+    <item name="APPL_MD_PATH">
+      <value string="/LM/W3SVC/18/ROOT" />
+    </item>
+    <item name="APPL_PHYSICAL_PATH">
+      <value string="D:\Projects\IRIS\IRIS CMS v 1.1\Iris.Web\" />
+    </item>
+    <item name="AUTH_TYPE">
+      <value string="IrisForms" />
+    </item>
+    <item name="AUTH_USER">
+      <value string="admin" />
+    </item>
+    <item name="AUTH_PASSWORD">
+      <value string="*****" />
+    </item>
+    <item name="LOGON_USER">
+      <value string="" />
+    </item>
+    <item name="REMOTE_USER">
+      <value string="admin" />
+    </item>
+    <item name="CERT_COOKIE">
+      <value string="" />
+    </item>
+    <item name="CERT_FLAGS">
+      <value string="" />
+    </item>
+    <item name="CERT_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SERIALNUMBER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CERT_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CONTENT_LENGTH">
+      <value string="0" />
+    </item>
+    <item name="CONTENT_TYPE">
+      <value string="application/x-www-form-urlencoded; charset=UTF-8" />
+    </item>
+    <item name="GATEWAY_INTERFACE">
+      <value string="CGI/1.1" />
+    </item>
+    <item name="HTTPS">
+      <value string="off" />
+    </item>
+    <item name="HTTPS_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="INSTANCE_ID">
+      <value string="18" />
+    </item>
+    <item name="INSTANCE_META_PATH">
+      <value string="/LM/W3SVC/18" />
+    </item>
+    <item name="LOCAL_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="PATH_INFO">
+      <value string="/25f7d5976c5e459b97dd247cfe4b28e6/arterySignalR/ping" />
+    </item>
+    <item name="PATH_TRANSLATED">
+      <value string="D:\Projects\IRIS\IRIS CMS v 1.1\Iris.Web\25f7d5976c5e459b97dd247cfe4b28e6\arterySignalR\ping" />
+    </item>
+    <item name="QUERY_STRING">
+      <value string="requestUrl=http%3A%2F%2Flocalhost%3A18600%2Fadmin&amp;browserName=Chrome&amp;_=1416161428845" />
+    </item>
+    <item name="REMOTE_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_HOST">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_PORT">
+      <value string="6681" />
+    </item>
+    <item name="REQUEST_METHOD">
+      <value string="GET" />
+    </item>
+    <item name="SCRIPT_NAME">
+      <value string="/25f7d5976c5e459b97dd247cfe4b28e6/arterySignalR/ping" />
+    </item>
+    <item name="SERVER_NAME">
+      <value string="localhost" />
+    </item>
+    <item name="SERVER_PORT">
+      <value string="18600" />
+    </item>
+    <item name="SERVER_PORT_SECURE">
+      <value string="0" />
+    </item>
+    <item name="SERVER_PROTOCOL">
+      <value string="HTTP/1.1" />
+    </item>
+    <item name="SERVER_SOFTWARE">
+      <value string="Microsoft-IIS/8.0" />
+    </item>
+    <item name="URL">
+      <value string="/25f7d5976c5e459b97dd247cfe4b28e6/arterySignalR/ping" />
+    </item>
+    <item name="HTTP_CONNECTION">
+      <value string="keep-alive" />
+    </item>
+    <item name="HTTP_CONTENT_TYPE">
+      <value string="application/x-www-form-urlencoded; charset=UTF-8" />
+    </item>
+    <item name="HTTP_ACCEPT">
+      <value string="text/plain, */*; q=0.01" />
+    </item>
+    <item name="HTTP_ACCEPT_ENCODING">
+      <value string="gzip,deflate,sdch" />
+    </item>
+    <item name="HTTP_ACCEPT_LANGUAGE">
+      <value string="en-US,en;q=0.8" />
+    </item>
+    <item name="HTTP_COOKIE">
+      <value string="test123=419D440FE5076AC6779DF226EB9C4750D7E803F9A680B8EE751A27D47DF6A37303801944C4407032B81124F38847F66D1C0F18532D29FDD3B1EE829959014E74197BC144C378B81B8184C46C524515B3741D8AA37748DA623EA6866BFF234E4C2C3D538446760D468238A54A67DE5AF072C5C84C06789A6FFC7F28676BAC8FB7128FF681893F255FC924C87C7D3DC04862280E2D7972E15211E69E54C990B317EAE72399CC4AC62DEB482640CFB5F7E7; .ASPXAUTH=03321D4DE516B86E723ABF317FB7BC5EE03F7D7B69EDC7EBEDEC38EFB3BA269C535B73D985764AC4B310734D03C17C39EC91EC3FC1CEE4840484B1C264F62BB9D16C37897B7ABE72E19D0D0280C7B6FB90F278F497135BC289321B3B017B57701AAE58DF70193EB22B164AB5E8E8B971; __RequestVerificationToken=UF4PklgQljVy_koMDRQR2KN1ZCx99vfS0_GpF4CGKRg-xFG-VTuRdIQLIcjbrn0s3imq8dwg8kEX4bMIL0_mxASZiGJGzDnb_wXWxl3DjM81; i1r2i4s6b7l8u9e=275EEE05A9CD5CA9C8AAFB338F0796AA940B2E72A82D6F49899D482101927C911E31D749C03C7F4D8D5EAF94A0F762D4B505F04609BF62A43759263B04CD7EEEB98BC7F7EB956A164EF7C039386CF499B4537C6F301290BCBB66D3B402E6ACF44A2D0A39554A2069AE12131124DD111F332CFC0B2ADF62CD8C80C05EEDAFE45C6CF0A0067DB567CF0C54D7AA4C315F39AC498C116224936F898F0209910066E9CED36743C1B65512A2D0CCEC87A30EC151A527E0902F87199C30EF240F0CC1793013A73A89F6051AB593456779909DA98F6693476771F34BA122BEB3351350F976F1A7C00A2BBC9C094227665548D23C" />
+    </item>
+    <item name="HTTP_HOST">
+      <value string="localhost:18600" />
+    </item>
+    <item name="HTTP_REFERER">
+      <value string="http://localhost:18600/admin" />
+    </item>
+    <item name="HTTP_USER_AGENT">
+      <value string="Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.122 Safari/537.36" />
+    </item>
+    <item name="HTTP_X_REQUESTED_WITH">
+      <value string="XMLHttpRequest" />
+    </item>
+  </serverVariables>
+  <queryString>
+    <item name="requestUrl">
+      <value string="http://localhost:18600/admin" />
+    </item>
+    <item name="browserName">
+      <value string="Chrome" />
+    </item>
+    <item name="_">
+      <value string="1416161428845" />
+    </item>
+  </queryString>
+  <cookies>
+    <item name="test123">
+      <value string="419D440FE5076AC6779DF226EB9C4750D7E803F9A680B8EE751A27D47DF6A37303801944C4407032B81124F38847F66D1C0F18532D29FDD3B1EE829959014E74197BC144C378B81B8184C46C524515B3741D8AA37748DA623EA6866BFF234E4C2C3D538446760D468238A54A67DE5AF072C5C84C06789A6FFC7F28676BAC8FB7128FF681893F255FC924C87C7D3DC04862280E2D7972E15211E69E54C990B317EAE72399CC4AC62DEB482640CFB5F7E7" />
+    </item>
+    <item name=".ASPXAUTH">
+      <value string="03321D4DE516B86E723ABF317FB7BC5EE03F7D7B69EDC7EBEDEC38EFB3BA269C535B73D985764AC4B310734D03C17C39EC91EC3FC1CEE4840484B1C264F62BB9D16C37897B7ABE72E19D0D0280C7B6FB90F278F497135BC289321B3B017B57701AAE58DF70193EB22B164AB5E8E8B971" />
+    </item>
+    <item name="__RequestVerificationToken">
+      <value string="UF4PklgQljVy_koMDRQR2KN1ZCx99vfS0_GpF4CGKRg-xFG-VTuRdIQLIcjbrn0s3imq8dwg8kEX4bMIL0_mxASZiGJGzDnb_wXWxl3DjM81" />
+    </item>
+    <item name="i1r2i4s6b7l8u9e">
+      <value string="275EEE05A9CD5CA9C8AAFB338F0796AA940B2E72A82D6F49899D482101927C911E31D749C03C7F4D8D5EAF94A0F762D4B505F04609BF62A43759263B04CD7EEEB98BC7F7EB956A164EF7C039386CF499B4537C6F301290BCBB66D3B402E6ACF44A2D0A39554A2069AE12131124DD111F332CFC0B2ADF62CD8C80C05EEDAFE45C6CF0A0067DB567CF0C54D7AA4C315F39AC498C116224936F898F0209910066E9CED36743C1B65512A2D0CCEC87A30EC151A527E0902F87199C30EF240F0CC1793013A73A89F6051AB593456779909DA98F6693476771F34BA122BEB3351350F976F1A7C00A2BBC9C094227665548D23C" />
+    </item>
+  </cookies>
+</error>

@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Iris.DomainClasses.Entities.Page>
+@helper ShowNavBar(IEnumerable<Iris.DomainClasses.Entities.Page> pages)
+{
+    
+    foreach (var page in pages)
+    {
+        if (page != null)
+        {
+            if (page.Children.Count == 0)
+            {
+                <text><li>@Html.ActionLink(page.Title, MVC.Page.ActionNames.Index, MVC.Page.Name, new { id = page.Id, title = Html.ResolveTitleForUrl(page.Title) }, new { tabindex = "-1" })</li></text>
+            }
+
+            if (page.Children.Count > 0 && page.Parent == null)
+            {         
+                <text><li class="dropdown"><a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#">@page.Title<b class="caret"></b></a><ul class="dropdown-menu" role="menu" aria-labelledby="dLabel"><li>@Html.ActionLink(page.Title, MVC.Page.ActionNames.Index, MVC.Page.Name, new { id = page.Id, title = Html.ResolveTitleForUrl(page.Title) }, new { tabindex = "-1" })</li></text>
+                @ShowNavBar(page.Children)
+                @:</ul></li>
+            }
+
+            if (page.Children.Count > 0 && page.Parent != null)
+            {         
+                <text><li class="dropdown-submenu">@Html.ActionLink(page.Title, MVC.Page.ActionNames.Index, MVC.Page.Name, new { id = page.Id, title = Html.ResolveTitleForUrl(page.Title) }, new { tabindex = "-1" })<ul class="dropdown-menu"></text>
+                @ShowNavBar(page.Children)
+                @:</ul></li>
+            }
+
+        }
+    }
+    
+}
+@ShowNavBar(Model)

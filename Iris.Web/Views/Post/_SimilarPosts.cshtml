@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Iris.Model.LuceneModel.MorePostsLikeThis>
+
+<div class="similar-post">
+    <fieldset>
+        <legend>مطالب مشابه</legend>
+        @if (!Model.Any())
+        {
+            <p>مطلب مشابه ای یافت نشد!</p>
+        }
+        else
+        {
+            <ul>
+                @foreach (var post in Model)
+                {
+                    <li>@Html.ActionLink(post.Title, MVC.Post.ActionNames.Index, MVC.Post.Name, new { id = post.PostId, title = Html.ResolveTitleForUrl(post.Title) }, null)
+                    </li>
+                }
+            </ul>
+        }
+    </fieldset>
+</div>

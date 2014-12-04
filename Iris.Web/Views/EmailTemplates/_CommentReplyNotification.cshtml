@@ -1,0 +1,17 @@
+﻿@model Iris.Model.EmailModel.CommentReplyNotificationModel
+
+<div style="direction: rtl; -ms-word-wrap: break-word; word-wrap: break-word;">
+    <p>با سلام</p>
+    <p>کاربر گرامی، @Model.ToUserName </p>
+    <p>شما پاسخی از طرف @Model.FromUserName برای مطلب <a href="@Model.CommentLink">@Model.PostTitle</a> دربافت کرده اید.</p>
+    <div>
+        @Html.Raw(Model.CommentText)
+    </div>
+    <div style="font-size: 13px; color: #808080;">
+        <p>با تشکر</p>
+        <p>@Model.SiteTitle</p>
+        <p>@Model.SiteDescription</p>
+        <p><span style="direction: ltr !important; unicode-bidi: embed;">@Html.ConvertToPersianDateTime(DateTime.Now, "s,H")</span></p>
+    </div>
+</div>
+

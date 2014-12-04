@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Iris.Model.PostCommentDetailModel>
+@{
+    int currentPage = ViewBag.CurrentPage + 1;
+    int count = ViewBag.Count;
+    int max = (ViewBag.TotalRecords % count == 0) ? ViewBag.TotalRecords / count : (ViewBag.TotalRecords / count) + 1;
+    const int size = 8;
+    var firstPage = ((currentPage - size) <= 0) ? 0 : currentPage - size;
+    var lastPage = ((currentPage + size) >= max) ? max : currentPage + size;
+}
+<div style="text-align: right;">
+    @foreach (var comment in Model)
+    {
+        <div style="margin: 20px;">
+            <div>@Html.ActionLink(comment.Title, MVC.Post.ActionNames.Index, MVC.Post.Name, new { id = comment.PostId, title = Html.ResolveTitleForUrl(comment.Title) }, null)
+            </div>
+            <div>
+                @Html.Raw(comment.Body)
+            </div>
+            <div>
+                <span class="label label-info"><span class="unicode">@Html.ConvertToPersianString(comment.LikeCount)</span> امتیاز</span>
+                <span class="label label-important"><span class="unicode">@Html.ConvertToPersianDateTime(comment.AddedDate, "D,H")</span></span>
+            </div>
+        </div>
+    }
+
+    <!-- begin page navigation section -->
+    <div class="pagination pagination-centered">
+        <ul>
+            @if (currentPage - 1 == firstPage)
+            {
+                <li class="active"><a>ابتدا</a></li>
+            }
+            else
+            {
+                <li>@Ajax.ActionLink("ابتدا", MVC.Comment.ActionNames.PostUserComments, MVC.Comment.Name, new { page = 0, count = ViewBag.Count }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "userPostComments", OnSuccess = "Book.onSuccess", OnBegin = "Book.onBegin" }, null)
+                </li>
+            }
+            @for (var i = firstPage; i < lastPage; i++)
+            {
+                if (i + 1 == currentPage)
+                {
+                <li class="active"><a>@Html.ConvertToPersianString(i + 1)</a></li>
+                }
+                else
+                {
+                <li>@Ajax.ActionLink(Html.ConvertToPersianString(i + 1).ToString(), MVC.Comment.ActionNames.PostUserComments, MVC.Comment.Name, new { page = i, count = ViewBag.Count }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "userPostComments", OnSuccess = "Book.onSuccess", OnBegin = "Book.onBegin" }, null)
+                </li>
+                }
+            }
+            @if (currentPage == lastPage)
+            {
+                <li class="active"><a>انتها</a></li>
+            }
+            else
+            {
+                <li>@Ajax.ActionLink("انتها", MVC.Comment.ActionNames.PostUserComments, MVC.Comment.Name, new { page = lastPage - 1, count = ViewBag.Count }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "userPostComments", OnSuccess = "Book.onSuccess", OnBegin = "Book.onBegin" }, null)
+                </li>
+            }
+        </ul>
+    </div>
+    <!-- end page navigation section -->
+</div>

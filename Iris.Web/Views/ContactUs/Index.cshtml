@@ -1,0 +1,56 @@
+﻿@model Iris.Model.ContactUsModel
+@{
+    ViewBag.Title = "تماس با ما";
+}
+@section styles
+{
+    @Styles.Render("~/Content/redactor/css")
+    <style>
+        div#contactUsDiv #CaptchaInputText
+        {
+            margin-right: 80px;
+        }
+    </style>
+}
+@if (User.Identity.IsAuthenticated)
+{
+    <div style="padding: 10px;" id="contactUsDiv">
+        <fieldset>
+            <legend>تماس با ما</legend>
+            @using (Ajax.BeginForm(MVC.ContactUs.ActionNames.Submit, MVC.ContactUs.Name, null, new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "sendResult", LoadingElementDuration = 300, LoadingElementId = "loadingMessage" }, new { @class = "form-horizontal", id = "frmContactUs" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="control-group">
+                    <label class="control-label" for="Subject">موضوع</label>
+                    <div class="controls">
+                        @Html.TextBoxFor(c => c.Subject, new { placeholder = "موضوع", @class = "input-xlarge" })
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label for="Body">متن</label>
+                    <div class="controls" style="margin-right: 0;">
+                        @Html.TextAreaFor(c => c.Body, new { id = "messageBody" })
+                    </div>
+                </div>
+                <div>
+                    <input type="submit" name="btnSubmit" class="btn btn-success" value="ارسال" />
+                </div>
+                <div id="sendResult" style="padding: 10px; margin: 5px;">@Html.ValidationSummary()</div>
+            }
+        </fieldset>
+    </div>
+}
+else
+{
+    <div id="alert" class="alert alert-error">
+        <button type="button" class="close" data-dismiss="alert">×</button>برای ارتباط با ما باید عضو سایت شده باشید.
+    </div>
+}
+@section scripts
+{
+    @Scripts.Render("~/bundles/redactor")
+    <script type="text/javascript">
+        $('#messageBody').redactor({ direction: 'rtl', minHeight: 200 });
+    </script>
+}
+

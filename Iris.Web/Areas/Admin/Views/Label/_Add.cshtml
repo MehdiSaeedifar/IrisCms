@@ -1,0 +1,26 @@
+﻿@model Iris.Model.AdminModel.AddLabelModel
+
+<div class="container-fluid" id="div-user-detail">
+    @using (Ajax.BeginForm(MVC.Admin.Label.ActionNames.Add, MVC.Admin.Label.Name, new AjaxOptions { UpdateTargetId = "result", InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnBegin = "showLoading", OnComplete = "hideLoading" }, new { @class = "form-horizontal", id = "add-label-form" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="control-group">
+            <label class="control-label" for="Name">نام برچسب</label>
+            <div class="controls">
+                @Html.TextBoxFor(label => label.Name, new { placeholder = "نام برچسب" })
+            </div>
+            @Html.ValidationMessageFor(label => label.Name)
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Description">توضیحات</label>
+            <div class="controls">
+                @Html.TextBoxFor(label => label.Description, new { placeholder = "توضیحات" })
+            </div>
+            @Html.ValidationMessageFor(label => label.Description)
+        </div>
+        <div id="result"></div>
+        <input type="submit" name="btn-submit" value="افزودن برچسب" class="btn btn-success" />
+        <input type="button" name="btn-colose" id="btn-close" value="انصراف" class="btn btn-danger" onclick="$dialog.dialog('close');" />
+    }
+</div>
+

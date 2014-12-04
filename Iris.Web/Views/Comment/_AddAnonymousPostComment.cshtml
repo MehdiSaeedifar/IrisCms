@@ -1,0 +1,46 @@
+﻿@using CaptchaMvc.HtmlHelpers
+@model Iris.Model.AddAnonymousCommentModel
+
+<div class="comment-reply" id="commentReply">
+    <!-- begin commnet-erply div -->
+    @using (Ajax.BeginForm(MVC.Comment.ActionNames.AddAnonymousPostComment, MVC.Comment.Name, new AjaxOptions { HttpMethod = "POST", OnSuccess = "AddComment.onSuccess", LoadingElementDuration = 300, LoadingElementId = "loadingMessage" }, new { @class = "form-horizontal", id = "frmCommentReply" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.Hidden("id", ViewBag.PostId as string)
+        @Html.Hidden("replyId", ViewBag.ReplyId as string)
+        <div class="control-group">
+            <label class="control-label" style="width: 10px;" for="Body">متن</label>
+            <div class="controls" style="margin-right: 70px; text-align: right;">
+                @Html.TextAreaFor(comment => comment.Body, new { cols = "10", placeholder = "دیدگاه خود را بنویسید..." })
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Email">ایمیل</label>
+            <div class="pull-right">
+                @Html.TextBoxFor(comment => comment.Email, new { placeholder = "Email", @class = "ltr" })
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Name">نام</label>
+            <div class="pull-right">
+                @Html.TextBoxFor(comment => comment.Name, new { placeholder = "نام" })
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Captcha">انسان یاب!</label>
+            <div style="margin-right: 20px;">
+                @Html.Captcha(5, MVC.Shared.Views.DefaultCaptcha)
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div style="display: none" id="loading1">
+            <img src="~/Content/Images/loading1.gif" />
+        </div>
+        <div style="margin-right: 20px; margin-bottom: 10px; margin-top: 10px;">
+            <button type="submit" class="btn btn-primary" style="margin-right: 50px;">ارسال</button>
+        </div>
+        <div id="addCommentResult">@Html.ValidationSummary()</div>
+    }
+    <div class="clear"></div>
+</div>
+<!-- end comment-reply -->

@@ -1,0 +1,110 @@
+﻿@model IEnumerable<Iris.Model.AdminModel.CategoryDataTableModel>
+@{
+    int currentPage = ViewBag.CurrentPage + 1;
+    int count = ViewBag.Count;
+    int max = (ViewBag.TotalRecords % count == 0) ? ViewBag.TotalRecords / count : (ViewBag.TotalRecords / count) + 1;
+    const int size = 8;
+    int firstPage = ((currentPage - size) <= 0) ? 0 : currentPage - size;
+    int lastPage = ((currentPage + size) >= max) ? max : currentPage + size;
+}
+<div id="label-table">
+    <table style="width: 100%;" class="table iris-table">
+        <thead>
+            <tr>
+                <td></td>
+                <td>#</td>
+                <td>عنوان</td>
+                <td>توضیح</td>
+                <td>ترتیب</td>
+                <td>تعداد مطالب</td>
+                <td style="text-align: center">عملیات</td>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var counter = ((currentPage - 1) * count) + 1;
+            }
+            @foreach (var category in Model)
+            {
+            
+                <tr>
+                    <td>
+                        <input type="checkbox" name="PostsId" value="@category.Id" />
+                    </td>
+                    <td>@Html.ConvertToPersianString(counter)</td>
+                    <td>@category.Name</td>
+                    <td>@category.Description</td>
+                    <td>@Html.ConvertToPersianString(category.Order ?? 0)</td>
+                    <td>@Html.ConvertToPersianString(category.ArticlesCount)</td>
+                    <td>
+                        @Ajax.ButtonDialog("ویرایش", Url.Action(MVC.Admin.Category.ActionNames.Edit, MVC.Admin.Category.Name), "GET", "id=" + category.Id, "dialog", new DialogOptions { Height = "220", Width = "450", IsModal = "true", Title = "ویرایش گروه", ShowDir = "down", ShowEffect = "drop", HideEffect = "puff", HideDir = "up" }, "btn btn-primary")
+                        @Ajax.ButtonDialog("حذف", Url.Action(MVC.Admin.Category.ActionNames.ConfirmDelete, MVC.Admin.Category.Name), "GET", "id=" + category.Id, "dialog", new DialogOptions { Height = "200", Width = "450", IsModal = "true", Title = "حذف گروه", ShowDir = "down", ShowEffect = "explode", HideEffect = "explode" }, "btn btn-danger")
+                    </td>
+                </tr>
+                ++counter;
+            }
+        </tbody>
+    </table>
+
+    @* Page Navigation *@
+
+    <div class="pagination pagination-centered">
+        <ul>
+            @if (currentPage - 1 == firstPage)
+            {
+                <li class="active"><a>ابتدا</a></li>
+            }
+            else
+            {
+                <li>@Ajax.ActionLink("ابتدا", MVC.Admin.Category.ActionNames.DataTable, MVC.Admin.Category.Name, new { page = 0, term = ViewBag.TERM, count = ViewBag.COUNT, order = ViewBag.ORDER, orderBy = ViewBag.ORDERBY, searchBy = ViewBag.SEARCHBY }, new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, OnBegin = "showLoading", UpdateTargetId = "label-table", OnSuccess = "loadAjaxComponents", OnComplete = "hideLoading" }, null)
+                </li>
+            }
+            @for (int i = firstPage; i < lastPage; i++)
+            {
+                if (i + 1 == currentPage)
+                {
+                <li class="active"><a>@Html.ConvertToPersianString(i + 1)</a></li>
+                }
+                else
+                {
+                <li>@Ajax.ActionLink(Html.ConvertToPersianString(i + 1).ToString(), MVC.Admin.Category.ActionNames.DataTable, MVC.Admin.Category.Name, new { page = 0, term = ViewBag.TERM, count = ViewBag.COUNT, order = ViewBag.ORDER, orderBy = ViewBag.ORDERBY, searchBy = ViewBag.SEARCHBY }, new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, OnBegin = "showLoading", UpdateTargetId = "label-table", OnSuccess = "loadAjaxComponents", OnComplete = "hideLoading" }, null)
+                </li>
+                }
+            }
+            @if (currentPage == lastPage)
+            {
+                <li class="active"><a>انتها</a></li>
+            }
+            else
+            {
+                <li>@Ajax.ActionLink("انتها", MVC.Admin.Category.ActionNames.DataTable, MVC.Admin.Category.Name, new { page = 0, term = ViewBag.TERM, count = ViewBag.COUNT, order = ViewBag.ORDER, orderBy = ViewBag.ORDERBY, searchBy = ViewBag.SEARCHBY }, new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, OnBegin = "showLoading", UpdateTargetId = "label-table", OnSuccess = "loadAjaxComponents", OnComplete = "hideLoading" }, null)
+                </li>
+            }
+        </ul>
+    </div>
+    @* Filter Section *@
+
+    @using (Ajax.BeginForm(MVC.Admin.Category.ActionNames.DataTable, MVC.Admin.Category.Name, new AjaxOptions { UpdateTargetId = "label-table", InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnBegin = "showLoading", OnComplete = "hideLoading", OnSuccess = "loadAjaxComponents" }))
+    {
+        @Html.Hidden("term", ViewBag.TERM as string)
+        @Html.Hidden("searchBy", ViewBag.SEARCHBY as string)
+        <div class="row-fluid">
+            <div class="span3">
+                <span style="vertical-align: top;">نمایش به صورت</span>
+                @Html.DropDownList("order", ViewBag.OrderByList as IEnumerable<SelectListItem>, new { style = "width:100px" })
+            </div>
+            <div class="span3">
+                <span style="vertical-align: top;">بر اساس</span>
+                @Html.DropDownList("orderBy", ViewBag.OrderByItems as IEnumerable<SelectListItem>, new { style = "width:120px" })
+            </div>
+            <div class="span3">
+                <span style="vertical-align: top;">تعداد در هر صفحه</span>
+                @Html.DropDownList("count", ViewBag.CountList as IEnumerable<SelectListItem>, new { style = "width:60px" })
+            </div>
+            <div class="span3">
+                <input type="submit" name="btn-submit" value="برو" class="btn" />
+            </div>
+        </div>
+    }
+
+</div>

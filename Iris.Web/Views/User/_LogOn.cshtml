@@ -1,0 +1,44 @@
+﻿@model Iris.Model.LogOnModel
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 style="font-family: Helvetica Neue, Helvetica, Arial, sans-serif;">ورود به سایت</h3>
+</div>
+<div class="modal-body">
+    @using (Ajax.BeginForm(MVC.User.ActionNames.LogOn, MVC.User.Name, new AjaxOptions { UpdateTargetId = "logOnModal", InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnBegin = "", OnComplete = "", LoadingElementDuration = 300, LoadingElementId = "loadingMessage" }, new { @class = "form-horizontal", id = "logOnForm" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.Hidden("returnUrl", ViewBag.ReturnUrl as string)
+        <div class="control-group">
+            <label class="control-label" style="width: 110px;" for="Identity">ایمیل یا نام کاربری</label>
+            <div class="controls">
+                @Html.TextBoxFor(user => user.Identity, new { placeholder = "Email or Username", @class = "ltr" })
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" style="width: 110px;" for="Password">کلمه عبور</label>
+            <div class="controls">
+                @Html.PasswordFor(user => user.Password, new { placeholder = "Password", @class = "ltr" })
+            </div>
+        </div>
+        <label class="checkbox">
+            @Html.CheckBox("RememberMe", true)مرا به یاد داشته باش
+            <input type="submit" id="btnLogOn" name="name" value="" style="display: none;" />
+        </label>
+        <div>
+            @Ajax.ActionLink("کلمه عبور را فراموش کردم", MVC.ForgottenPassword.ActionNames.Index, MVC.ForgottenPassword.Name, null, new AjaxOptions { HttpMethod = "Get", UpdateTargetId = "logOnModal", LoadingElementDuration = 300, LoadingElementId = "loadingMessage" }, new { tabindex = "-1" })
+        </div>
+        <div id="aa-result"></div>
+        @Html.ValidationSummary()
+    }
+</div>
+<div class="modal-footer" style="text-align: right;">
+    <input type="submit" name="btn-submit" onclick="$('#btnLogOn').trigger('click');" value="ورود" class="btn btn-success" />
+    @Ajax.ActionLink("ثبت نام", MVC.User.ActionNames.Register, MVC.User.Name
+                     , new { returnUrl = ViewBag.ReturnUrl }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "logOnModal", LoadingElementDuration = 300, LoadingElementId = "loadingMessage" }, new { @class = "btn btn-info" })
+    <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">بستن</button>
+</div>
+<script type="text/javascript">
+    run(function () {
+        validateForm('logOnForm');
+    });
+</script>

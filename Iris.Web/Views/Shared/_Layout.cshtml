@@ -1,0 +1,119 @@
+﻿@using StackExchange.Profiling
+<!DOCTYPE html>
+<html>
+<head>
+    @Html.Action(MVC.MetaTag.ActionNames.Index, MVC.MetaTag.Name, new { title = ViewBag.Title, keywords = ViewBag.Keywords, description = ViewBag.Description })
+    <link rel="canonical" href="@Request.Url.AbsoluteUri" />
+    <meta http-equiv="Content-Language" content="fa" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    @RenderSection("metatags", false)
+    <link rel="shortcut icon" href="@Links.Content.Images.fav.iefavicon_ico" type="image/x-icon">
+    <link rel="shortcut icon" href="@Links.Content.Images.fav.favicon_ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="@Links.Content.Images.fav.apple_touch_icon_iphone_png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="@Links.Content.Images.fav.apple_touch_icon_ipad_png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="@Links.Content.Images.fav.apple_touch_icon_iphone4_png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="@Links.Content.Images.fav.apple_touch_icon_ipad3_png" />
+    <link title="فید کتاب های سایت" href="@Url.Action(MVC.Feed.ActionNames.Posts, MVC.Feed.Name)" type="application/rss+xml" rel="alternate" />
+    <link title="فید دیدگاه های سایت" href="@Url.Action(MVC.Feed.ActionNames.Comments, MVC.Feed.Name)" type="application/rss+xml" rel="alternate" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    @Styles.Render("~/Content/bootstrap/css", "~/Content/themes/start/autocompleteandanimations", "~/Content/sitecss")
+    @RenderSection("styles", false)
+</head>
+<body>
+    @if (User.Identity.IsAuthenticated)
+    {
+        @Html.Action(MVC.Admin.Home.ActionNames.RenderDashBoard, MVC.Admin.Home.Name, new { area = "Admin" })
+        <style type="text/css">
+            body {
+                padding-top: 40px;
+            }
+        </style>
+    }
+    <div class="container-fluid" id="wrapper">
+        <div class="row-fluid" id="header">
+            <div class="span4" id="header-img">
+                <h1>
+                    <a title="مرجع دانلود کتاب های کامپیوتر و IT" href="@Url.Action(MVC.Home.ActionNames.Index, MVC.Home.Name)">EBooks World</a>
+                </h1>
+                <h4>Computer & IT Ebooks Centre</h4>
+            </div>
+            <!-- end header image div -->
+            <div id="header-social-networks-container" class="pull-left visible-tablet visible-desktop">
+                <a href="https://www.facebook.com/ebooksworldir" rel="nofollow" title="EBooksWorld در Facebook">
+                    <img src="~/Content/images/facebook.png" alt="Facebook">
+                </a>
+                <a rel="nofollow" target="_blank" href="https://plus.google.com/106709386676017239470" title="EBooksWorld در +Google">
+                    <img src="~/Content/images/google_plus.png" alt="Google-Plus">
+                </a>
+                <a href="#">
+                    <img src="~/Content/images/twitter.png" alt="Twitter">
+                </a>
+            </div>
+            <!-- end social networks div -->
+            @using (Html.BeginForm(MVC.Search.ActionNames.Index, MVC.Search.Name, FormMethod.Get, new { style = "margin-bottom:0", @class = "form-search" }))
+            {
+                <div class="input-append pull-right hidden-desktop" style="margin: 10px;">
+                    <input type="text" data-i-search-input="true" class="search-query" name="term" value="@ViewBag.Term" data-autocomplete="true" data-autocomplete-url="@Url.Action(MVC.Search.ActionNames.AutoCompleteSearch, MVC.Search.Name)" placeholder="عنوان،نویسنده،ناشر،ISBN" />
+                    <button class="btn btn-primary" type="submit">جست و جو</button>
+                </div>
+            }
+        </div>
+        <!-- end header div -->
+        <!-- begin navbar div-->
+        <div class="row-fluid " id="navbar">
+            @Html.Action(MVC.Home.ActionNames.NavBar, MVC.Home.Name)
+        </div>
+        <!-- end navbar div -->
+        <div id="content-wrapper">
+            <div class="row-fluid">
+                @Html.Action(MVC.Home.ActionNames.Announce, MVC.Home.Name)
+                @Html.Action(MVC.Home.ActionNames.Slider, MVC.Home.Name)
+            </div>
+            <!-- end slider div -->
+            <div class="row-fluid">
+                <!-- begin sidebar and announce div -->
+                @Html.Action(MVC.SideBar.ActionNames.Index, MVC.SideBar.Name)
+                <!-- end announce-wrapper div -->
+                <div class="span10 " id="main-content">
+                    @RenderBody()
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div id="loadingMessage">
+            <img src="@Links.Content.Images.loading4_gif" alt="loading..." />
+            <div>
+                <p>لطفا منتظر بمانید...</p>
+            </div>
+        </div>
+    </div>
+    <!-- end sidebar and announce div -->
+    <!-- end container div -->
+    <footer>
+        <div id="footer">
+            <div id="footer-bar" style="text-align: center;">
+                <p style="margin: 0;"><span>با افتخار نیرو گرفته از IRIS Blue</span></p>
+                <label class="label label-important">BETA VERSION</label>
+            </div>
+        </div>
+    </footer>
+    <!-- begin logon modal form -->
+    <div id="logOnModal" style="z-index: 99999999;" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    </div>
+    <!-- end logon modal form -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryuitools")
+    @Scripts.Render("~/bundles/sitejs")
+    @RenderSection("scripts", false)
+    @*@MiniProfiler.RenderIncludes()*@
+    <script lang='javascript' type='text/javascript' src='http://www.persianstat.com/service/stat.js'></script>
+    <script lang='javascript' type='text/javascript'>
+        persianstat(10187762, 4); $('iframe[name=PersianStat]').hide(0);
+    </script>
+</body>
+</html>

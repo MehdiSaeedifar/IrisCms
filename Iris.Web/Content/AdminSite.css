@@ -1,0 +1,169 @@
+﻿body
+{
+    font-size: .80em;
+}
+
+/* sidebar */
+div#iris-sidebar ul li > i
+{
+    float: right;
+    margin-top: 5px;
+}
+
+
+/* end sidebar*/
+
+thead
+{
+    font-weight: bold;
+    background-color: rgba(56, 0, 251, 0.78);
+    color: white;
+}
+
+tr a:hover
+{
+    color: white;
+}
+
+.selected-row
+{
+    background-color: #23e9f6;
+}
+
+.iris-table tbody tr:hover
+{
+    background-color: rgba(0, 28, 35, 0.75);
+    color: white;
+    border: 1px solid rgba(13, 13, 13, 0.41);
+    border-radius: 10px;
+}
+
+.iris-table tr:hover a
+{
+    color: white;
+}
+
+.btn
+{
+    font-family: Tahoma;
+}
+
+#div-user-detail div.row-fluid
+{
+    margin-bottom: 10px;
+    border-bottom: dashed 1px;
+    border-bottom-color: #2e2cfa;
+}
+/* info and errors */
+.message-info
+{
+    border: 1px solid;
+    clear: both;
+    padding: 10px 20px;
+}
+
+.message-error
+{
+    clear: both;
+    color: #e80c4d;
+    font-size: 1.1em;
+    margin: 20px 0 10px 0;
+}
+
+.message-success
+{
+    color: #17a407;
+    font-size: 1.3em;
+    margin: 20px 0 10px 0;
+}
+
+.error
+{
+    color: #e80c4d;
+}
+
+/* styles for validation helpers */
+.field-validation-error
+{
+    color: #e80c4d;
+}
+
+.field-validation-valid
+{
+    display: none;
+}
+
+input.input-validation-error
+{
+    border: 1px solid #e80c4d;
+}
+
+input[type="checkbox"].input-validation-error
+{
+    border: 0 none;
+}
+
+.validation-summary-errors
+{
+    color: #e80c4d;
+    font-size: 1.1em;
+    list-style: none !important;
+}
+
+.validation-summary-valid
+{
+    display: none;
+}
+
+/* custom css*/
+.iris-table td
+{
+    text-align: center;
+}
+/* Comment DataTable css */
+#comment-table div#sent-time
+{
+    font-size: 12px;
+}
+
+#comment-table table td
+{
+    vertical-align: middle;
+}
+
+/* End comment DataTable css */
+
+
+/* Begin user datatable*/
+#user-table table td
+{
+    vertical-align: middle;
+}
+/* End user DataTable */
+div#loadingMessage
+{
+    text-align: center;
+    padding: 5px;
+    position: fixed;
+    width: 200px; /* adjust */
+    height: 30px; /* adjust */
+    top: 50%;
+    z-index: 9999999999999999999;
+    left: 50%;
+    margin-left: -100px; /* half of the width */
+    margin-top: -100px; /* half of the height */
+    background-color: #77aad0;
+    background-color: rgba(119, 170, 208, 0.56);
+    border-radius: 5px;
+    border: 1px solid #03305A;
+    display: none;
+}
+div#loadingMessage img {
+    float: right;
+}
+
+    div#loadingMessage div
+    {
+        font-weight: bold;
+        margin-top: 5px;
+    }

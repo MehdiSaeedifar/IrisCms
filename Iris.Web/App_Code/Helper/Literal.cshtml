@@ -1,0 +1,21 @@
+﻿@helper PostStatus(string status)
+{
+    switch (status)
+    {
+        case "hidden":
+    @:پنهان
+            break;
+        case "visible":
+    @:عادی
+            break;
+        case "draft":
+    @:پیش نویس
+            break;
+        case "archive":
+    @:آرشیو
+            break;
+        default:
+            break;
+    }
+
+}

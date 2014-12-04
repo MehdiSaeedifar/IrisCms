@@ -1,0 +1,168 @@
+﻿<error errorId="68c4ddff-6546-4d75-9108-9968b4e180c1" application="/LM/W3SVC/3/ROOT" host="MEHDI-PC" type="System.ArgumentException" message="Value cannot be null or empty.&#xD;&#xA;Parameter name: linkText" source="System.Web.Mvc" detail="System.Web.HttpException (0x80004005): Error executing child request for handler 'System.Web.Mvc.HttpHandlerUtil+ServerExecuteHttpHandlerAsyncWrapper'. ---&gt; System.Web.HttpException (0x80004005): Error executing child request for handler 'System.Web.Mvc.HttpHandlerUtil+ServerExecuteHttpHandlerAsyncWrapper'. ---&gt; System.ArgumentException: Value cannot be null or empty.&#xD;&#xA;Parameter name: linkText&#xD;&#xA;   at System.Web.Mvc.Html.LinkExtensions.ActionLink(HtmlHelper htmlHelper, String linkText, String actionName, String controllerName, RouteValueDictionary routeValues, IDictionary`2 htmlAttributes)&#xD;&#xA;   at System.Web.Mvc.Html.LinkExtensions.ActionLink(HtmlHelper htmlHelper, String linkText, String actionName, String controllerName, Object routeValues, Object htmlAttributes)&#xD;&#xA;   at ASP._Page_Views_SideBar__Categories_cshtml.Execute() in d:\IRIS CMS v 1.1\Iris.Web\Views\SideBar\_Categories.cshtml:line 6&#xD;&#xA;   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()&#xD;&#xA;   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()&#xD;&#xA;   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)&#xD;&#xA;   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)&#xD;&#xA;   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)&#xD;&#xA;   at StackExchange.Profiling.MVCHelpers.WrappedView.Render(ViewContext viewContext, TextWriter writer) in c:\Code\github\SamSaffron\MiniProfiler\StackExchange.Profiling\MVCHelpers\WrappedView.cs:line 58&#xD;&#xA;   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.&lt;&gt;c__DisplayClass1e.&lt;&gt;c__DisplayClass28.&lt;BeginInvokeAction&gt;b__19()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.&lt;&gt;c__DisplayClass1e.&lt;BeginInvokeAction&gt;b__1b(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Controller.&lt;BeginExecuteCore&gt;b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()&#xD;&#xA;   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Controller.&lt;BeginExecute&gt;b__15(IAsyncResult asyncResult, Controller controller)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()&#xD;&#xA;   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.&lt;BeginProcessRequest&gt;b__4(IAsyncResult asyncResult, ProcessRequestState innerState)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()&#xD;&#xA;   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)&#xD;&#xA;   at System.Web.Mvc.HttpHandlerUtil.ServerExecuteHttpHandlerAsyncWrapper.&lt;&gt;c__DisplayClassa.&lt;EndProcessRequest&gt;b__9()&#xD;&#xA;   at System.Web.Mvc.HttpHandlerUtil.ServerExecuteHttpHandlerWrapper.&lt;&gt;c__DisplayClass4.&lt;Wrap&gt;b__3()&#xD;&#xA;   at System.Web.Mvc.HttpHandlerUtil.ServerExecuteHttpHandlerWrapper.Wrap[TResult](Func`1 func)&#xD;&#xA;   at System.Web.Mvc.HttpHandlerUtil.ServerExecuteHttpHandlerWrapper.Wrap(Action action)&#xD;&#xA;   at System.Web.Mvc.HttpHandlerUtil.ServerExecuteHttpHandlerAsyncWrapper.EndProcessRequest(IAsyncResult result)&#xD;&#xA;   at System.Web.HttpServerUtility.ExecuteInternal(IHttpHandler handler, TextWriter writer, Boolean preserveForm, Boolean setPreviousPage, VirtualPath path, VirtualPath filePath, String physPath, Exception error, String queryStringOverride)&#xD;&#xA;   at System.Web.HttpServerUtility.ExecuteInternal(IHttpHandler handler, TextWriter writer, Boolean preserveForm, Boolean setPreviousPage, VirtualPath path, VirtualPath filePath, String physPath, Exception error, String queryStringOverride)&#xD;&#xA;   at System.Web.HttpServerUtility.Execute(IHttpHandler handler, TextWriter writer, Boolean preserveForm, Boolean setPreviousPage)&#xD;&#xA;   at System.Web.HttpServerUtility.Execute(IHttpHandler handler, TextWriter writer, Boolean preserveForm)&#xD;&#xA;   at System.Web.HttpServerUtilityWrapper.Execute(IHttpHandler handler, TextWriter writer, Boolean preserveForm)&#xD;&#xA;   at System.Web.Mvc.Html.ChildActionExtensions.ActionHelper(HtmlHelper htmlHelper, String actionName, String controllerName, RouteValueDictionary routeValues, TextWriter textWriter)&#xD;&#xA;   at System.Web.Mvc.Html.ChildActionExtensions.Action(HtmlHelper htmlHelper, String actionName, String controllerName, RouteValueDictionary routeValues)&#xD;&#xA;   at System.Web.Mvc.Html.ChildActionExtensions.Action(HtmlHelper htmlHelper, String actionName, String controllerName)&#xD;&#xA;   at ASP._Page_Views_SideBar__SideBar_cshtml.Execute() in d:\IRIS CMS v 1.1\Iris.Web\Views\SideBar\_SideBar.cshtml:line 5&#xD;&#xA;   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()&#xD;&#xA;   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()&#xD;&#xA;   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)&#xD;&#xA;   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)&#xD;&#xA;   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)&#xD;&#xA;   at StackExchange.Profiling.MVCHelpers.WrappedView.Render(ViewContext viewContext, TextWriter writer) in c:\Code\github\SamSaffron\MiniProfiler\StackExchange.Profiling\MVCHelpers\WrappedView.cs:line 58&#xD;&#xA;   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.&lt;&gt;c__DisplayClass1e.&lt;&gt;c__DisplayClass28.&lt;BeginInvokeAction&gt;b__19()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.&lt;&gt;c__DisplayClass1e.&lt;BeginInvokeAction&gt;b__1b(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Controller.&lt;BeginExecuteCore&gt;b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()&#xD;&#xA;   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Controller.&lt;BeginExecute&gt;b__15(IAsyncResult asyncResult, Controller controller)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()&#xD;&#xA;   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.&lt;BeginProcessRequest&gt;b__4(IAsyncResult asyncResult, ProcessRequestState innerState)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()&#xD;&#xA;   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)&#xD;&#xA;   at System.Web.Mvc.HttpHandlerUtil.ServerExecuteHttpHandlerAsyncWrapper.&lt;&gt;c__DisplayClassa.&lt;EndProcessRequest&gt;b__9()&#xD;&#xA;   at System.Web.Mvc.HttpHandlerUtil.ServerExecuteHttpHandlerWrapper.&lt;&gt;c__DisplayClass4.&lt;Wrap&gt;b__3()&#xD;&#xA;   at System.Web.Mvc.HttpHandlerUtil.ServerExecuteHttpHandlerWrapper.Wrap[TResult](Func`1 func)&#xD;&#xA;   at System.Web.Mvc.HttpHandlerUtil.ServerExecuteHttpHandlerWrapper.Wrap(Action action)&#xD;&#xA;   at System.Web.Mvc.HttpHandlerUtil.ServerExecuteHttpHandlerAsyncWrapper.EndProcessRequest(IAsyncResult result)&#xD;&#xA;   at System.Web.HttpServerUtility.ExecuteInternal(IHttpHandler handler, TextWriter writer, Boolean preserveForm, Boolean setPreviousPage, VirtualPath path, VirtualPath filePath, String physPath, Exception error, String queryStringOverride)&#xD;&#xA;   at System.Web.HttpServerUtility.ExecuteInternal(IHttpHandler handler, TextWriter writer, Boolean preserveForm, Boolean setPreviousPage, VirtualPath path, VirtualPath filePath, String physPath, Exception error, String queryStringOverride)&#xD;&#xA;   at System.Web.HttpServerUtility.Execute(IHttpHandler handler, TextWriter writer, Boolean preserveForm, Boolean setPreviousPage)&#xD;&#xA;   at System.Web.HttpServerUtility.Execute(IHttpHandler handler, TextWriter writer, Boolean preserveForm)&#xD;&#xA;   at System.Web.HttpServerUtilityWrapper.Execute(IHttpHandler handler, TextWriter writer, Boolean preserveForm)&#xD;&#xA;   at System.Web.Mvc.Html.ChildActionExtensions.ActionHelper(HtmlHelper htmlHelper, String actionName, String controllerName, RouteValueDictionary routeValues, TextWriter textWriter)&#xD;&#xA;   at System.Web.Mvc.Html.ChildActionExtensions.Action(HtmlHelper htmlHelper, String actionName, String controllerName, RouteValueDictionary routeValues)&#xD;&#xA;   at System.Web.Mvc.Html.ChildActionExtensions.Action(HtmlHelper htmlHelper, String actionName, String controllerName)&#xD;&#xA;   at ASP._Page_Views_Shared__Layout_cshtml.Execute() in d:\IRIS CMS v 1.1\Iris.Web\Views\Shared\_Layout.cshtml:line 76&#xD;&#xA;   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()&#xD;&#xA;   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()&#xD;&#xA;   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)&#xD;&#xA;   at System.Web.WebPages.WebPageBase.&lt;&gt;c__DisplayClass7.&lt;RenderPageCore&gt;b__6(TextWriter writer)&#xD;&#xA;   at System.Web.WebPages.HelperResult.WriteTo(TextWriter writer)&#xD;&#xA;   at System.Web.WebPages.WebPageBase.Write(HelperResult result)&#xD;&#xA;   at System.Web.WebPages.WebPageBase.RenderSurrounding(String partialViewName, Action`1 body)&#xD;&#xA;   at System.Web.WebPages.WebPageBase.PopContext()&#xD;&#xA;   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)&#xD;&#xA;   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)&#xD;&#xA;   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)&#xD;&#xA;   at StackExchange.Profiling.MVCHelpers.WrappedView.Render(ViewContext viewContext, TextWriter writer) in c:\Code\github\SamSaffron\MiniProfiler\StackExchange.Profiling\MVCHelpers\WrappedView.cs:line 58&#xD;&#xA;   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.&lt;&gt;c__DisplayClass1e.&lt;&gt;c__DisplayClass28.&lt;BeginInvokeAction&gt;b__19()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.&lt;&gt;c__DisplayClass1e.&lt;BeginInvokeAction&gt;b__1b(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Controller.&lt;BeginExecuteCore&gt;b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()&#xD;&#xA;   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Controller.&lt;BeginExecute&gt;b__15(IAsyncResult asyncResult, Controller controller)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()&#xD;&#xA;   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.&lt;BeginProcessRequest&gt;b__4(IAsyncResult asyncResult, ProcessRequestState innerState)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()&#xD;&#xA;   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)&#xD;&#xA;   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()&#xD;&#xA;   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously)" user="admin" time="2013-12-26T12:23:22.2319826Z" statusCode="500">
+  <serverVariables>
+    <item name="ALL_HTTP">
+      <value string="HTTP_CACHE_CONTROL:max-age=0&#xD;&#xA;HTTP_CONNECTION:keep-alive&#xD;&#xA;HTTP_ACCEPT:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&#xD;&#xA;HTTP_ACCEPT_ENCODING:gzip,deflate,sdch&#xD;&#xA;HTTP_ACCEPT_LANGUAGE:en-US,en;q=0.8&#xD;&#xA;HTTP_COOKIE:__RequestVerificationToken=m2Hb89bEnoCZIhJHjQQ9oJg7oiRDrSJmaRW6bud5rrVF3gLek0lJM-a6YBts0s_DOj1RkPnEylyGa2mwvBFhwAkbEB6gmHVajMWufJGL7ds1; irisblue132412=EE8DB7FE82680F0A55604CCF7EA6654AC32B0ACFF27031F4B16453B81C44B0CA142D8B3B5B9A29136FBF560B9718D27B4F14038A3510B806C84D4F8BE53A47242BB4E7762702931E91AB6460A8BC1A8958746D373C45D86054C530BDBCA96707DB59C65FBAFEA7006208965330BE8B7864B6E20AC95C53A7A87742F6E079495605D91CDF3CD01426CE1C49E6D4E42FD8&#xD;&#xA;HTTP_HOST:localhost:18600&#xD;&#xA;HTTP_REFERER:http://localhost:18600/&#xD;&#xA;HTTP_USER_AGENT:Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1700.41 Safari/537.36&#xD;&#xA;" />
+    </item>
+    <item name="ALL_RAW">
+      <value string="Cache-Control: max-age=0&#xD;&#xA;Connection: keep-alive&#xD;&#xA;Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&#xD;&#xA;Accept-Encoding: gzip,deflate,sdch&#xD;&#xA;Accept-Language: en-US,en;q=0.8&#xD;&#xA;Cookie: __RequestVerificationToken=m2Hb89bEnoCZIhJHjQQ9oJg7oiRDrSJmaRW6bud5rrVF3gLek0lJM-a6YBts0s_DOj1RkPnEylyGa2mwvBFhwAkbEB6gmHVajMWufJGL7ds1; irisblue132412=EE8DB7FE82680F0A55604CCF7EA6654AC32B0ACFF27031F4B16453B81C44B0CA142D8B3B5B9A29136FBF560B9718D27B4F14038A3510B806C84D4F8BE53A47242BB4E7762702931E91AB6460A8BC1A8958746D373C45D86054C530BDBCA96707DB59C65FBAFEA7006208965330BE8B7864B6E20AC95C53A7A87742F6E079495605D91CDF3CD01426CE1C49E6D4E42FD8&#xD;&#xA;Host: localhost:18600&#xD;&#xA;Referer: http://localhost:18600/&#xD;&#xA;User-Agent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1700.41 Safari/537.36&#xD;&#xA;" />
+    </item>
+    <item name="APPL_MD_PATH">
+      <value string="/LM/W3SVC/3/ROOT" />
+    </item>
+    <item name="APPL_PHYSICAL_PATH">
+      <value string="D:\IRIS CMS v 1.1\Iris.Web\" />
+    </item>
+    <item name="AUTH_TYPE">
+      <value string="Forms" />
+    </item>
+    <item name="AUTH_USER">
+      <value string="admin" />
+    </item>
+    <item name="AUTH_PASSWORD">
+      <value string="*****" />
+    </item>
+    <item name="LOGON_USER">
+      <value string="" />
+    </item>
+    <item name="REMOTE_USER">
+      <value string="admin" />
+    </item>
+    <item name="CERT_COOKIE">
+      <value string="" />
+    </item>
+    <item name="CERT_FLAGS">
+      <value string="" />
+    </item>
+    <item name="CERT_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SERIALNUMBER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CERT_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CONTENT_LENGTH">
+      <value string="0" />
+    </item>
+    <item name="CONTENT_TYPE">
+      <value string="" />
+    </item>
+    <item name="GATEWAY_INTERFACE">
+      <value string="CGI/1.1" />
+    </item>
+    <item name="HTTPS">
+      <value string="off" />
+    </item>
+    <item name="HTTPS_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="INSTANCE_ID">
+      <value string="3" />
+    </item>
+    <item name="INSTANCE_META_PATH">
+      <value string="/LM/W3SVC/3" />
+    </item>
+    <item name="LOCAL_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="PATH_INFO">
+      <value string="/post/index/1/asdasdasdasd" />
+    </item>
+    <item name="PATH_TRANSLATED">
+      <value string="D:\IRIS CMS v 1.1\Iris.Web\post\index\1\asdasdasdasd" />
+    </item>
+    <item name="QUERY_STRING">
+      <value string="" />
+    </item>
+    <item name="REMOTE_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_HOST">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_PORT">
+      <value string="21924" />
+    </item>
+    <item name="REQUEST_METHOD">
+      <value string="GET" />
+    </item>
+    <item name="SCRIPT_NAME">
+      <value string="/post/index/1/asdasdasdasd" />
+    </item>
+    <item name="SERVER_NAME">
+      <value string="localhost" />
+    </item>
+    <item name="SERVER_PORT">
+      <value string="18600" />
+    </item>
+    <item name="SERVER_PORT_SECURE">
+      <value string="0" />
+    </item>
+    <item name="SERVER_PROTOCOL">
+      <value string="HTTP/1.1" />
+    </item>
+    <item name="SERVER_SOFTWARE">
+      <value string="Microsoft-IIS/8.0" />
+    </item>
+    <item name="URL">
+      <value string="/post/index/1/asdasdasdasd" />
+    </item>
+    <item name="HTTP_CACHE_CONTROL">
+      <value string="max-age=0" />
+    </item>
+    <item name="HTTP_CONNECTION">
+      <value string="keep-alive" />
+    </item>
+    <item name="HTTP_ACCEPT">
+      <value string="text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8" />
+    </item>
+    <item name="HTTP_ACCEPT_ENCODING">
+      <value string="gzip,deflate,sdch" />
+    </item>
+    <item name="HTTP_ACCEPT_LANGUAGE">
+      <value string="en-US,en;q=0.8" />
+    </item>
+    <item name="HTTP_COOKIE">
+      <value string="__RequestVerificationToken=m2Hb89bEnoCZIhJHjQQ9oJg7oiRDrSJmaRW6bud5rrVF3gLek0lJM-a6YBts0s_DOj1RkPnEylyGa2mwvBFhwAkbEB6gmHVajMWufJGL7ds1; irisblue132412=EE8DB7FE82680F0A55604CCF7EA6654AC32B0ACFF27031F4B16453B81C44B0CA142D8B3B5B9A29136FBF560B9718D27B4F14038A3510B806C84D4F8BE53A47242BB4E7762702931E91AB6460A8BC1A8958746D373C45D86054C530BDBCA96707DB59C65FBAFEA7006208965330BE8B7864B6E20AC95C53A7A87742F6E079495605D91CDF3CD01426CE1C49E6D4E42FD8" />
+    </item>
+    <item name="HTTP_HOST">
+      <value string="localhost:18600" />
+    </item>
+    <item name="HTTP_REFERER">
+      <value string="http://localhost:18600/" />
+    </item>
+    <item name="HTTP_USER_AGENT">
+      <value string="Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1700.41 Safari/537.36" />
+    </item>
+  </serverVariables>
+  <cookies>
+    <item name="__RequestVerificationToken">
+      <value string="m2Hb89bEnoCZIhJHjQQ9oJg7oiRDrSJmaRW6bud5rrVF3gLek0lJM-a6YBts0s_DOj1RkPnEylyGa2mwvBFhwAkbEB6gmHVajMWufJGL7ds1" />
+    </item>
+    <item name="irisblue132412">
+      <value string="EE8DB7FE82680F0A55604CCF7EA6654AC32B0ACFF27031F4B16453B81C44B0CA142D8B3B5B9A29136FBF560B9718D27B4F14038A3510B806C84D4F8BE53A47242BB4E7762702931E91AB6460A8BC1A8958746D373C45D86054C530BDBCA96707DB59C65FBAFEA7006208965330BE8B7864B6E20AC95C53A7A87742F6E079495605D91CDF3CD01426CE1C49E6D4E42FD8" />
+    </item>
+  </cookies>
+</error>

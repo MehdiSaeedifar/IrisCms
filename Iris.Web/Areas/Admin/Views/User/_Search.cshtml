@@ -1,0 +1,32 @@
+﻿@using (Ajax.BeginForm(MVC.Admin.User.ActionNames.DataTable, MVC.Admin.User.Name, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "user-table", OnBegin = "showLoading", OnSuccess = "loadAjaxComponents", OnComplete = "hideLoading" }))
+{
+    <input type="text"  name="term" placeholder="جست و جو" class="search-query" data-autocomplete="@Url.Action(MVC.Admin.User.ActionNames.AutoCompleteSearch, MVC.Admin.User.Name)" data-filter="UserName" data-min-length="1">
+    <input type="submit" name="btn-submit" value="جست و جو" class="btn btn-info" />
+    <button data-slide-toggle-id="#search-types" class="btn">پیشرفته</button>
+    <div id="search-types" style="display: none; margin-top: 10px;">
+        <label class="radio inline">
+            <input type="radio" name="searchBy" value="UserName" checked>
+            نام کاربری
+        </label>
+        <label class="radio inline">
+            <input type="radio" name="searchBy" value="RoleDescription">
+            نقش
+        </label>
+        <label class="radio inline">
+            <input type="radio" name="searchBy" value="FirstName">
+            نام
+        </label>
+        <label class="radio inline">
+            <input type="radio" name="searchBy" value="LastName">
+            نام خانوادگی
+        </label>
+        <label class="radio inline">
+            <input type="radio" name="searchBy" value="Email">
+            ایمیل
+        </label>
+        <label class="radio inline">
+            <input type="radio" name="searchBy" value="Ip">
+            IP
+        </label>
+    </div>
+}

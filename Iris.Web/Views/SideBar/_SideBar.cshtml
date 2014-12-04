@@ -1,0 +1,16 @@
+﻿<div class="span2" id="sidebar">
+    <div class="well sidebar-nav">
+        <ul class="nav nav-list">
+            <li class="active"><a class="i-font-koodak" style="background-color: rgb(3, 48, 90);"><i class="icon-list-alt icon-white"></i><span class="sidebar-title" style="color: white;">بخش های سایت</span></a></li>
+            @Html.Action(MVC.SideBar.ActionNames.Categories, MVC.SideBar.Name)
+            @Html.Action(MVC.SideBar.ActionNames.Labels, MVC.SideBar.Name)
+            <li class="nav-header">
+                <img src="@Links.Content.Images.rss_png" alt="feeds" style="width:12px;" />
+                <span class="sidebar-title">فیدها</span>
+            </li>
+            <li>@Html.ActionLink("فید کتاب های سایت", MVC.Feed.ActionNames.Posts, MVC.Feed.Name)</li>
+            <li>@Html.ActionLink("فید دیدگاه های سایت", MVC.Feed.ActionNames.Comments, MVC.Feed.Name)</li>
+            @Html.Action(MVC.SideBar.ActionNames.Statistics, MVC.SideBar.Name)
+        </ul>
+    </div>
+</div>

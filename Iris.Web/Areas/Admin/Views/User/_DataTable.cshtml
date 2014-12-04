@@ -1,0 +1,106 @@
+﻿@model IEnumerable<Iris.Model.AdminModel.UserDataTableModel>
+@{
+    int currentPage = ViewBag.PAGE + 1;
+    int count = ViewBag.COUNT;
+    int max = ViewBag.TotalRecords / count;
+    int firstPage = ((currentPage - 2) <= 0) ? 0 : currentPage - 3;
+    int lastPage = ((currentPage + 2) >= max) ? max : currentPage + 3;
+}
+<div id="user-table">
+    <table style="width: 100%;" class="table iris-table">
+        <thead>
+            <tr>
+                <td></td>
+                <td>نام کاربری</td>
+                <td>اطلاعات</td>
+                <td>نقش</td>
+                <td>وضعیت</td>
+                <td>عملیات</td>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var user in Model)
+            {
+            
+                <tr>
+                    <td>
+                        <input type="checkbox" name="UsersId" value="@user.Id" />
+                    </td>
+                    <td>
+                        <div>
+                            <div>
+                                <img src="@user.AvatarPath" alt="" style="width:50px;height:50px;" />
+                            </div>
+                            <div style="margin-top: 10px;">
+                                <span>@user.UserName</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="max-width: 200px;">
+                        <div style="text-align: right; max-width: 400px;">
+                            <div style="float: right; margin-left: 100px;">نام: @user.FullName</div>
+                            <div style="">ایمیل: <a href="mailto:@user.Email">@user.Email</a></div>
+                            <div style="float: right; margin-left: 100px;">پست ها: @Html.ConvertToPersianString(user.PostCount)</div>
+                            <div>دیدگاه ها: @Html.ConvertToPersianString(user.CommentCount)</div>
+                            <div style="font-size: 12px;">تاریخ ورود: @Html.ConvertToPersianDateTime(Convert.ToDateTime(user.LastLoginDate), "w,t")</div>
+                            <div style="font-size: 12px;">تاریخ ثبت نام: @Html.ConvertToPersianDateTime(Convert.ToDateTime(user.RegisterDate), "w,t")</div>
+                        </div>
+                    </td>
+                    <td>
+                        @switch (user.RoleDescription)
+                        {
+                            case "مدیرکل":
+                            <span class="label label-important">@user.RoleDescription</span>
+                                break;
+                            case "مدیر":
+                            <span class="label label-warning">@user.RoleDescription</span>
+                                break;
+                            case "کاربر":
+                            <span class="label label-info">@user.RoleDescription</span>
+                                break;
+                            default:
+                            <span class="label">@user.RoleDescription</span>
+                                break;
+                        }
+                    </td>
+                    @if (Convert.ToBoolean(user.IsBaned))
+                    {
+                        <td><span class="label label-inverse">بن شده</span></td>
+                    }
+                    else
+                    {
+                        <td><span class="label label-success">آزاد</span></td>
+                    }
+                    <td>
+                        @Ajax.ButtonDialog("جزئیات", @Url.Action(MVC.Admin.User.ActionNames.Detail, MVC.Admin.User.Name), "GET", "userId=" + @user.Id, "dialog", new DialogOptions { Height = "600", IsModal = "true", Title = "اطلاعات کاربری", Width = "450" }, "btn btn-info")
+                        @Ajax.ButtonDialog("ویرایش", Url.Action(MVC.Admin.User.ActionNames.EditUser, MVC.Admin.User.Name), "GET", "userId=" + @user.Id, "dialog", new DialogOptions { Height = "600", Width = "450", IsModal = "true", Title = "ویرایش کاربر", ShowDir = "down", ShowEffect = "blind" }, "btn btn-primary")
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+    <div class="pagination pagination-centered">
+        <ul>
+            <li>@Ajax.ActionLink("ابتدا", MVC.Admin.User.ActionNames.DataTable, MVC.Admin.User.Name, new { page = 0, term = ViewBag.TERM, count = ViewBag.COUNT, order = ViewBag.ORDER, orderBy = ViewBag.ORDERBY, searchBy = ViewBag.SEARCHBY }, new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, OnBegin = "showLoading", UpdateTargetId = "user-table", OnSuccess = "loadAjaxComponents", OnComplete = "hideLoading" }, null)</li>
+            @for (int i = firstPage; i <= lastPage; i++)
+            {
+                if (i + 1 == currentPage)
+                {
+                <li class="active"><a href="#">@Html.ConvertToPersianString(i + 1)</a></li>
+                }
+                else
+                {
+                <li>@Ajax.ActionLink(Html.ConvertToPersianString(i + 1).ToString(), MVC.Admin.User.ActionNames.DataTable, MVC.Admin.User.Name, new { page = i, term = ViewBag.TERM, count = ViewBag.COUNT, order = ViewBag.ORDER, orderBy = ViewBag.ORDERBY, searchBy = ViewBag.SEARCHBY }, new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, OnBegin = "showLoading", UpdateTargetId = "user-table", OnSuccess = "loadAjaxComponents", OnComplete = "hideLoading" }, null)
+                </li>
+                }
+            }
+            <li>@Ajax.ActionLink("انتها", MVC.Admin.User.ActionNames.DataTable, MVC.Admin.User.Name, new { page = max, term = ViewBag.TERM, count = ViewBag.COUNT, order = ViewBag.ORDER, orderBy = ViewBag.ORDERBY, searchBy = ViewBag.SEARCHBY }, new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, OnBegin = "showLoading", UpdateTargetId = "user-table", OnSuccess = "loadAjaxComponents", OnComplete = "hideLoading" }, null)</li>
+        </ul>
+    </div>
+    @Html.Partial(MVC.Admin.User.Views._FilterBar)
+
+</div>@* End User Table Div*@

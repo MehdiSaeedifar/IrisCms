@@ -1,0 +1,45 @@
+﻿@model CaptchaMvc.Models.DefaultBuildInfoModel
+<div>
+    <div>
+        <img id="@Model.ImageElementId" src="@Model.ImageUrl" style="width:180px;height:50px; border:1px solid #ccc; border-radius:5px;" />
+
+        @Html.Hidden(Model.TokenElementId, Model.TokenValue)
+        @{
+            string id = Guid.NewGuid().ToString("N");
+            string functionName = string.Format("______{0}________()", Guid.NewGuid().ToString("N"));
+            <script type="text/javascript">
+
+                $(function () {
+                    $('#@id').show();
+                });
+
+                function @functionName {
+                                $('#@id').hide();
+                    $.post("@Model.RefreshUrl", { @Model.TokenParameterName: $('#@Model.TokenElementId').val() }, function () {
+                        $('#@id').show();
+                    });
+                    return false;
+                }
+            </script>
+        }
+        <a href="#@id" id="@id" tabindex="-1" onclick="@functionName"><i class="icon-refresh"></i>جدید@*@Model.RefreshButtonText*@</a>
+    </div>
+    @*<div style="float:right;">
+    @Model.InputText
+</div>*@
+
+    @if (Model.IsRequired)
+    {
+        <div style="margin-top: 10px; float: right;">
+            @Html.TextBox(Model.InputElementId, null, new Dictionary<string, object>() { { "data-val", "true" }, { "data-val-required", Model.RequiredMessage }, { "style", "direction:rtl" }, { "placeholder", "حروف فوق را وارد نمایید" } })
+        </div>
+    }
+    else
+    {
+        <div style="margin-top: 10px;">
+            @Html.TextBox(Model.InputElementId, null, new { @class = "input-medium", style = "direction:ltr;float:right;", placeholder = "حروف فوق را وارد نمایید" })
+        </div>
+    }
+
+    @*@Html.ValidationMessage(Model.InputElementId)*@
+</div>

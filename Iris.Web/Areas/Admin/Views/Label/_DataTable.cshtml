@@ -1,0 +1,94 @@
+﻿@model IEnumerable<Iris.Model.AdminModel.LabelDataTableModel>
+@{
+    int currentPage = ViewBag.CurrentPage + 1;
+    int count = ViewBag.Count;
+    int max = ViewBag.TotalRecords / count;
+    int firstPage = ((currentPage - 2) <= 0) ? 0 : currentPage - 3;
+    int lastPage = ((currentPage + 2) >= max) ? max : currentPage + 3;
+}
+<div id="label-table">
+    <table style="width: 100%;" class="table iris-table">
+        <thead>
+            <tr>
+                <td></td>
+                <td>#</td>
+                <td>عنوان</td>
+                <td>توضیح</td>
+                <td>تعداد پست ها</td>
+                <td style="text-align: center">عملیات</td>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var counter = ((currentPage - 1) * count) + 1;
+            }
+            @foreach (var label in Model)
+            {
+            
+                <tr>
+                    <td>
+                        <input type="checkbox" name="PostsId" value="@label.Id" />
+                    </td>
+                    <td>@Html.ConvertToPersianString(counter)</td>
+                    <td>@label.Name</td>
+                    <td>@label.Description</td>
+                    <td>@Html.ConvertToPersianString(label.PostCount)</td>
+                    <td>
+                        @Ajax.ButtonDialog("ویرایش", Url.Action(MVC.Admin.Label.ActionNames.Edit, MVC.Admin.Label.Name), "GET", "id=" + label.Id, "dialog", new DialogOptions { Height = "220", Width = "450", IsModal = "true", Title = "ویرایش برچسب", ShowDir = "down", ShowEffect = "drop", HideEffect="puff", HideDir="up" }, "btn btn-primary")
+                        @Ajax.ButtonDialog("حذف", Url.Action(MVC.Admin.Label.ActionNames.ConfirmDelete, MVC.Admin.Label.Name), "GET", "id=" + label.Id, "dialog", new DialogOptions { Height = "200", Width = "450", IsModal = "true", Title = "حذف برچسب", ShowDir = "down", ShowEffect = "explode", HideEffect = "explode" }, "btn btn-danger")
+                    </td>
+
+                </tr>
+                ++counter;
+            }
+        </tbody>
+    </table>
+
+    @* Page Navigation *@
+
+    <div class="pagination pagination-centered">
+        <ul>
+            <li>@Ajax.ActionLink("ابتدا", MVC.Admin.Label.ActionNames.DataTable, MVC.Admin.Label.Name, new { page = 0, term = ViewBag.TERM, count = ViewBag.COUNT, order = ViewBag.ORDER, orderBy = ViewBag.ORDERBY, searchBy = ViewBag.SEARCHBY }, new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, OnBegin = "showLoading", UpdateTargetId = "label-table", OnSuccess = "loadAjaxComponents", OnComplete = "hideLoading" }, null)</li>
+            @for (int i = firstPage; i <= lastPage; i++)
+            {
+                if (i + 1 == currentPage)
+                {
+                <li class="active"><a href="#">@Html.ConvertToPersianString(i + 1)</a></li>
+                }
+                else
+                {
+                <li>@Ajax.ActionLink(Html.ConvertToPersianString(i + 1).ToString(), MVC.Admin.Label.ActionNames.DataTable, MVC.Admin.Label.Name, new { page = i, term = ViewBag.TERM, count = ViewBag.COUNT, order = ViewBag.ORDER, orderBy = ViewBag.ORDERBY, searchBy = ViewBag.SEARCHBY }, new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, OnBegin = "showLoading", UpdateTargetId = "label-table", OnSuccess = "loadAjaxComponents", OnComplete = "hideLoading" }, null)
+                </li>
+                }
+            }
+            <li>@Ajax.ActionLink("انتها", MVC.Admin.Label.ActionNames.DataTable, MVC.Admin.Label.Name, new { page = max, term = ViewBag.TERM, count = ViewBag.COUNT, order = ViewBag.ORDER, orderBy = ViewBag.ORDERBY, searchBy = ViewBag.SEARCHBY }, new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, OnBegin = "showLoading", UpdateTargetId = "label-table", OnSuccess = "loadAjaxComponents", OnComplete = "hideLoading" }, null)</li>
+        </ul>
+    </div>
+
+    @* Filter Section *@
+
+    @using (Ajax.BeginForm(MVC.Admin.Label.ActionNames.DataTable, MVC.Admin.Label.Name, new AjaxOptions { UpdateTargetId = "label-table", InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnBegin = "showLoading", OnComplete = "hideLoading", OnSuccess = "loadAjaxComponents" }))
+    {
+        @Html.Hidden("term", ViewBag.TERM as string)
+        @Html.Hidden("searchBy", ViewBag.SEARCHBY as string)
+        <div class="row-fluid">
+            <div class="span3">
+                <span style="vertical-align: top;">نمایش به صورت</span>
+                @Html.DropDownList("order", ViewBag.OrderByList as IEnumerable<SelectListItem>, new { style = "width:100px" })
+            </div>
+            <div class="span3">
+                <span style="vertical-align: top;">بر اساس</span>
+                @Html.DropDownList("orderBy", ViewBag.OrderByItems as IEnumerable<SelectListItem>, new { style = "width:120px" })
+            </div>
+            <div class="span3">
+                <span style="vertical-align: top;">تعداد در هر صفحه</span>
+                @Html.DropDownList("count", ViewBag.CountList as IEnumerable<SelectListItem>, new { style = "width:60px" })
+            </div>
+            <div class="span3">
+                <input type="submit" name="btn-submit" value="برو" class="btn" />
+            </div>
+        </div>
+    }
+
+</div>
+

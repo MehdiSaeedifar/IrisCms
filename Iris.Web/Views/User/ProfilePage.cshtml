@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = string.Format("اطلاعات کاربری {0}", User.Identity.Name);
+}
+<div style="background-color: white; text-align: right; padding: 20px;">
+    <ul class="nav nav-tabs" id="userTab">
+        <li class="active"><a href="#userProfile" data-i-source="@Url.Action(MVC.User.ActionNames.UserDetail, MVC.User.Name)" data-update-element-id="userProfile">اطلاعات کاربری</a></li>
+        <li><a href="#userPosts" data-i-source="@Url.Action(MVC.Post.ActionNames.UserPosts, MVC.Post.Name)" data-update-element-id="userPosts">پست ها</a></li>
+        <li><a href="#userArticles" data-i-source="@Url.Action(MVC.Article.ActionNames.UserArticles, MVC.Article.Name)" data-update-element-id="userArticles">مطالب</a></li>
+        <li><a href="#userPostComments" data-i-source="@Url.Action(MVC.Comment.ActionNames.PostUserComments, MVC.Comment.Name)" data-update-element-id="userPostComments">دیدگاه های پست ها</a>
+        </li>
+        <li><a href="#userPageComments" data-i-source="@Url.Action(MVC.Comment.ActionNames.PageUserComments, MVC.Comment.Name)" data-update-element-id="userPageComments">دیدگاه های برگه ها</a>
+        </li>
+        <li><a href="#userArticleComments" data-i-source="@Url.Action(MVC.Comment.ActionNames.ArticleUserComments, MVC.Comment.Name)" data-update-element-id="userArticleComments">دیدگاه های مطالب</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane active" id="userProfile">
+            @Html.Action(MVC.User.ActionNames.UserDetail, MVC.User.Name)
+        </div>
+        <div class="tab-pane" id="userPosts">
+        </div>
+        <div class="tab-pane" id="userArticles"></div>
+        <div class="tab-pane" id="userPostComments"></div>
+        <div class="tab-pane" id="userPageComments"></div>
+        <div class="tab-pane" id="userArticleComments"></div>
+    </div>
+</div>
+@section scripts
+{
+    <script>
+        $(function () {
+            $('ul#userTab li a').on('click', function (e) {
+                e.preventDefault();
+                var $this = $(this);
+                $.ajax({
+                    type: "Get",
+                    url: $this.attr('data-i-source'),
+                    success: function (response) {
+                        $('div.tab-content div#' + $this.attr('data-update-element-id')).html(response);
+                        $this.tab('show');
+                    }
+                });
+            });
+        })
+    </script>
+}

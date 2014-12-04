@@ -1,0 +1,168 @@
+﻿<error errorId="0aeea73a-3012-4c19-8119-382c6b0f33d1" application="/LM/W3SVC/3/ROOT" host="MEHDI-PC" type="System.NullReferenceException" message="Object reference not set to an instance of an object." source="Iris.Servicelayer" detail="System.NullReferenceException: Object reference not set to an instance of an object.&#xD;&#xA;   at Iris.Servicelayer.EFServices.PostService.IncrementVisitedNumber(Int32 id) in d:\IRIS CMS v 1.1\Iris.Servicelayer\EFServices\PostService.cs:line 194&#xD;&#xA;   at Castle.Proxies.Invocations.IPostService_IncrementVisitedNumber.InvokeMethodOnTarget()&#xD;&#xA;   at Castle.DynamicProxy.AbstractInvocation.Proceed()&#xD;&#xA;   at Iris.Utilities.Caching.CacheInterceptor.cacheMethod(IInvocation invocation) in d:\IRIS CMS v 1.1\Iris.Common\Caching\CacheInterceptor.cs:line 22&#xD;&#xA;   at Iris.Utilities.Caching.CacheInterceptor.Intercept(IInvocation invocation) in d:\IRIS CMS v 1.1\Iris.Common\Caching\CacheInterceptor.cs:line 14&#xD;&#xA;   at Castle.DynamicProxy.AbstractInvocation.Proceed()&#xD;&#xA;   at Castle.Proxies.IPostServiceProxy.IncrementVisitedNumber(Int32 id)&#xD;&#xA;   at Iris.Web.Controllers.PostController.Index(Int32 id) in d:\IRIS CMS v 1.1\Iris.Web\Controllers\PostController.cs:line 29&#xD;&#xA;   at lambda_method(Closure , ControllerBase , Object[] )&#xD;&#xA;   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)&#xD;&#xA;   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.&lt;BeginInvokeSynchronousActionMethod&gt;b__36(IAsyncResult asyncResult, ActionInvocation innerInvokeState)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.&lt;InvokeActionMethodFilterAsynchronouslyRecursive&gt;b__3c()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.&lt;&gt;c__DisplayClass45.&lt;InvokeActionMethodFilterAsynchronouslyRecursive&gt;b__3e()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.&lt;&gt;c__DisplayClass45.&lt;InvokeActionMethodFilterAsynchronouslyRecursive&gt;b__3e()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.&lt;&gt;c__DisplayClass45.&lt;InvokeActionMethodFilterAsynchronouslyRecursive&gt;b__3e()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.&lt;&gt;c__DisplayClass30.&lt;BeginInvokeActionMethodWithFilters&gt;b__2f(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.&lt;&gt;c__DisplayClass1e.&lt;&gt;c__DisplayClass28.&lt;BeginInvokeAction&gt;b__19()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.&lt;&gt;c__DisplayClass1e.&lt;BeginInvokeAction&gt;b__1b(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Controller.&lt;BeginExecuteCore&gt;b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()&#xD;&#xA;   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Controller.&lt;BeginExecute&gt;b__15(IAsyncResult asyncResult, Controller controller)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()&#xD;&#xA;   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.&lt;BeginProcessRequest&gt;b__4(IAsyncResult asyncResult, ProcessRequestState innerState)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()&#xD;&#xA;   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)&#xD;&#xA;   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()&#xD;&#xA;   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously)" user="Guest" time="2013-12-27T04:35:44.9727592Z">
+  <serverVariables>
+    <item name="ALL_HTTP">
+      <value string="HTTP_CACHE_CONTROL:max-age=0&#xD;&#xA;HTTP_CONNECTION:keep-alive&#xD;&#xA;HTTP_ACCEPT:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&#xD;&#xA;HTTP_ACCEPT_ENCODING:gzip,deflate,sdch&#xD;&#xA;HTTP_ACCEPT_LANGUAGE:en-US,en;q=0.8&#xD;&#xA;HTTP_COOKIE:__RequestVerificationToken=4UAG84dWtoBsOBCIZf1_6MS2tMd_iKtWDrt2R0gm_2rZtlGCR3lUUFOGwgr3grXVveECo9l898RhaFSjGyiPCf9XDi9rFXV-HSG14bCmPW41; irisblue132412=97DCCF65B3181A94FAE968DC1116669DEAFFE9457A8B684DFE83D295866406EB633AF69B3F6A9330A02E07DDEE4625050193F15FB4F33B4A8458F390E3FDA0C2BF2B0F7B75B07FAA641BFDC299323E06EF99A511CAC4DEB2591823B118C6D94AE07697A1B8BAEBAAF182B6A53E7AD0F49F6C6A523439D83342AD0E85E443A234AFE126A6D94C54221945D9D42900C72CCEA49F189EC2FE6224EDEAECB1A30AE128305AB3D490636FE27D419727246D19DFDE051E0898D6812C90E44468901BE17F796E7EF12A35AB9CFF5DAD1C7E2411E667DD987946B9B53E1F95C38A41E563901D6FA48E4533A8BAD54058DF8DE03F&#xD;&#xA;HTTP_HOST:localhost:18600&#xD;&#xA;HTTP_REFERER:http://localhost:18600/&#xD;&#xA;HTTP_USER_AGENT:Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1700.41 Safari/537.36&#xD;&#xA;" />
+    </item>
+    <item name="ALL_RAW">
+      <value string="Cache-Control: max-age=0&#xD;&#xA;Connection: keep-alive&#xD;&#xA;Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&#xD;&#xA;Accept-Encoding: gzip,deflate,sdch&#xD;&#xA;Accept-Language: en-US,en;q=0.8&#xD;&#xA;Cookie: __RequestVerificationToken=4UAG84dWtoBsOBCIZf1_6MS2tMd_iKtWDrt2R0gm_2rZtlGCR3lUUFOGwgr3grXVveECo9l898RhaFSjGyiPCf9XDi9rFXV-HSG14bCmPW41; irisblue132412=97DCCF65B3181A94FAE968DC1116669DEAFFE9457A8B684DFE83D295866406EB633AF69B3F6A9330A02E07DDEE4625050193F15FB4F33B4A8458F390E3FDA0C2BF2B0F7B75B07FAA641BFDC299323E06EF99A511CAC4DEB2591823B118C6D94AE07697A1B8BAEBAAF182B6A53E7AD0F49F6C6A523439D83342AD0E85E443A234AFE126A6D94C54221945D9D42900C72CCEA49F189EC2FE6224EDEAECB1A30AE128305AB3D490636FE27D419727246D19DFDE051E0898D6812C90E44468901BE17F796E7EF12A35AB9CFF5DAD1C7E2411E667DD987946B9B53E1F95C38A41E563901D6FA48E4533A8BAD54058DF8DE03F&#xD;&#xA;Host: localhost:18600&#xD;&#xA;Referer: http://localhost:18600/&#xD;&#xA;User-Agent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1700.41 Safari/537.36&#xD;&#xA;" />
+    </item>
+    <item name="APPL_MD_PATH">
+      <value string="/LM/W3SVC/3/ROOT" />
+    </item>
+    <item name="APPL_PHYSICAL_PATH">
+      <value string="D:\IRIS CMS v 1.1\Iris.Web\" />
+    </item>
+    <item name="AUTH_TYPE">
+      <value string="" />
+    </item>
+    <item name="AUTH_USER">
+      <value string="" />
+    </item>
+    <item name="AUTH_PASSWORD">
+      <value string="*****" />
+    </item>
+    <item name="LOGON_USER">
+      <value string="" />
+    </item>
+    <item name="REMOTE_USER">
+      <value string="" />
+    </item>
+    <item name="CERT_COOKIE">
+      <value string="" />
+    </item>
+    <item name="CERT_FLAGS">
+      <value string="" />
+    </item>
+    <item name="CERT_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SERIALNUMBER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CERT_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CONTENT_LENGTH">
+      <value string="0" />
+    </item>
+    <item name="CONTENT_TYPE">
+      <value string="" />
+    </item>
+    <item name="GATEWAY_INTERFACE">
+      <value string="CGI/1.1" />
+    </item>
+    <item name="HTTPS">
+      <value string="off" />
+    </item>
+    <item name="HTTPS_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="INSTANCE_ID">
+      <value string="3" />
+    </item>
+    <item name="INSTANCE_META_PATH">
+      <value string="/LM/W3SVC/3" />
+    </item>
+    <item name="LOCAL_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="PATH_INFO">
+      <value string="/post/index/69/دانلود-کتاب-programming-erlang-second-edition" />
+    </item>
+    <item name="PATH_TRANSLATED">
+      <value string="D:\IRIS CMS v 1.1\Iris.Web\post\index\69\دانلود-کتاب-programming-erlang-second-edition" />
+    </item>
+    <item name="QUERY_STRING">
+      <value string="" />
+    </item>
+    <item name="REMOTE_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_HOST">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_PORT">
+      <value string="32181" />
+    </item>
+    <item name="REQUEST_METHOD">
+      <value string="GET" />
+    </item>
+    <item name="SCRIPT_NAME">
+      <value string="/post/index/69/دانلود-کتاب-programming-erlang-second-edition" />
+    </item>
+    <item name="SERVER_NAME">
+      <value string="localhost" />
+    </item>
+    <item name="SERVER_PORT">
+      <value string="18600" />
+    </item>
+    <item name="SERVER_PORT_SECURE">
+      <value string="0" />
+    </item>
+    <item name="SERVER_PROTOCOL">
+      <value string="HTTP/1.1" />
+    </item>
+    <item name="SERVER_SOFTWARE">
+      <value string="Microsoft-IIS/8.0" />
+    </item>
+    <item name="URL">
+      <value string="/post/index/69/دانلود-کتاب-programming-erlang-second-edition" />
+    </item>
+    <item name="HTTP_CACHE_CONTROL">
+      <value string="max-age=0" />
+    </item>
+    <item name="HTTP_CONNECTION">
+      <value string="keep-alive" />
+    </item>
+    <item name="HTTP_ACCEPT">
+      <value string="text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8" />
+    </item>
+    <item name="HTTP_ACCEPT_ENCODING">
+      <value string="gzip,deflate,sdch" />
+    </item>
+    <item name="HTTP_ACCEPT_LANGUAGE">
+      <value string="en-US,en;q=0.8" />
+    </item>
+    <item name="HTTP_COOKIE">
+      <value string="__RequestVerificationToken=4UAG84dWtoBsOBCIZf1_6MS2tMd_iKtWDrt2R0gm_2rZtlGCR3lUUFOGwgr3grXVveECo9l898RhaFSjGyiPCf9XDi9rFXV-HSG14bCmPW41; irisblue132412=97DCCF65B3181A94FAE968DC1116669DEAFFE9457A8B684DFE83D295866406EB633AF69B3F6A9330A02E07DDEE4625050193F15FB4F33B4A8458F390E3FDA0C2BF2B0F7B75B07FAA641BFDC299323E06EF99A511CAC4DEB2591823B118C6D94AE07697A1B8BAEBAAF182B6A53E7AD0F49F6C6A523439D83342AD0E85E443A234AFE126A6D94C54221945D9D42900C72CCEA49F189EC2FE6224EDEAECB1A30AE128305AB3D490636FE27D419727246D19DFDE051E0898D6812C90E44468901BE17F796E7EF12A35AB9CFF5DAD1C7E2411E667DD987946B9B53E1F95C38A41E563901D6FA48E4533A8BAD54058DF8DE03F" />
+    </item>
+    <item name="HTTP_HOST">
+      <value string="localhost:18600" />
+    </item>
+    <item name="HTTP_REFERER">
+      <value string="http://localhost:18600/" />
+    </item>
+    <item name="HTTP_USER_AGENT">
+      <value string="Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1700.41 Safari/537.36" />
+    </item>
+  </serverVariables>
+  <cookies>
+    <item name="__RequestVerificationToken">
+      <value string="4UAG84dWtoBsOBCIZf1_6MS2tMd_iKtWDrt2R0gm_2rZtlGCR3lUUFOGwgr3grXVveECo9l898RhaFSjGyiPCf9XDi9rFXV-HSG14bCmPW41" />
+    </item>
+    <item name="irisblue132412">
+      <value string="97DCCF65B3181A94FAE968DC1116669DEAFFE9457A8B684DFE83D295866406EB633AF69B3F6A9330A02E07DDEE4625050193F15FB4F33B4A8458F390E3FDA0C2BF2B0F7B75B07FAA641BFDC299323E06EF99A511CAC4DEB2591823B118C6D94AE07697A1B8BAEBAAF182B6A53E7AD0F49F6C6A523439D83342AD0E85E443A234AFE126A6D94C54221945D9D42900C72CCEA49F189EC2FE6224EDEAECB1A30AE128305AB3D490636FE27D419727246D19DFDE051E0898D6812C90E44468901BE17F796E7EF12A35AB9CFF5DAD1C7E2411E667DD987946B9B53E1F95C38A41E563901D6FA48E4533A8BAD54058DF8DE03F" />
+    </item>
+  </cookies>
+</error>

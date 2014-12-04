@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Iris.DomainClasses.Entities.Label>
+<li class="nav-header">
+    <i class="icon-tags"></i>
+    <span class="sidebar-title">برچسب ها</span>
+</li>
+@foreach (var label in Model)
+{
+    <li>@Html.ActionLink(label.Name, MVC.Label.ActionNames.Index, MVC.Label.Name, new { id = label.Id, title = Html.ResolveTitleForUrl(label.Description), name = Html.ResolveTitleForUrl(label.Name) }, new { title = label.Description })</li>
+}
+

@@ -1,0 +1,56 @@
+﻿body
+{
+    font-family: Tahoma;
+}
+
+.rtl
+{
+    direction: rtl;
+}
+
+.ltr
+{
+    direction: ltr;
+}
+
+.iris-label
+{
+    font-family: Tahoma;
+    font-size: 20px;
+    display: block;
+}
+
+.iris-border
+{
+    border: 1px solid #ccc;
+}
+
+div
+{
+    font-family: Tahoma;
+}
+
+#loading
+{
+    width: 50px; /* adjust */
+    height: 50px; /* adjust */
+    top: 50%;
+    left: 50%;
+    margin-left: -25px; /* half of the width */
+    margin-top: -25px; /* half of the height */
+}
+
+.i-rtl
+{
+    direction: rtl;
+}
+
+.i-ltr
+{
+    direction: ltr;
+}
+
+.i-hidden
+{
+    display: none;
+}

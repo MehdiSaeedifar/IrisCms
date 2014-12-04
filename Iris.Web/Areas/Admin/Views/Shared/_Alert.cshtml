@@ -1,0 +1,22 @@
+﻿@model Iris.Web.Alert
+@{
+    string className = "alert-info";
+    switch (Model.Mode)
+    {
+        case Iris.Web.AlertMode.Success:
+            className = "alert-success";
+            break;
+        case Iris.Web.AlertMode.Info:
+            className = "alert-info";
+            break;
+        case Iris.Web.AlertMode.Error:
+            className = "alert-error";
+            break;
+        default:
+            break;
+    }
+}
+<div class="@("alert" + " " + className)">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    @Model.Message
+</div>

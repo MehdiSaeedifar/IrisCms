@@ -1,0 +1,137 @@
+﻿@using Iris.Web.Helpers
+@model IEnumerable<Iris.DomainClasses.Entities.Page>
+
+<style>
+    /* begin comment section*/
+    div.comment-reply
+	{
+		margin:10px;
+		border:1px solid #ccc;
+		padding: 10px;
+	}
+	div.comment-reply label
+	{
+		width: 50px;
+	}
+	div.comment-reply input
+	{
+	}
+	div#comment-container
+	{
+		text-align: right;
+		padding: 10px;
+		margin: 10px;
+	}
+	div.comment
+	{
+		background-color: white;
+		padding: 10px;
+		border-radius: 5px;
+		box-shadow: 0px 1px 2px 1px #00A6D2;
+		margin-top: 10px;
+	}
+	div.comment-avatar
+	{
+		padding: 10px;
+		text-align: right;
+	}
+	div.comment-avatar img
+	{
+		width: 80px;
+		height: 80px;
+	}
+	div.comment-avatar div
+	{
+		padding: 10px;
+	}
+	div.comment-detail
+	{
+		line-height: 1.6em;
+		padding: 5px;
+	}
+	div.comment-user
+	{
+		padding: 200px;
+	}
+	div.comment-body
+	{
+		/*float: right;*/
+		border-radius: 5px;
+		border:1px solid #ccc;
+		padding: 15px;
+		line-height: 1.6em;
+		font-size: 13px;
+		/*text-align: justify;*/
+		word-wrap: break-word;
+		box-shadow: 0px 1px 0px 0px #ccc;
+	}
+
+	div.comment-answare-btn
+	{
+		padding: 20px;
+		margin-left: 10px;
+	}
+
+	/* end comment section */
+    div#wrapper
+{
+	height: auto; min-height: 100%;
+	margin-right: 45px;
+	margin-left: 45px;
+}
+body
+{
+	margin: 0;
+	font: Tahoma;
+	background-color: black;
+}
+html body
+{
+    height: 100%;
+}
+
+.clear
+{
+	clear: both
+}
+img
+{
+	border: 0;
+}
+.show-grid {
+    
+    border: 2px solid #ccc;
+}
+.center
+{
+	text-align: center;
+}
+
+.blue-gradiant
+{
+
+}
+.ltr
+{
+	direction: ltr;
+}
+.sidebar-nav 
+{
+        padding: 9px 0;
+}
+</style>
+<h2>TreeView</h2>
+
+
+@(Html.TreeView(Model)
+    .EmptyContent("No locations have been defined yet!")
+    .Children(m => m.Children)
+    .HtmlAttributes(new { id = "tree" })
+    .ChildrenHtmlAttributes(new { @class = "subItem" })
+    .ItemText(m => m.User.UserName)
+    .ItemTemplate(
+        @<text>
+            
+        </text>)
+)
+

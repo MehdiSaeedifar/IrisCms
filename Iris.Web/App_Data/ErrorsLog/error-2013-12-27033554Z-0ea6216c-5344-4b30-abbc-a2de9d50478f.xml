@@ -1,0 +1,182 @@
+﻿<error errorId="0ea6216c-5344-4b30-abbc-a2de9d50478f" application="/LM/W3SVC/3/ROOT" host="MEHDI-PC" type="System.Web.HttpException" message="The controller for path '/cb9fb6a8381e4f05b324c9cee2b00052/arterySignalR/ping' was not found or does not implement IController." source="System.Web.Mvc" detail="System.Web.HttpException (0x80004005): The controller for path '/cb9fb6a8381e4f05b324c9cee2b00052/arterySignalR/ping' was not found or does not implement IController.&#xD;&#xA;   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)&#xD;&#xA;   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController&amp; controller, IControllerFactory&amp; factory)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)&#xD;&#xA;   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()&#xD;&#xA;   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously)" user="mehdi" time="2013-12-27T03:35:54.1776133Z" statusCode="404">
+  <serverVariables>
+    <item name="ALL_HTTP">
+      <value string="HTTP_CONNECTION:keep-alive&#xD;&#xA;HTTP_CONTENT_TYPE:application/x-www-form-urlencoded; charset=UTF-8&#xD;&#xA;HTTP_ACCEPT:text/plain, */*; q=0.01&#xD;&#xA;HTTP_ACCEPT_ENCODING:gzip, deflate&#xD;&#xA;HTTP_ACCEPT_LANGUAGE:en-US,en;q=0.5&#xD;&#xA;HTTP_COOKIE:i1r2i4s6b7l8u9e=26FD9478C94EB919CDA3449322F6DBE948CC9489FC964C04B7B41801BBF4234062FEB7989C6345FE0375A942109DFECE38C5AC0D92F246B3C2D859A6F09BDECF1D4C991F4FEDC0B4459D83DB916C46F9CD8915B7A927EAB415CE5125F0FF90E20258B3CB6305127D5D115A24BFB21C69E6E7C69143226A093F0D8A3769B16E353CC205BE0665E32807A8C12F4D2E555862EEE48535CCD93DA08293D7E30C6A46B5FC208D2D11F399533FD9D4E4C1E178D884BB46D82636C30EDA16F11C2B63AA6F40B90386B78D8F85F3C1E68F6E3ACE8FF66926A96925066540DE999340092F90E8EA310BEF5416885EA81ADDA866CC; __RequestVerificationToken=qOn6N42D0FOVzxbVVGaB0Kz2ebritjqT04pe7vbubX4Oa_QcRQMiK5LRbUMoReqOWmOMUs_MWXcjinEOT7KDn0EHrD0lm9bSZ6gC1BZJB-Q1&#xD;&#xA;HTTP_HOST:localhost:18600&#xD;&#xA;HTTP_REFERER:http://localhost:18600/page/index/1/%D8%AF%D8%B1%D8%A8%D8%A7%D8%B1%D9%87-%D9%85%D8%A7&#xD;&#xA;HTTP_USER_AGENT:Mozilla/5.0 (Windows NT 6.2; WOW64; rv:24.0) Gecko/20100101 Firefox/24.0&#xD;&#xA;HTTP_X_REQUESTED_WITH:XMLHttpRequest&#xD;&#xA;" />
+    </item>
+    <item name="ALL_RAW">
+      <value string="Connection: keep-alive&#xD;&#xA;Content-Type: application/x-www-form-urlencoded; charset=UTF-8&#xD;&#xA;Accept: text/plain, */*; q=0.01&#xD;&#xA;Accept-Encoding: gzip, deflate&#xD;&#xA;Accept-Language: en-US,en;q=0.5&#xD;&#xA;Cookie: i1r2i4s6b7l8u9e=26FD9478C94EB919CDA3449322F6DBE948CC9489FC964C04B7B41801BBF4234062FEB7989C6345FE0375A942109DFECE38C5AC0D92F246B3C2D859A6F09BDECF1D4C991F4FEDC0B4459D83DB916C46F9CD8915B7A927EAB415CE5125F0FF90E20258B3CB6305127D5D115A24BFB21C69E6E7C69143226A093F0D8A3769B16E353CC205BE0665E32807A8C12F4D2E555862EEE48535CCD93DA08293D7E30C6A46B5FC208D2D11F399533FD9D4E4C1E178D884BB46D82636C30EDA16F11C2B63AA6F40B90386B78D8F85F3C1E68F6E3ACE8FF66926A96925066540DE999340092F90E8EA310BEF5416885EA81ADDA866CC; __RequestVerificationToken=qOn6N42D0FOVzxbVVGaB0Kz2ebritjqT04pe7vbubX4Oa_QcRQMiK5LRbUMoReqOWmOMUs_MWXcjinEOT7KDn0EHrD0lm9bSZ6gC1BZJB-Q1&#xD;&#xA;Host: localhost:18600&#xD;&#xA;Referer: http://localhost:18600/page/index/1/%D8%AF%D8%B1%D8%A8%D8%A7%D8%B1%D9%87-%D9%85%D8%A7&#xD;&#xA;User-Agent: Mozilla/5.0 (Windows NT 6.2; WOW64; rv:24.0) Gecko/20100101 Firefox/24.0&#xD;&#xA;X-Requested-With: XMLHttpRequest&#xD;&#xA;" />
+    </item>
+    <item name="APPL_MD_PATH">
+      <value string="/LM/W3SVC/3/ROOT" />
+    </item>
+    <item name="APPL_PHYSICAL_PATH">
+      <value string="D:\IRIS CMS v 1.1\Iris.Web\" />
+    </item>
+    <item name="AUTH_TYPE">
+      <value string="IrisForms" />
+    </item>
+    <item name="AUTH_USER">
+      <value string="mehdi" />
+    </item>
+    <item name="AUTH_PASSWORD">
+      <value string="*****" />
+    </item>
+    <item name="LOGON_USER">
+      <value string="" />
+    </item>
+    <item name="REMOTE_USER">
+      <value string="mehdi" />
+    </item>
+    <item name="CERT_COOKIE">
+      <value string="" />
+    </item>
+    <item name="CERT_FLAGS">
+      <value string="" />
+    </item>
+    <item name="CERT_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SERIALNUMBER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CERT_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CONTENT_LENGTH">
+      <value string="0" />
+    </item>
+    <item name="CONTENT_TYPE">
+      <value string="application/x-www-form-urlencoded; charset=UTF-8" />
+    </item>
+    <item name="GATEWAY_INTERFACE">
+      <value string="CGI/1.1" />
+    </item>
+    <item name="HTTPS">
+      <value string="off" />
+    </item>
+    <item name="HTTPS_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="INSTANCE_ID">
+      <value string="3" />
+    </item>
+    <item name="INSTANCE_META_PATH">
+      <value string="/LM/W3SVC/3" />
+    </item>
+    <item name="LOCAL_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="PATH_INFO">
+      <value string="/cb9fb6a8381e4f05b324c9cee2b00052/arterySignalR/ping" />
+    </item>
+    <item name="PATH_TRANSLATED">
+      <value string="D:\IRIS CMS v 1.1\Iris.Web\cb9fb6a8381e4f05b324c9cee2b00052\arterySignalR\ping" />
+    </item>
+    <item name="QUERY_STRING">
+      <value string="requestUrl=http%3A%2F%2Flocalhost%3A18600%2Fpage%2Findex%2F1%2F%25D8%25AF%25D8%25B1%25D8%25A8%25D8%25A7%25D8%25B1%25D9%2587-%25D9%2585%25D8%25A7&amp;browserName=Firefox&amp;_=1388115354170" />
+    </item>
+    <item name="REMOTE_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_HOST">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_PORT">
+      <value string="25633" />
+    </item>
+    <item name="REQUEST_METHOD">
+      <value string="GET" />
+    </item>
+    <item name="SCRIPT_NAME">
+      <value string="/cb9fb6a8381e4f05b324c9cee2b00052/arterySignalR/ping" />
+    </item>
+    <item name="SERVER_NAME">
+      <value string="localhost" />
+    </item>
+    <item name="SERVER_PORT">
+      <value string="18600" />
+    </item>
+    <item name="SERVER_PORT_SECURE">
+      <value string="0" />
+    </item>
+    <item name="SERVER_PROTOCOL">
+      <value string="HTTP/1.1" />
+    </item>
+    <item name="SERVER_SOFTWARE">
+      <value string="Microsoft-IIS/8.0" />
+    </item>
+    <item name="URL">
+      <value string="/cb9fb6a8381e4f05b324c9cee2b00052/arterySignalR/ping" />
+    </item>
+    <item name="HTTP_CONNECTION">
+      <value string="keep-alive" />
+    </item>
+    <item name="HTTP_CONTENT_TYPE">
+      <value string="application/x-www-form-urlencoded; charset=UTF-8" />
+    </item>
+    <item name="HTTP_ACCEPT">
+      <value string="text/plain, */*; q=0.01" />
+    </item>
+    <item name="HTTP_ACCEPT_ENCODING">
+      <value string="gzip, deflate" />
+    </item>
+    <item name="HTTP_ACCEPT_LANGUAGE">
+      <value string="en-US,en;q=0.5" />
+    </item>
+    <item name="HTTP_COOKIE">
+      <value string="i1r2i4s6b7l8u9e=26FD9478C94EB919CDA3449322F6DBE948CC9489FC964C04B7B41801BBF4234062FEB7989C6345FE0375A942109DFECE38C5AC0D92F246B3C2D859A6F09BDECF1D4C991F4FEDC0B4459D83DB916C46F9CD8915B7A927EAB415CE5125F0FF90E20258B3CB6305127D5D115A24BFB21C69E6E7C69143226A093F0D8A3769B16E353CC205BE0665E32807A8C12F4D2E555862EEE48535CCD93DA08293D7E30C6A46B5FC208D2D11F399533FD9D4E4C1E178D884BB46D82636C30EDA16F11C2B63AA6F40B90386B78D8F85F3C1E68F6E3ACE8FF66926A96925066540DE999340092F90E8EA310BEF5416885EA81ADDA866CC; __RequestVerificationToken=qOn6N42D0FOVzxbVVGaB0Kz2ebritjqT04pe7vbubX4Oa_QcRQMiK5LRbUMoReqOWmOMUs_MWXcjinEOT7KDn0EHrD0lm9bSZ6gC1BZJB-Q1" />
+    </item>
+    <item name="HTTP_HOST">
+      <value string="localhost:18600" />
+    </item>
+    <item name="HTTP_REFERER">
+      <value string="http://localhost:18600/page/index/1/%D8%AF%D8%B1%D8%A8%D8%A7%D8%B1%D9%87-%D9%85%D8%A7" />
+    </item>
+    <item name="HTTP_USER_AGENT">
+      <value string="Mozilla/5.0 (Windows NT 6.2; WOW64; rv:24.0) Gecko/20100101 Firefox/24.0" />
+    </item>
+    <item name="HTTP_X_REQUESTED_WITH">
+      <value string="XMLHttpRequest" />
+    </item>
+  </serverVariables>
+  <queryString>
+    <item name="requestUrl">
+      <value string="http://localhost:18600/page/index/1/%D8%AF%D8%B1%D8%A8%D8%A7%D8%B1%D9%87-%D9%85%D8%A7" />
+    </item>
+    <item name="browserName">
+      <value string="Firefox" />
+    </item>
+    <item name="_">
+      <value string="1388115354170" />
+    </item>
+  </queryString>
+  <cookies>
+    <item name="i1r2i4s6b7l8u9e">
+      <value string="26FD9478C94EB919CDA3449322F6DBE948CC9489FC964C04B7B41801BBF4234062FEB7989C6345FE0375A942109DFECE38C5AC0D92F246B3C2D859A6F09BDECF1D4C991F4FEDC0B4459D83DB916C46F9CD8915B7A927EAB415CE5125F0FF90E20258B3CB6305127D5D115A24BFB21C69E6E7C69143226A093F0D8A3769B16E353CC205BE0665E32807A8C12F4D2E555862EEE48535CCD93DA08293D7E30C6A46B5FC208D2D11F399533FD9D4E4C1E178D884BB46D82636C30EDA16F11C2B63AA6F40B90386B78D8F85F3C1E68F6E3ACE8FF66926A96925066540DE999340092F90E8EA310BEF5416885EA81ADDA866CC" />
+    </item>
+    <item name="__RequestVerificationToken">
+      <value string="qOn6N42D0FOVzxbVVGaB0Kz2ebritjqT04pe7vbubX4Oa_QcRQMiK5LRbUMoReqOWmOMUs_MWXcjinEOT7KDn0EHrD0lm9bSZ6gC1BZJB-Q1" />
+    </item>
+  </cookies>
+</error>

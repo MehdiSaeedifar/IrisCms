@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Iris.Model.BooksListModel>
+<fieldset>
+    <legend style="text-align: right;">تازه ترین کتاب ها</legend>
+    @{ Html.RenderPartial(MVC.Home.Views._BooksList, Model);}
+    <div id="MoreInfoDiv"></div>
+    <!-- begin page navigation section -->
+    <div style="text-align: center;">
+        <span id="moreInfoButton" href="@Url.Action(MVC.Home.ActionNames.BooksList, MVC.Home.Name)" style="width: 70%" class="btn btn-success" rel="nofollow">بیشتر</span>
+    </div>
+    <!-- end page navigation section -->
+</fieldset>

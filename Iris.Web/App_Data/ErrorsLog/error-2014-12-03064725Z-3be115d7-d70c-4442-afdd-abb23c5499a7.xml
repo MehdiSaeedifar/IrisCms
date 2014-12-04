@@ -1,0 +1,168 @@
+﻿<error errorId="3be115d7-d70c-4442-afdd-abb23c5499a7" application="/LM/W3SVC/18/ROOT" host="MEHDI-PC" type="System.InvalidOperationException" message="Sequence contains more than one element" source="System.Core" detail="System.InvalidOperationException: Sequence contains more than one element&#xD;&#xA;   at System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source)&#xD;&#xA;   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.&lt;GetElementFunction&gt;b__2[TResult](IEnumerable`1 sequence)&#xD;&#xA;   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)&#xD;&#xA;   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[TResult](Expression expression)&#xD;&#xA;   at System.Data.Entity.Internal.Linq.DbQueryProvider.Execute[TResult](Expression expression)&#xD;&#xA;   at System.Linq.Queryable.SingleOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)&#xD;&#xA;   at System.Data.Entity.Migrations.DbSetMigrationsExtensions.AddOrUpdate[TEntity](DbSet`1 set, IEnumerable`1 identifyingProperties, InternalSet`1 internalSet, TEntity[] entities)&#xD;&#xA;   at System.Data.Entity.Migrations.DbSetMigrationsExtensions.AddOrUpdate[TEntity](IDbSet`1 set, Expression`1 identifierExpression, TEntity[] entities)&#xD;&#xA;   at Iris.Datalayer.Migrations.Configuration.Seed(IrisDbContext context) in d:\Projects\IRIS\IRIS CMS v 1.1\Iris.Datalayer\Migrations\Configuration.cs:line 40&#xD;&#xA;   at System.Data.Entity.Migrations.DbMigrationsConfiguration`1.OnSeed(DbContext context)&#xD;&#xA;   at System.Data.Entity.Migrations.DbMigrator.SeedDatabase()&#xD;&#xA;   at System.Data.Entity.Migrations.DbMigrator.Upgrade(IEnumerable`1 pendingMigrations, String targetMigrationId, String lastMigrationId)&#xD;&#xA;   at System.Data.Entity.Migrations.DbMigrator.UpdateInternal(String targetMigration)&#xD;&#xA;   at System.Data.Entity.Migrations.DbMigrator.&lt;&gt;c__DisplayClassc.&lt;Update&gt;b__b()&#xD;&#xA;   at System.Data.Entity.Migrations.DbMigrator.EnsureDatabaseExists(Action mustSucceedToKeepDatabase)&#xD;&#xA;   at System.Data.Entity.Migrations.DbMigrator.Update(String targetMigration)&#xD;&#xA;   at System.Data.Entity.MigrateDatabaseToLatestVersion`2.InitializeDatabase(TContext context)&#xD;&#xA;   at System.Data.Entity.Internal.InternalContext.&lt;&gt;c__DisplayClasse`1.&lt;CreateInitializationAction&gt;b__d()&#xD;&#xA;   at System.Data.Entity.Internal.InternalContext.PerformInitializationAction(Action action)&#xD;&#xA;   at System.Data.Entity.Internal.InternalContext.PerformDatabaseInitialization()&#xD;&#xA;   at System.Data.Entity.Internal.LazyInternalContext.&lt;InitializeDatabase&gt;b__4(InternalContext c)&#xD;&#xA;   at System.Data.Entity.Internal.RetryAction`1.PerformAction(TInput input)&#xD;&#xA;   at System.Data.Entity.Internal.LazyInternalContext.InitializeDatabaseAction(Action`1 action)&#xD;&#xA;   at System.Data.Entity.Internal.LazyInternalContext.InitializeDatabase()&#xD;&#xA;   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)&#xD;&#xA;   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()&#xD;&#xA;   at System.Data.Entity.Internal.Linq.InternalSet`1.AsNoTracking()&#xD;&#xA;   at System.Data.Entity.Infrastructure.DbQuery`1.AsNoTracking()&#xD;&#xA;   at System.Data.Entity.QueryableExtensions.AsNoTracking[T](IQueryable`1 source)&#xD;&#xA;   at Iris.Servicelayer.EFServices.UserService.GetStatus(String userName) in d:\Projects\IRIS\IRIS CMS v 1.1 - Copy\Iris.Servicelayer\EFServices\UserService.cs:line 302&#xD;&#xA;   at Castle.Proxies.Invocations.IUserService_GetStatus.InvokeMethodOnTarget()&#xD;&#xA;   at Castle.DynamicProxy.AbstractInvocation.Proceed()&#xD;&#xA;   at Iris.Utilities.Caching.CacheInterceptor.cacheMethod(IInvocation invocation) in d:\Projects\IRIS\IRIS CMS v 1.1\Iris.Common\Caching\CacheInterceptor.cs:line 42&#xD;&#xA;   at Iris.Utilities.Caching.CacheInterceptor.Intercept(IInvocation invocation) in d:\Projects\IRIS\IRIS CMS v 1.1\Iris.Common\Caching\CacheInterceptor.cs:line 14&#xD;&#xA;   at Castle.DynamicProxy.AbstractInvocation.Proceed()&#xD;&#xA;   at Castle.Proxies.IUserServiceProxy.GetStatus(String userName)&#xD;&#xA;   at Iris.Web.MvcApplication.Application_AuthenticateRequest(Object sender, EventArgs e) in d:\Projects\IRIS\IRIS CMS v 1.1 - Copy\Iris.Web\Global.asax.cs:line 68&#xD;&#xA;   at System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()&#xD;&#xA;   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously)" user="admin" time="2014-12-03T06:47:25.6157572Z">
+  <serverVariables>
+    <item name="ALL_HTTP">
+      <value string="HTTP_CACHE_CONTROL:max-age=0&#xD;&#xA;HTTP_CONNECTION:keep-alive&#xD;&#xA;HTTP_ACCEPT:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&#xD;&#xA;HTTP_ACCEPT_ENCODING:gzip, deflate, sdch&#xD;&#xA;HTTP_ACCEPT_LANGUAGE:en-US,en;q=0.8&#xD;&#xA;HTTP_COOKIE:__RequestVerificationToken=Q_Qm297xv8bqNlvmHVpSQuurjqdvuNQl6fBfuEt63xt03ooUqczYaaAsp_KmKFmwXRD4xXD7KRWrm2xn12IoariOvo8fUEJGb6GzUzHhJpg1; i1r2i4s6b7l8u9e=031ABB0AA7C4D009F1ACA5FE6046161473844C4256E0445FB669D1607439FDDE2D0E75B51DA4121821AA897CD1E9D1836D25E55A7515BEF8C5D61EF59C98433722BC5D4CE535B3E80081FF5400086B8DA86508F25044673655F16B232CB7A85393A44A4DD9A83014FB8F8D2F0FDA25AAF210D53C7DEB5C210EAE4409AACF86B984BC3173F7B3396487B083A34B4B97347E9775823B711AFC41427CBA056E5EB57419743761F4730826B15D16A725BE75509367F797293F2D3889110957A194D1E9AE22852989BBB7B2A75A8814246FA0&#xD;&#xA;HTTP_HOST:localhost:18600&#xD;&#xA;HTTP_REFERER:http://localhost:18600/&#xD;&#xA;HTTP_USER_AGENT:Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36&#xD;&#xA;" />
+    </item>
+    <item name="ALL_RAW">
+      <value string="Cache-Control: max-age=0&#xD;&#xA;Connection: keep-alive&#xD;&#xA;Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&#xD;&#xA;Accept-Encoding: gzip, deflate, sdch&#xD;&#xA;Accept-Language: en-US,en;q=0.8&#xD;&#xA;Cookie: __RequestVerificationToken=Q_Qm297xv8bqNlvmHVpSQuurjqdvuNQl6fBfuEt63xt03ooUqczYaaAsp_KmKFmwXRD4xXD7KRWrm2xn12IoariOvo8fUEJGb6GzUzHhJpg1; i1r2i4s6b7l8u9e=031ABB0AA7C4D009F1ACA5FE6046161473844C4256E0445FB669D1607439FDDE2D0E75B51DA4121821AA897CD1E9D1836D25E55A7515BEF8C5D61EF59C98433722BC5D4CE535B3E80081FF5400086B8DA86508F25044673655F16B232CB7A85393A44A4DD9A83014FB8F8D2F0FDA25AAF210D53C7DEB5C210EAE4409AACF86B984BC3173F7B3396487B083A34B4B97347E9775823B711AFC41427CBA056E5EB57419743761F4730826B15D16A725BE75509367F797293F2D3889110957A194D1E9AE22852989BBB7B2A75A8814246FA0&#xD;&#xA;Host: localhost:18600&#xD;&#xA;Referer: http://localhost:18600/&#xD;&#xA;User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36&#xD;&#xA;" />
+    </item>
+    <item name="APPL_MD_PATH">
+      <value string="/LM/W3SVC/18/ROOT" />
+    </item>
+    <item name="APPL_PHYSICAL_PATH">
+      <value string="D:\Projects\IRIS\IRIS CMS v 1.1 - Copy\Iris.Web\" />
+    </item>
+    <item name="AUTH_TYPE">
+      <value string="IrisForms" />
+    </item>
+    <item name="AUTH_USER">
+      <value string="admin" />
+    </item>
+    <item name="AUTH_PASSWORD">
+      <value string="*****" />
+    </item>
+    <item name="LOGON_USER">
+      <value string="" />
+    </item>
+    <item name="REMOTE_USER">
+      <value string="admin" />
+    </item>
+    <item name="CERT_COOKIE">
+      <value string="" />
+    </item>
+    <item name="CERT_FLAGS">
+      <value string="" />
+    </item>
+    <item name="CERT_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SERIALNUMBER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CERT_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CONTENT_LENGTH">
+      <value string="0" />
+    </item>
+    <item name="CONTENT_TYPE">
+      <value string="" />
+    </item>
+    <item name="GATEWAY_INTERFACE">
+      <value string="CGI/1.1" />
+    </item>
+    <item name="HTTPS">
+      <value string="off" />
+    </item>
+    <item name="HTTPS_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="INSTANCE_ID">
+      <value string="18" />
+    </item>
+    <item name="INSTANCE_META_PATH">
+      <value string="/LM/W3SVC/18" />
+    </item>
+    <item name="LOCAL_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="PATH_INFO">
+      <value string="/post/index/1/dsadsadsad" />
+    </item>
+    <item name="PATH_TRANSLATED">
+      <value string="D:\Projects\IRIS\IRIS CMS v 1.1 - Copy\Iris.Web\post\index\1\dsadsadsad" />
+    </item>
+    <item name="QUERY_STRING">
+      <value string="" />
+    </item>
+    <item name="REMOTE_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_HOST">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_PORT">
+      <value string="1554" />
+    </item>
+    <item name="REQUEST_METHOD">
+      <value string="GET" />
+    </item>
+    <item name="SCRIPT_NAME">
+      <value string="/post/index/1/dsadsadsad" />
+    </item>
+    <item name="SERVER_NAME">
+      <value string="localhost" />
+    </item>
+    <item name="SERVER_PORT">
+      <value string="18600" />
+    </item>
+    <item name="SERVER_PORT_SECURE">
+      <value string="0" />
+    </item>
+    <item name="SERVER_PROTOCOL">
+      <value string="HTTP/1.1" />
+    </item>
+    <item name="SERVER_SOFTWARE">
+      <value string="Microsoft-IIS/8.0" />
+    </item>
+    <item name="URL">
+      <value string="/post/index/1/dsadsadsad" />
+    </item>
+    <item name="HTTP_CACHE_CONTROL">
+      <value string="max-age=0" />
+    </item>
+    <item name="HTTP_CONNECTION">
+      <value string="keep-alive" />
+    </item>
+    <item name="HTTP_ACCEPT">
+      <value string="text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8" />
+    </item>
+    <item name="HTTP_ACCEPT_ENCODING">
+      <value string="gzip, deflate, sdch" />
+    </item>
+    <item name="HTTP_ACCEPT_LANGUAGE">
+      <value string="en-US,en;q=0.8" />
+    </item>
+    <item name="HTTP_COOKIE">
+      <value string="__RequestVerificationToken=Q_Qm297xv8bqNlvmHVpSQuurjqdvuNQl6fBfuEt63xt03ooUqczYaaAsp_KmKFmwXRD4xXD7KRWrm2xn12IoariOvo8fUEJGb6GzUzHhJpg1; i1r2i4s6b7l8u9e=031ABB0AA7C4D009F1ACA5FE6046161473844C4256E0445FB669D1607439FDDE2D0E75B51DA4121821AA897CD1E9D1836D25E55A7515BEF8C5D61EF59C98433722BC5D4CE535B3E80081FF5400086B8DA86508F25044673655F16B232CB7A85393A44A4DD9A83014FB8F8D2F0FDA25AAF210D53C7DEB5C210EAE4409AACF86B984BC3173F7B3396487B083A34B4B97347E9775823B711AFC41427CBA056E5EB57419743761F4730826B15D16A725BE75509367F797293F2D3889110957A194D1E9AE22852989BBB7B2A75A8814246FA0" />
+    </item>
+    <item name="HTTP_HOST">
+      <value string="localhost:18600" />
+    </item>
+    <item name="HTTP_REFERER">
+      <value string="http://localhost:18600/" />
+    </item>
+    <item name="HTTP_USER_AGENT">
+      <value string="Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36" />
+    </item>
+  </serverVariables>
+  <cookies>
+    <item name="__RequestVerificationToken">
+      <value string="Q_Qm297xv8bqNlvmHVpSQuurjqdvuNQl6fBfuEt63xt03ooUqczYaaAsp_KmKFmwXRD4xXD7KRWrm2xn12IoariOvo8fUEJGb6GzUzHhJpg1" />
+    </item>
+    <item name="i1r2i4s6b7l8u9e">
+      <value string="031ABB0AA7C4D009F1ACA5FE6046161473844C4256E0445FB669D1607439FDDE2D0E75B51DA4121821AA897CD1E9D1836D25E55A7515BEF8C5D61EF59C98433722BC5D4CE535B3E80081FF5400086B8DA86508F25044673655F16B232CB7A85393A44A4DD9A83014FB8F8D2F0FDA25AAF210D53C7DEB5C210EAE4409AACF86B984BC3173F7B3396487B083A34B4B97347E9775823B711AFC41427CBA056E5EB57419743761F4730826B15D16A725BE75509367F797293F2D3889110957A194D1E9AE22852989BBB7B2A75A8814246FA0" />
+    </item>
+  </cookies>
+</error>

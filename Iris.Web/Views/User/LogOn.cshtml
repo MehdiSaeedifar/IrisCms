@@ -1,0 +1,34 @@
+﻿@model Iris.Model.LogOnModel
+@{
+    ViewBag.Title = "ورود به سایت";
+}
+
+<div id="logonDiv" style="padding: 20px;">
+    @using (Html.BeginForm(MVC.User.ActionNames.LogOn, MVC.User.Name, FormMethod.Post, new { @class = "form-horizontal", id = "frmLogOn" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.Hidden("returnUrl", ViewBag.ReturnUrl as string)
+        <div class="control-group">
+            <label class="control-label" style="width: 110px;" for="Identity">ایمیل یا نام کاربری</label>
+            <div class="controls">
+                @Html.TextBoxFor(user => user.Identity, new { placeholder = "Email or Username", @class = "ltr" })
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" style="width: 110px;" for="Password">کلمه عبور</label>
+            <div class="controls">
+                @Html.PasswordFor(user => user.Password, new { placeholder = "Password", @class = "ltr" })
+            </div>
+        </div>
+        <label class="checkbox">
+            @Html.CheckBox("RememberMe", true)مرا به یاد داشته باش
+        </label>
+        <div>
+            <input type="submit" class="btn btn-success" id="btnLogOn" name="name" value="ورود" />
+        </div>
+        <div id="aa-result"></div>
+        @Html.ValidationSummary()
+    }
+</div>
+
+
