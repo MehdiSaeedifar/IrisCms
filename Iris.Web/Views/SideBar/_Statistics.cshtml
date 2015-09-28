@@ -1,13 +1,21 @@
 ﻿@model Iris.Model.SideBar.SideBarModel
-<li class="nav-header"><i class="icon-info-sign"></i>
+<li class="nav-header">
+    <i class="icon-info-sign"></i>
     <span class="sidebar-title">آمار سایت</span>
 </li>
-<li><i class="icon-book"></i>
+<li>
+    <i class="icon-book"></i>
     تعداد کتاب ها: @Html.ConvertToPersianString(Model.BookCount)
 </li>
-<li><i class="icon-comment"></i>
+<li>
+    <i class="icon-comment"></i>
     تعداد نظرات: @Html.ConvertToPersianString(Model.CommentCount)
 </li>
-<li><i class="icon-user"></i>
+<li>
+    <i class="icon-user"></i>
     تعداد کاربران: @Html.ConvertToPersianString(Model.UserCount)
+</li>
+<li>
+    <i class="icon-user"></i>
+    تعداد کاربران فعال: @Html.ConvertToPersianString(Model.ActiveUsersNumber)
 </li>
