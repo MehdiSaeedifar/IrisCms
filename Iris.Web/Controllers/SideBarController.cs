@@ -37,7 +37,8 @@ namespace Iris.Web.Controllers
             {
                 BookCount = _bookService.Count,
                 CommentCount = _commentService.Count,
-                UserCount = _userService.Count
+                UserCount = _userService.Count,
+                ActiveUsersNumber = _userService.GetLastMonthActiveUsersCount()
             };
             return PartialView(MVC.SideBar.Views._Statistics, model);
         }
