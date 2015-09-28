@@ -314,6 +314,14 @@ namespace Iris.Servicelayer.EFServices
             user.LastActivity = time;
         }
 
+        public int GetLastMonthActiveUsersCount()
+        {
+            var firstDay = DateTime.Today.AddDays(-30);
+
+
+            return _users.Count(u => u.LastActivity >= firstDay);
+        }
+
         #region Role Operations
 
         [CacheMethod]
