@@ -1206,9 +1206,6 @@ namespace Links
             private const string URLPATH = "~/Content/avatars";
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-            public static readonly string ali_gif = Url("ali.gif");
-            public static readonly string Mehdi_gif = Url("Mehdi.gif");
-            public static readonly string motoman_gif = Url("motoman.gif");
         }
     
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
