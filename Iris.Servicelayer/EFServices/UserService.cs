@@ -16,11 +16,13 @@ namespace Iris.Servicelayer.EFServices
 {
     public class UserService : IUserService
     {
+        private readonly IUnitOfWork _unitOfWork;
         private static int _searchTakeCount;
         private readonly IDbSet<User> _users;
 
         public UserService(IUnitOfWork uow)
         {
+            _unitOfWork = uow;
             _users = uow.Set<User>();
             _searchTakeCount = 10;
         }
@@ -304,6 +306,12 @@ namespace Iris.Servicelayer.EFServices
                     .Where(user => user.UserName == userName)
                     .Select(user => new UserStatus { IsBaned = user.IsBaned, Role = user.Role.Name })
                     .Single();
+        }
+
+        public void UpdateUserLastActivity(string userName, DateTime time)
+        {
+            var user = _users.FirstOrDefault(u => u.UserName == userName);
+            user.LastActivity = time;
         }
 
         #region Role Operations
