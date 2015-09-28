@@ -118,5 +118,6 @@ namespace Iris.Servicelayer.Interfaces
         UserStatus GetStatus(string userName);
 
         void UpdateUserLastActivity(string userName, DateTime time);
+        int GetLastMonthActiveUsersCount();
     }
 }
