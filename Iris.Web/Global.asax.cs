@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Globalization;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Http;
@@ -11,6 +12,7 @@ using CaptchaMvc.Infrastructure;
 using Iris.Datalayer.Context;
 using Iris.Datalayer.Migrations;
 using Iris.Servicelayer.Interfaces;
+using Iris.Utilities.DateAndTime;
 using Iris.Web.Binders;
 using Iris.Web.IrisMembership;
 using MvcSiteMapProvider.Web;
@@ -26,6 +28,7 @@ namespace Iris.Web
     {
         protected void Application_Start()
         {
+
             ModelBinders.Binders.Add(typeof(DateTime?), new PersianDateModelBinder());
 
             //Database.SetInitializer<IrisDbContext>(null);
@@ -69,6 +72,12 @@ namespace Iris.Web
 
             if (userStatus.IsBaned || !context.User.IsInRole(userStatus.Role))
                 formsAuthenticationService.SignOut();
+
+            var dbContext = ObjectFactory.GetInstance<IUnitOfWork>();
+
+            userService.UpdateUserLastActivity(User.Identity.Name, DateAndTime.GetDateTime());
+
+            dbContext.SaveChanges();
         }
 
         protected void Application_PreSendRequestHeaders(object sender, EventArgs e)
