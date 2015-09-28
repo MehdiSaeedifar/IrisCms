@@ -15,6 +15,7 @@ namespace Iris.DomainClasses.Entities
         public virtual DateTime? BanedDate { get; set; }
         public virtual DateTime? LastLoginDate { get; set; }
         public virtual DateTime? LastPasswordChange { get; set; }
+        public virtual DateTime? LastActivity { get; set; }
         public virtual UserMetaData UserMetaData { get; set; }
         public virtual Role Role { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
