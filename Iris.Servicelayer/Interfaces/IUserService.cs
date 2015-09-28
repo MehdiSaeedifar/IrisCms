@@ -116,5 +116,7 @@ namespace Iris.Servicelayer.Interfaces
         bool IsBaned(string userName);
 
         UserStatus GetStatus(string userName);
+
+        void UpdateUserLastActivity(string userName, DateTime time);
     }
 }
