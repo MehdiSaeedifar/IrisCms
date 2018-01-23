@@ -3,8 +3,10 @@
 // Don't change it directly as your change would get overwritten.  Instead, make changes
 // to the .tt file (i.e. the T4 template) and save it to regenerate this file.
 
-// Make sure the compiler doesn't complain about missing Xml comments
-#pragma warning disable 1591
+// Make sure the compiler doesn't complain about missing Xml comments and CLS compliance
+// 0108: suppress "Foo hides inherited member Foo. Use the new keyword if hiding was intended." when a controller and its abstract parent are both processed
+// 0114: suppress "Foo.BarController.Baz()' hides inherited member 'Qux.BarController.Baz()'. To make the current member override that implementation, add the override keyword. Otherwise add the new keyword." when an action (with an argument) overrides an action in a parent controller
+#pragma warning disable 1591, 3008, 3009, 0108, 0114
 #region T4MVC
 
 using System;
@@ -13,6 +15,7 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Hosting;
 using System.Web.Mvc;
@@ -35,10 +38,22 @@ namespace Iris.Web.Controllers
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToAction(Task<ActionResult> taskResult)
+        {
+            return RedirectToAction(taskResult.Result);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result)
         {
             var callInfo = result.GetT4MVCResult();
             return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(Task<ActionResult> taskResult)
+        {
+            return RedirectToActionPermanent(taskResult.Result);
         }
 
         [NonAction]
@@ -59,25 +74,18 @@ namespace Iris.Web.Controllers
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Label";
+        public readonly string Name = "label";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Label";
-
+        public const string NameConst = "label";
+        [GeneratedCode("T4MVC", "2.0")]
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionNamesClass ActionNames { get { return s_actions; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
-            public readonly string Index = "Index";
-            public readonly string BooksList = "BooksList";
-        }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionNameConstants
-        {
-            public const string Index = "Index";
-            public const string BooksList = "BooksList";
+            public readonly string Index = ("Index").ToLowerInvariant();
+            public readonly string BooksList = ("BooksList").ToLowerInvariant();
         }
 
 
@@ -87,8 +95,8 @@ namespace Iris.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Index
         {
-            public readonly string id = "id";
-            public readonly string name = "name";
+            public readonly string id = ("id").ToLowerInvariant();
+            public readonly string name = ("name").ToLowerInvariant();
         }
         static readonly ActionParamsClass_BooksList s_params_BooksList = new ActionParamsClass_BooksList();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -96,9 +104,9 @@ namespace Iris.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_BooksList
         {
-            public readonly string labelId = "labelId";
-            public readonly string page = "page";
-            public readonly string count = "count";
+            public readonly string labelId = ("labelId").ToLowerInvariant();
+            public readonly string page = ("page").ToLowerInvariant();
+            public readonly string count = ("count").ToLowerInvariant();
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -123,8 +131,10 @@ namespace Iris.Web.Controllers
     {
         public T4MVC_LabelController() : base(Dummy.Instance) { }
 
+        [NonAction]
         partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id, string name);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult Index(int id, string name)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
@@ -134,8 +144,10 @@ namespace Iris.Web.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void BooksListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int labelId, int page, int count);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult BooksList(int labelId, int page, int count)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.BooksList);
@@ -150,4 +162,4 @@ namespace Iris.Web.Controllers
 }
 
 #endregion T4MVC
-#pragma warning restore 1591
+#pragma warning restore 1591, 3008, 3009, 0108, 0114

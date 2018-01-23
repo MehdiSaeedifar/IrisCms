@@ -1,27 +1,23 @@
 ﻿using System;
 using System.Data.Entity;
-using System.Globalization;
-using System.Security.Principal;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using System.Web.Security;
 using CaptchaMvc.Infrastructure;
 using Iris.Datalayer.Context;
 using Iris.Datalayer.Migrations;
 using Iris.Servicelayer.Interfaces;
 using Iris.Utilities.DateAndTime;
 using Iris.Web.Binders;
+using Iris.Web.DependencyResolution;
 using Iris.Web.IrisMembership;
 using MvcSiteMapProvider.Web;
-using StackExchange.Profiling;
-using StructureMap;
 
 namespace Iris.Web
 {
-    // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
+    // Note: For instructions on enabling IIS6 or IIS7 classic mode,
     // visit http://go.microsoft.com/?LinkId=9394801
 
     public class MvcApplication : HttpApplication
@@ -34,7 +30,8 @@ namespace Iris.Web
             //Database.SetInitializer<IrisDbContext>(null);
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<IrisDbContext, Configuration>());
 
-            //MiniProfilerEF.InitializeEF42();
+            ControllerBuilder.Current.SetControllerFactory(new StructureMapControllerFactory());
+
 
             XmlSiteMapController.RegisterRoutes(RouteTable.Routes); // <-- register sitemap.xml, add this line of code
 
@@ -54,29 +51,26 @@ namespace Iris.Web
 
         protected void Application_AuthenticateRequest(Object sender, EventArgs e)
         {
-            var context = DependencyResolver.Current.GetService<HttpContextBase>();
-
-            var principalService = ObjectFactory.GetInstance<IPrincipalService>(); //DependencyResolver.Current.GetService<IPrincipalService>();
-
-            var formsAuthenticationService = ObjectFactory.GetInstance<IFormsAuthenticationService>();
-
+            var principalService = SmObjectFactory.Container.GetInstance<IPrincipalService>();
             // Set the HttpContext's User to our IPrincipal
-            context.User = principalService.GetCurrent();
+            Context.User = principalService.GetCurrent();
 
-            if (!context.User.Identity.IsAuthenticated)
+            if (Context.User == null)
                 return;
 
-            var userService = ObjectFactory.GetInstance<IUserService>();
+            if (!Context.User.Identity.IsAuthenticated)
+                return;
 
-            UserStatus userStatus = userService.GetStatus(Context.User.Identity.Name);
-
-            if (userStatus.IsBaned || !context.User.IsInRole(userStatus.Role))
+            var userService = SmObjectFactory.Container.GetInstance<IUserService>();
+            var userStatus = userService.GetStatus(Context.User.Identity.Name);
+            if (userStatus.IsBaned || !Context.User.IsInRole(userStatus.Role))
+            {
+                var formsAuthenticationService = SmObjectFactory.Container.GetInstance<IFormsAuthenticationService>();
                 formsAuthenticationService.SignOut();
+            }
 
-            var dbContext = ObjectFactory.GetInstance<IUnitOfWork>();
-
+            var dbContext = SmObjectFactory.Container.GetInstance<IUnitOfWork>();
             userService.UpdateUserLastActivity(User.Identity.Name, DateAndTime.GetDateTime());
-
             dbContext.SaveChanges();
         }
 
@@ -90,7 +84,7 @@ namespace Iris.Web
 
         private void Application_EndRequest(object sender, EventArgs e)
         {
-            ObjectFactory.ReleaseAndDisposeAllHttpScopedObjects();
+            SmObjectFactory.ReleaseAndDisposeAllHttpScopedObjects();
         }
     }
 }

@@ -3,8 +3,10 @@
 // Don't change it directly as your change would get overwritten.  Instead, make changes
 // to the .tt file (i.e. the T4 template) and save it to regenerate this file.
 
-// Make sure the compiler doesn't complain about missing Xml comments
-#pragma warning disable 1591
+// Make sure the compiler doesn't complain about missing Xml comments and CLS compliance
+// 0108: suppress "Foo hides inherited member Foo. Use the new keyword if hiding was intended." when a controller and its abstract parent are both processed
+// 0114: suppress "Foo.BarController.Baz()' hides inherited member 'Qux.BarController.Baz()'. To make the current member override that implementation, add the override keyword. Otherwise add the new keyword." when an action (with an argument) overrides an action in a parent controller
+#pragma warning disable 1591, 3008, 3009, 0108, 0114
 #region T4MVC
 
 using System;
@@ -13,6 +15,7 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Hosting;
 using System.Web.Mvc;
@@ -35,10 +38,22 @@ namespace Iris.Web.Areas.Admin.Controllers
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToAction(Task<ActionResult> taskResult)
+        {
+            return RedirectToAction(taskResult.Result);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result)
         {
             var callInfo = result.GetT4MVCResult();
             return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(Task<ActionResult> taskResult)
+        {
+            return RedirectToActionPermanent(taskResult.Result);
         }
 
         [NonAction]
@@ -63,35 +78,24 @@ namespace Iris.Web.Areas.Admin.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ArticleController Actions { get { return MVC.Admin.Article; } }
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Area = "Admin";
+        public readonly string Area = "admin";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Article";
+        public readonly string Name = "article";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Article";
-
+        public const string NameConst = "article";
+        [GeneratedCode("T4MVC", "2.0")]
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionNamesClass ActionNames { get { return s_actions; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
-            public readonly string Index = "Index";
-            public readonly string Add = "Add";
-            public readonly string DataTable = "DataTable";
-            public readonly string ConfirmDelete = "ConfirmDelete";
-            public readonly string Delete = "Delete";
-            public readonly string Edit = "Edit";
-        }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionNameConstants
-        {
-            public const string Index = "Index";
-            public const string Add = "Add";
-            public const string DataTable = "DataTable";
-            public const string ConfirmDelete = "ConfirmDelete";
-            public const string Delete = "Delete";
-            public const string Edit = "Edit";
+            public readonly string Index = ("Index").ToLowerInvariant();
+            public readonly string Add = ("Add").ToLowerInvariant();
+            public readonly string DataTable = ("DataTable").ToLowerInvariant();
+            public readonly string ConfirmDelete = ("ConfirmDelete").ToLowerInvariant();
+            public readonly string Delete = ("Delete").ToLowerInvariant();
+            public readonly string Edit = ("Edit").ToLowerInvariant();
         }
 
 
@@ -101,7 +105,7 @@ namespace Iris.Web.Areas.Admin.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Add
         {
-            public readonly string model = "model";
+            public readonly string model = ("model").ToLowerInvariant();
         }
         static readonly ActionParamsClass_DataTable s_params_DataTable = new ActionParamsClass_DataTable();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -109,12 +113,12 @@ namespace Iris.Web.Areas.Admin.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_DataTable
         {
-            public readonly string term = "term";
-            public readonly string page = "page";
-            public readonly string count = "count";
-            public readonly string order = "order";
-            public readonly string orderBy = "orderBy";
-            public readonly string searchBy = "searchBy";
+            public readonly string term = ("term").ToLowerInvariant();
+            public readonly string page = ("page").ToLowerInvariant();
+            public readonly string count = ("count").ToLowerInvariant();
+            public readonly string order = ("order").ToLowerInvariant();
+            public readonly string orderBy = ("orderBy").ToLowerInvariant();
+            public readonly string searchBy = ("searchBy").ToLowerInvariant();
         }
         static readonly ActionParamsClass_ConfirmDelete s_params_ConfirmDelete = new ActionParamsClass_ConfirmDelete();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -122,7 +126,7 @@ namespace Iris.Web.Areas.Admin.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_ConfirmDelete
         {
-            public readonly string id = "id";
+            public readonly string id = ("id").ToLowerInvariant();
         }
         static readonly ActionParamsClass_Delete s_params_Delete = new ActionParamsClass_Delete();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -130,7 +134,7 @@ namespace Iris.Web.Areas.Admin.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Delete
         {
-            public readonly string id = "id";
+            public readonly string id = ("id").ToLowerInvariant();
         }
         static readonly ActionParamsClass_Edit s_params_Edit = new ActionParamsClass_Edit();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -138,8 +142,8 @@ namespace Iris.Web.Areas.Admin.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Edit
         {
-            public readonly string id = "id";
-            public readonly string model = "model";
+            public readonly string id = ("id").ToLowerInvariant();
+            public readonly string model = ("model").ToLowerInvariant();
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -172,8 +176,10 @@ namespace Iris.Web.Areas.Admin.Controllers
     {
         public T4MVC_ArticleController() : base(Dummy.Instance) { }
 
+        [NonAction]
         partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult Index()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
@@ -181,8 +187,10 @@ namespace Iris.Web.Areas.Admin.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void AddOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult Add()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Add);
@@ -190,8 +198,10 @@ namespace Iris.Web.Areas.Admin.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void AddOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Iris.Model.AdminModel.AddUpdateArticleModel model);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult Add(Iris.Model.AdminModel.AddUpdateArticleModel model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Add);
@@ -200,8 +210,10 @@ namespace Iris.Web.Areas.Admin.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void DataTableOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string term, int page, int count, Iris.Servicelayer.EFServices.Enums.Order order, Iris.Servicelayer.EFServices.Enums.ArticleOrderBy orderBy, Iris.Servicelayer.EFServices.Enums.ArticleSearchBy searchBy);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult DataTable(string term, int page, int count, Iris.Servicelayer.EFServices.Enums.Order order, Iris.Servicelayer.EFServices.Enums.ArticleOrderBy orderBy, Iris.Servicelayer.EFServices.Enums.ArticleSearchBy searchBy)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DataTable);
@@ -215,8 +227,10 @@ namespace Iris.Web.Areas.Admin.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void ConfirmDeleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult ConfirmDelete(int id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ConfirmDelete);
@@ -225,8 +239,10 @@ namespace Iris.Web.Areas.Admin.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void DeleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult Delete(int id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Delete);
@@ -235,8 +251,10 @@ namespace Iris.Web.Areas.Admin.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult Edit(int id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
@@ -245,8 +263,10 @@ namespace Iris.Web.Areas.Admin.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Iris.Model.AdminModel.AddUpdateArticleModel model);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult Edit(Iris.Model.AdminModel.AddUpdateArticleModel model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
@@ -259,4 +279,4 @@ namespace Iris.Web.Areas.Admin.Controllers
 }
 
 #endregion T4MVC
-#pragma warning restore 1591
+#pragma warning restore 1591, 3008, 3009, 0108, 0114

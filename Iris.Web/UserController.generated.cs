@@ -3,8 +3,10 @@
 // Don't change it directly as your change would get overwritten.  Instead, make changes
 // to the .tt file (i.e. the T4 template) and save it to regenerate this file.
 
-// Make sure the compiler doesn't complain about missing Xml comments
-#pragma warning disable 1591
+// Make sure the compiler doesn't complain about missing Xml comments and CLS compliance
+// 0108: suppress "Foo hides inherited member Foo. Use the new keyword if hiding was intended." when a controller and its abstract parent are both processed
+// 0114: suppress "Foo.BarController.Baz()' hides inherited member 'Qux.BarController.Baz()'. To make the current member override that implementation, add the override keyword. Otherwise add the new keyword." when an action (with an argument) overrides an action in a parent controller
+#pragma warning disable 1591, 3008, 3009, 0108, 0114
 #region T4MVC
 
 using System;
@@ -13,6 +15,7 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Hosting;
 using System.Web.Mvc;
@@ -35,10 +38,22 @@ namespace Iris.Web.Controllers
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToAction(Task<ActionResult> taskResult)
+        {
+            return RedirectToAction(taskResult.Result);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result)
         {
             var callInfo = result.GetT4MVCResult();
             return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(Task<ActionResult> taskResult)
+        {
+            return RedirectToActionPermanent(taskResult.Result);
         }
 
         [NonAction]
@@ -77,43 +92,27 @@ namespace Iris.Web.Controllers
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "User";
+        public readonly string Name = "user";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "User";
-
+        public const string NameConst = "user";
+        [GeneratedCode("T4MVC", "2.0")]
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionNamesClass ActionNames { get { return s_actions; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
-            public readonly string Index = "Index";
-            public readonly string ProfilePage = "ProfilePage";
-            public readonly string UserDetail = "UserDetail";
-            public readonly string LogOn = "LogOn";
-            public readonly string UpdateProfile = "UpdateProfile";
-            public readonly string RemoveAvatar = "RemoveAvatar";
-            public readonly string ChangeAvatar = "ChangeAvatar";
-            public readonly string Register = "Register";
-            public readonly string ExistsUserByUserName = "ExistsUserByUserName";
-            public readonly string ExistsUserByEmail = "ExistsUserByEmail";
-            public readonly string LogOut = "LogOut";
-        }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionNameConstants
-        {
-            public const string Index = "Index";
-            public const string ProfilePage = "ProfilePage";
-            public const string UserDetail = "UserDetail";
-            public const string LogOn = "LogOn";
-            public const string UpdateProfile = "UpdateProfile";
-            public const string RemoveAvatar = "RemoveAvatar";
-            public const string ChangeAvatar = "ChangeAvatar";
-            public const string Register = "Register";
-            public const string ExistsUserByUserName = "ExistsUserByUserName";
-            public const string ExistsUserByEmail = "ExistsUserByEmail";
-            public const string LogOut = "LogOut";
+            public readonly string Index = ("Index").ToLowerInvariant();
+            public readonly string ProfilePage = ("ProfilePage").ToLowerInvariant();
+            public readonly string UserDetail = ("UserDetail").ToLowerInvariant();
+            public readonly string LogOn = ("LogOn").ToLowerInvariant();
+            public readonly string UpdateProfile = ("UpdateProfile").ToLowerInvariant();
+            public readonly string RemoveAvatar = ("RemoveAvatar").ToLowerInvariant();
+            public readonly string ChangeAvatar = ("ChangeAvatar").ToLowerInvariant();
+            public readonly string Register = ("Register").ToLowerInvariant();
+            public readonly string ExistsUserByUserName = ("ExistsUserByUserName").ToLowerInvariant();
+            public readonly string ExistsUserByEmail = ("ExistsUserByEmail").ToLowerInvariant();
+            public readonly string LogOut = ("LogOut").ToLowerInvariant();
         }
 
 
@@ -123,7 +122,7 @@ namespace Iris.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Index
         {
-            public readonly string userName = "userName";
+            public readonly string userName = ("userName").ToLowerInvariant();
         }
         static readonly ActionParamsClass_LogOn s_params_LogOn = new ActionParamsClass_LogOn();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -131,8 +130,8 @@ namespace Iris.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_LogOn
         {
-            public readonly string returnUrl = "returnUrl";
-            public readonly string model = "model";
+            public readonly string returnUrl = ("returnUrl").ToLowerInvariant();
+            public readonly string model = ("model").ToLowerInvariant();
         }
         static readonly ActionParamsClass_UpdateProfile s_params_UpdateProfile = new ActionParamsClass_UpdateProfile();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -140,7 +139,7 @@ namespace Iris.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_UpdateProfile
         {
-            public readonly string model = "model";
+            public readonly string model = ("model").ToLowerInvariant();
         }
         static readonly ActionParamsClass_ChangeAvatar s_params_ChangeAvatar = new ActionParamsClass_ChangeAvatar();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -148,7 +147,7 @@ namespace Iris.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_ChangeAvatar
         {
-            public readonly string avatarFile = "avatarFile";
+            public readonly string avatarFile = ("avatarFile").ToLowerInvariant();
         }
         static readonly ActionParamsClass_Register s_params_Register = new ActionParamsClass_Register();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -156,7 +155,7 @@ namespace Iris.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Register
         {
-            public readonly string model = "model";
+            public readonly string model = ("model").ToLowerInvariant();
         }
         static readonly ActionParamsClass_ExistsUserByUserName s_params_ExistsUserByUserName = new ActionParamsClass_ExistsUserByUserName();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -164,7 +163,7 @@ namespace Iris.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_ExistsUserByUserName
         {
-            public readonly string userName = "userName";
+            public readonly string userName = ("userName").ToLowerInvariant();
         }
         static readonly ActionParamsClass_ExistsUserByEmail s_params_ExistsUserByEmail = new ActionParamsClass_ExistsUserByEmail();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -172,7 +171,7 @@ namespace Iris.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_ExistsUserByEmail
         {
-            public readonly string email = "email";
+            public readonly string email = ("email").ToLowerInvariant();
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -209,8 +208,10 @@ namespace Iris.Web.Controllers
     {
         public T4MVC_UserController() : base(Dummy.Instance) { }
 
+        [NonAction]
         partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string userName);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult Index(string userName)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
@@ -219,8 +220,10 @@ namespace Iris.Web.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void ProfilePageOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult ProfilePage()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ProfilePage);
@@ -228,8 +231,10 @@ namespace Iris.Web.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void UserDetailOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult UserDetail()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UserDetail);
@@ -237,8 +242,10 @@ namespace Iris.Web.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void LogOnOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string returnUrl);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult LogOn(string returnUrl)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LogOn);
@@ -247,8 +254,10 @@ namespace Iris.Web.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void LogOnOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Iris.Model.LogOnModel model, string returnUrl);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult LogOn(Iris.Model.LogOnModel model, string returnUrl)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LogOn);
@@ -258,8 +267,10 @@ namespace Iris.Web.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void UpdateProfileOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult UpdateProfile()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UpdateProfile);
@@ -267,8 +278,10 @@ namespace Iris.Web.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void UpdateProfileOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Iris.Model.EditProfileModel model);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult UpdateProfile(Iris.Model.EditProfileModel model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UpdateProfile);
@@ -277,8 +290,10 @@ namespace Iris.Web.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void RemoveAvatarOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult RemoveAvatar()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RemoveAvatar);
@@ -286,8 +301,10 @@ namespace Iris.Web.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void ChangeAvatarOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Web.HttpPostedFileBase avatarFile);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult ChangeAvatar(System.Web.HttpPostedFileBase avatarFile)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ChangeAvatar);
@@ -296,8 +313,10 @@ namespace Iris.Web.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void RegisterOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult Register()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Register);
@@ -305,8 +324,10 @@ namespace Iris.Web.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void RegisterOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Iris.Model.RegisterModel model);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult Register(Iris.Model.RegisterModel model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Register);
@@ -315,8 +336,10 @@ namespace Iris.Web.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void ExistsUserByUserNameOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string userName);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult ExistsUserByUserName(string userName)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ExistsUserByUserName);
@@ -325,8 +348,10 @@ namespace Iris.Web.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void ExistsUserByEmailOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string email);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult ExistsUserByEmail(string email)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ExistsUserByEmail);
@@ -335,8 +360,10 @@ namespace Iris.Web.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void LogOutOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult LogOut()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LogOut);
@@ -348,4 +375,4 @@ namespace Iris.Web.Controllers
 }
 
 #endregion T4MVC
-#pragma warning restore 1591
+#pragma warning restore 1591, 3008, 3009, 0108, 0114
