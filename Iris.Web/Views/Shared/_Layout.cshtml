@@ -1,5 +1,4 @@
-﻿@using StackExchange.Profiling
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     @Html.Action(MVC.MetaTag.ActionNames.Index, MVC.MetaTag.Name, new { title = ViewBag.Title, keywords = ViewBag.Keywords, description = ViewBag.Description })
@@ -110,7 +109,7 @@
     @Scripts.Render("~/bundles/jqueryuitools")
     @Scripts.Render("~/bundles/sitejs")
     @RenderSection("scripts", false)
-    @*@MiniProfiler.RenderIncludes()*@
+
     <script lang='javascript' type='text/javascript' src='http://www.persianstat.com/service/stat.js'></script>
     <script lang='javascript' type='text/javascript'>
         persianstat(10187762, 4); $('iframe[name=PersianStat]').hide(0);

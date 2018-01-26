@@ -3,8 +3,10 @@
 // Don't change it directly as your change would get overwritten.  Instead, make changes
 // to the .tt file (i.e. the T4 template) and save it to regenerate this file.
 
-// Make sure the compiler doesn't complain about missing Xml comments
-#pragma warning disable 1591
+// Make sure the compiler doesn't complain about missing Xml comments and CLS compliance
+// 0108: suppress "Foo hides inherited member Foo. Use the new keyword if hiding was intended." when a controller and its abstract parent are both processed
+// 0114: suppress "Foo.BarController.Baz()' hides inherited member 'Qux.BarController.Baz()'. To make the current member override that implementation, add the override keyword. Otherwise add the new keyword." when an action (with an argument) overrides an action in a parent controller
+#pragma warning disable 1591, 3008, 3009, 0108, 0114
 #region T4MVC
 
 using System;
@@ -13,6 +15,7 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Hosting;
 using System.Web.Mvc;
@@ -35,10 +38,22 @@ namespace Iris.Web.Controllers
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToAction(Task<ActionResult> taskResult)
+        {
+            return RedirectToAction(taskResult.Result);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result)
         {
             var callInfo = result.GetT4MVCResult();
             return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(Task<ActionResult> taskResult)
+        {
+            return RedirectToActionPermanent(taskResult.Result);
         }
 
         [NonAction]
@@ -83,33 +98,22 @@ namespace Iris.Web.Controllers
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Post";
+        public readonly string Name = "post";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Post";
-
+        public const string NameConst = "post";
+        [GeneratedCode("T4MVC", "2.0")]
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionNamesClass ActionNames { get { return s_actions; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
-            public readonly string Index = "Index";
-            public readonly string Like = "Like";
-            public readonly string DisLike = "DisLike";
-            public readonly string SilmilarPosts = "SilmilarPosts";
-            public readonly string UserPosts = "UserPosts";
-            public readonly string UserPostsList = "UserPostsList";
-        }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionNameConstants
-        {
-            public const string Index = "Index";
-            public const string Like = "Like";
-            public const string DisLike = "DisLike";
-            public const string SilmilarPosts = "SilmilarPosts";
-            public const string UserPosts = "UserPosts";
-            public const string UserPostsList = "UserPostsList";
+            public readonly string Index = ("Index").ToLowerInvariant();
+            public readonly string Like = ("Like").ToLowerInvariant();
+            public readonly string DisLike = ("DisLike").ToLowerInvariant();
+            public readonly string SilmilarPosts = ("SilmilarPosts").ToLowerInvariant();
+            public readonly string UserPosts = ("UserPosts").ToLowerInvariant();
+            public readonly string UserPostsList = ("UserPostsList").ToLowerInvariant();
         }
 
 
@@ -119,7 +123,7 @@ namespace Iris.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Index
         {
-            public readonly string id = "id";
+            public readonly string id = ("id").ToLowerInvariant();
         }
         static readonly ActionParamsClass_Like s_params_Like = new ActionParamsClass_Like();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -127,7 +131,7 @@ namespace Iris.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Like
         {
-            public readonly string id = "id";
+            public readonly string id = ("id").ToLowerInvariant();
         }
         static readonly ActionParamsClass_DisLike s_params_DisLike = new ActionParamsClass_DisLike();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -135,7 +139,7 @@ namespace Iris.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_DisLike
         {
-            public readonly string id = "id";
+            public readonly string id = ("id").ToLowerInvariant();
         }
         static readonly ActionParamsClass_SilmilarPosts s_params_SilmilarPosts = new ActionParamsClass_SilmilarPosts();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -143,7 +147,7 @@ namespace Iris.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_SilmilarPosts
         {
-            public readonly string id = "id";
+            public readonly string id = ("id").ToLowerInvariant();
         }
         static readonly ActionParamsClass_UserPosts s_params_UserPosts = new ActionParamsClass_UserPosts();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -151,9 +155,9 @@ namespace Iris.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_UserPosts
         {
-            public readonly string userName = "userName";
-            public readonly string page = "page";
-            public readonly string count = "count";
+            public readonly string userName = ("userName").ToLowerInvariant();
+            public readonly string page = ("page").ToLowerInvariant();
+            public readonly string count = ("count").ToLowerInvariant();
         }
         static readonly ActionParamsClass_UserPostsList s_params_UserPostsList = new ActionParamsClass_UserPostsList();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -161,7 +165,7 @@ namespace Iris.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_UserPostsList
         {
-            public readonly string userName = "userName";
+            public readonly string userName = ("userName").ToLowerInvariant();
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -190,8 +194,10 @@ namespace Iris.Web.Controllers
     {
         public T4MVC_PostController() : base(Dummy.Instance) { }
 
+        [NonAction]
         partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult Index(int id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
@@ -200,8 +206,10 @@ namespace Iris.Web.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void LikeOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult Like(int id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Like);
@@ -210,8 +218,10 @@ namespace Iris.Web.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void DisLikeOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult DisLike(int id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DisLike);
@@ -220,8 +230,10 @@ namespace Iris.Web.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void SilmilarPostsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult SilmilarPosts(int id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SilmilarPosts);
@@ -230,8 +242,10 @@ namespace Iris.Web.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void UserPostsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string userName, int page, int count);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult UserPosts(string userName, int page, int count)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UserPosts);
@@ -242,8 +256,10 @@ namespace Iris.Web.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void UserPostsListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string userName);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult UserPostsList(string userName)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UserPostsList);
@@ -256,4 +272,4 @@ namespace Iris.Web.Controllers
 }
 
 #endregion T4MVC
-#pragma warning restore 1591
+#pragma warning restore 1591, 3008, 3009, 0108, 0114

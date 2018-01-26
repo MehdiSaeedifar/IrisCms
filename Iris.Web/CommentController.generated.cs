@@ -3,8 +3,10 @@
 // Don't change it directly as your change would get overwritten.  Instead, make changes
 // to the .tt file (i.e. the T4 template) and save it to regenerate this file.
 
-// Make sure the compiler doesn't complain about missing Xml comments
-#pragma warning disable 1591
+// Make sure the compiler doesn't complain about missing Xml comments and CLS compliance
+// 0108: suppress "Foo hides inherited member Foo. Use the new keyword if hiding was intended." when a controller and its abstract parent are both processed
+// 0114: suppress "Foo.BarController.Baz()' hides inherited member 'Qux.BarController.Baz()'. To make the current member override that implementation, add the override keyword. Otherwise add the new keyword." when an action (with an argument) overrides an action in a parent controller
+#pragma warning disable 1591, 3008, 3009, 0108, 0114
 #region T4MVC
 
 using System;
@@ -13,6 +15,7 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Hosting;
 using System.Web.Mvc;
@@ -35,10 +38,22 @@ namespace Iris.Web.Controllers
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToAction(Task<ActionResult> taskResult)
+        {
+            return RedirectToAction(taskResult.Result);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result)
         {
             var callInfo = result.GetT4MVCResult();
             return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(Task<ActionResult> taskResult)
+        {
+            return RedirectToActionPermanent(taskResult.Result);
         }
 
         [NonAction]
@@ -131,55 +146,33 @@ namespace Iris.Web.Controllers
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Comment";
+        public readonly string Name = "comment";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Comment";
-
+        public const string NameConst = "comment";
+        [GeneratedCode("T4MVC", "2.0")]
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionNamesClass ActionNames { get { return s_actions; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
-            public readonly string PostComments = "PostComments";
-            public readonly string AddUserPostComment = "AddUserPostComment";
-            public readonly string AddAnonymousPostComment = "AddAnonymousPostComment";
-            public readonly string AddPostComment = "AddPostComment";
-            public readonly string PageComments = "PageComments";
-            public readonly string AddUserPageComment = "AddUserPageComment";
-            public readonly string AddAnonymousPageComment = "AddAnonymousPageComment";
-            public readonly string AddPageComment = "AddPageComment";
-            public readonly string ArticleComments = "ArticleComments";
-            public readonly string AddUserArticleComment = "AddUserArticleComment";
-            public readonly string AddAnonymousArticleComment = "AddAnonymousArticleComment";
-            public readonly string AddArticleComment = "AddArticleComment";
-            public readonly string PostUserComments = "PostUserComments";
-            public readonly string PageUserComments = "PageUserComments";
-            public readonly string ArticleUserComments = "ArticleUserComments";
-            public readonly string Like = "Like";
-            public readonly string DisLike = "DisLike";
-        }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionNameConstants
-        {
-            public const string PostComments = "PostComments";
-            public const string AddUserPostComment = "AddUserPostComment";
-            public const string AddAnonymousPostComment = "AddAnonymousPostComment";
-            public const string AddPostComment = "AddPostComment";
-            public const string PageComments = "PageComments";
-            public const string AddUserPageComment = "AddUserPageComment";
-            public const string AddAnonymousPageComment = "AddAnonymousPageComment";
-            public const string AddPageComment = "AddPageComment";
-            public const string ArticleComments = "ArticleComments";
-            public const string AddUserArticleComment = "AddUserArticleComment";
-            public const string AddAnonymousArticleComment = "AddAnonymousArticleComment";
-            public const string AddArticleComment = "AddArticleComment";
-            public const string PostUserComments = "PostUserComments";
-            public const string PageUserComments = "PageUserComments";
-            public const string ArticleUserComments = "ArticleUserComments";
-            public const string Like = "Like";
-            public const string DisLike = "DisLike";
+            public readonly string PostComments = ("PostComments").ToLowerInvariant();
+            public readonly string AddUserPostComment = ("AddUserPostComment").ToLowerInvariant();
+            public readonly string AddAnonymousPostComment = ("AddAnonymousPostComment").ToLowerInvariant();
+            public readonly string AddPostComment = ("AddPostComment").ToLowerInvariant();
+            public readonly string PageComments = ("PageComments").ToLowerInvariant();
+            public readonly string AddUserPageComment = ("AddUserPageComment").ToLowerInvariant();
+            public readonly string AddAnonymousPageComment = ("AddAnonymousPageComment").ToLowerInvariant();
+            public readonly string AddPageComment = ("AddPageComment").ToLowerInvariant();
+            public readonly string ArticleComments = ("ArticleComments").ToLowerInvariant();
+            public readonly string AddUserArticleComment = ("AddUserArticleComment").ToLowerInvariant();
+            public readonly string AddAnonymousArticleComment = ("AddAnonymousArticleComment").ToLowerInvariant();
+            public readonly string AddArticleComment = ("AddArticleComment").ToLowerInvariant();
+            public readonly string PostUserComments = ("PostUserComments").ToLowerInvariant();
+            public readonly string PageUserComments = ("PageUserComments").ToLowerInvariant();
+            public readonly string ArticleUserComments = ("ArticleUserComments").ToLowerInvariant();
+            public readonly string Like = ("Like").ToLowerInvariant();
+            public readonly string DisLike = ("DisLike").ToLowerInvariant();
         }
 
 
@@ -189,7 +182,7 @@ namespace Iris.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_PostComments
         {
-            public readonly string id = "id";
+            public readonly string id = ("id").ToLowerInvariant();
         }
         static readonly ActionParamsClass_AddUserPostComment s_params_AddUserPostComment = new ActionParamsClass_AddUserPostComment();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -197,7 +190,7 @@ namespace Iris.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_AddUserPostComment
         {
-            public readonly string model = "model";
+            public readonly string model = ("model").ToLowerInvariant();
         }
         static readonly ActionParamsClass_AddAnonymousPostComment s_params_AddAnonymousPostComment = new ActionParamsClass_AddAnonymousPostComment();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -205,7 +198,7 @@ namespace Iris.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_AddAnonymousPostComment
         {
-            public readonly string model = "model";
+            public readonly string model = ("model").ToLowerInvariant();
         }
         static readonly ActionParamsClass_AddPostComment s_params_AddPostComment = new ActionParamsClass_AddPostComment();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -213,8 +206,8 @@ namespace Iris.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_AddPostComment
         {
-            public readonly string id = "id";
-            public readonly string replyId = "replyId";
+            public readonly string id = ("id").ToLowerInvariant();
+            public readonly string replyId = ("replyId").ToLowerInvariant();
         }
         static readonly ActionParamsClass_PageComments s_params_PageComments = new ActionParamsClass_PageComments();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -222,7 +215,7 @@ namespace Iris.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_PageComments
         {
-            public readonly string id = "id";
+            public readonly string id = ("id").ToLowerInvariant();
         }
         static readonly ActionParamsClass_AddUserPageComment s_params_AddUserPageComment = new ActionParamsClass_AddUserPageComment();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -230,7 +223,7 @@ namespace Iris.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_AddUserPageComment
         {
-            public readonly string model = "model";
+            public readonly string model = ("model").ToLowerInvariant();
         }
         static readonly ActionParamsClass_AddAnonymousPageComment s_params_AddAnonymousPageComment = new ActionParamsClass_AddAnonymousPageComment();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -238,7 +231,7 @@ namespace Iris.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_AddAnonymousPageComment
         {
-            public readonly string model = "model";
+            public readonly string model = ("model").ToLowerInvariant();
         }
         static readonly ActionParamsClass_AddPageComment s_params_AddPageComment = new ActionParamsClass_AddPageComment();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -246,8 +239,8 @@ namespace Iris.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_AddPageComment
         {
-            public readonly string id = "id";
-            public readonly string replyId = "replyId";
+            public readonly string id = ("id").ToLowerInvariant();
+            public readonly string replyId = ("replyId").ToLowerInvariant();
         }
         static readonly ActionParamsClass_ArticleComments s_params_ArticleComments = new ActionParamsClass_ArticleComments();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -255,7 +248,7 @@ namespace Iris.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_ArticleComments
         {
-            public readonly string id = "id";
+            public readonly string id = ("id").ToLowerInvariant();
         }
         static readonly ActionParamsClass_AddUserArticleComment s_params_AddUserArticleComment = new ActionParamsClass_AddUserArticleComment();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -263,7 +256,7 @@ namespace Iris.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_AddUserArticleComment
         {
-            public readonly string model = "model";
+            public readonly string model = ("model").ToLowerInvariant();
         }
         static readonly ActionParamsClass_AddAnonymousArticleComment s_params_AddAnonymousArticleComment = new ActionParamsClass_AddAnonymousArticleComment();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -271,7 +264,7 @@ namespace Iris.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_AddAnonymousArticleComment
         {
-            public readonly string model = "model";
+            public readonly string model = ("model").ToLowerInvariant();
         }
         static readonly ActionParamsClass_AddArticleComment s_params_AddArticleComment = new ActionParamsClass_AddArticleComment();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -279,8 +272,8 @@ namespace Iris.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_AddArticleComment
         {
-            public readonly string id = "id";
-            public readonly string replyId = "replyId";
+            public readonly string id = ("id").ToLowerInvariant();
+            public readonly string replyId = ("replyId").ToLowerInvariant();
         }
         static readonly ActionParamsClass_PostUserComments s_params_PostUserComments = new ActionParamsClass_PostUserComments();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -288,8 +281,8 @@ namespace Iris.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_PostUserComments
         {
-            public readonly string page = "page";
-            public readonly string count = "count";
+            public readonly string page = ("page").ToLowerInvariant();
+            public readonly string count = ("count").ToLowerInvariant();
         }
         static readonly ActionParamsClass_PageUserComments s_params_PageUserComments = new ActionParamsClass_PageUserComments();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -297,8 +290,8 @@ namespace Iris.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_PageUserComments
         {
-            public readonly string page = "page";
-            public readonly string count = "count";
+            public readonly string page = ("page").ToLowerInvariant();
+            public readonly string count = ("count").ToLowerInvariant();
         }
         static readonly ActionParamsClass_ArticleUserComments s_params_ArticleUserComments = new ActionParamsClass_ArticleUserComments();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -306,8 +299,8 @@ namespace Iris.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_ArticleUserComments
         {
-            public readonly string page = "page";
-            public readonly string count = "count";
+            public readonly string page = ("page").ToLowerInvariant();
+            public readonly string count = ("count").ToLowerInvariant();
         }
         static readonly ActionParamsClass_Like s_params_Like = new ActionParamsClass_Like();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -315,7 +308,7 @@ namespace Iris.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Like
         {
-            public readonly string id = "id";
+            public readonly string id = ("id").ToLowerInvariant();
         }
         static readonly ActionParamsClass_DisLike s_params_DisLike = new ActionParamsClass_DisLike();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -323,7 +316,7 @@ namespace Iris.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_DisLike
         {
-            public readonly string id = "id";
+            public readonly string id = ("id").ToLowerInvariant();
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -370,8 +363,10 @@ namespace Iris.Web.Controllers
     {
         public T4MVC_CommentController() : base(Dummy.Instance) { }
 
+        [NonAction]
         partial void PostCommentsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult PostComments(int id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PostComments);
@@ -380,8 +375,10 @@ namespace Iris.Web.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void AddUserPostCommentOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Iris.Model.AddUserCommentModel model);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult AddUserPostComment(Iris.Model.AddUserCommentModel model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AddUserPostComment);
@@ -390,8 +387,10 @@ namespace Iris.Web.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void AddAnonymousPostCommentOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Iris.Model.AddAnonymousCommentModel model);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult AddAnonymousPostComment(Iris.Model.AddAnonymousCommentModel model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AddAnonymousPostComment);
@@ -400,8 +399,10 @@ namespace Iris.Web.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void AddPostCommentOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id, int? replyId);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult AddPostComment(int id, int? replyId)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AddPostComment);
@@ -411,8 +412,10 @@ namespace Iris.Web.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void PageCommentsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult PageComments(int id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PageComments);
@@ -421,8 +424,10 @@ namespace Iris.Web.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void AddUserPageCommentOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Iris.Model.AddUserCommentModel model);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult AddUserPageComment(Iris.Model.AddUserCommentModel model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AddUserPageComment);
@@ -431,8 +436,10 @@ namespace Iris.Web.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void AddAnonymousPageCommentOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Iris.Model.AddAnonymousCommentModel model);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult AddAnonymousPageComment(Iris.Model.AddAnonymousCommentModel model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AddAnonymousPageComment);
@@ -441,8 +448,10 @@ namespace Iris.Web.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void AddPageCommentOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id, int? replyId);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult AddPageComment(int id, int? replyId)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AddPageComment);
@@ -452,8 +461,10 @@ namespace Iris.Web.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void ArticleCommentsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult ArticleComments(int id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ArticleComments);
@@ -462,8 +473,10 @@ namespace Iris.Web.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void AddUserArticleCommentOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Iris.Model.AddUserCommentModel model);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult AddUserArticleComment(Iris.Model.AddUserCommentModel model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AddUserArticleComment);
@@ -472,8 +485,10 @@ namespace Iris.Web.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void AddAnonymousArticleCommentOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Iris.Model.AddAnonymousCommentModel model);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult AddAnonymousArticleComment(Iris.Model.AddAnonymousCommentModel model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AddAnonymousArticleComment);
@@ -482,8 +497,10 @@ namespace Iris.Web.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void AddArticleCommentOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id, int? replyId);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult AddArticleComment(int id, int? replyId)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AddArticleComment);
@@ -493,8 +510,10 @@ namespace Iris.Web.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void PostUserCommentsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int page, int count);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult PostUserComments(int page, int count)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PostUserComments);
@@ -504,8 +523,10 @@ namespace Iris.Web.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void PageUserCommentsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int page, int count);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult PageUserComments(int page, int count)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PageUserComments);
@@ -515,8 +536,10 @@ namespace Iris.Web.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void ArticleUserCommentsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int page, int count);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult ArticleUserComments(int page, int count)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ArticleUserComments);
@@ -526,8 +549,10 @@ namespace Iris.Web.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void LikeOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult Like(int id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Like);
@@ -536,8 +561,10 @@ namespace Iris.Web.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void DisLikeOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult DisLike(int id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DisLike);
@@ -550,4 +577,4 @@ namespace Iris.Web.Controllers
 }
 
 #endregion T4MVC
-#pragma warning restore 1591
+#pragma warning restore 1591, 3008, 3009, 0108, 0114

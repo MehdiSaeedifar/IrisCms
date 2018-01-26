@@ -14,6 +14,13 @@
   <PortableAreas>
     <!--<Area></Area>-->
   </PortableAreas>
+  <!--Name of folder in your project root that follows the FeatureFolder convention (controllers and views are placed within the same folder)-->
+  <!--<FeatureFolderRootArea></FeatureFolderRootArea>-->
+  <!--Names of areas which follow the FeatureFolder convention (controllers and views are placed within the same folder).
+Use <Area>*</Area> if you only use Areas with FeatureFolders-->
+  <FeatureFolderAreas>
+    <!--<Area></Area>-->
+  </FeatureFolderAreas>
   <!--Choose whether you want to include an 'Areas' token when referring to areas.
 e.g. Assume the Area is called Blog and the Controller is Post:
 - When false use MVC.Blog.Post.etc...
@@ -36,9 +43,11 @@ If false, the namespace of the interface must be referenced in the 'ReferencedNa
 This breaks the Go To Definition function for async actions.-->
   <SupportAsyncActions>False</SupportAsyncActions>
   <!--If true, use lower case tokens in routes for the area, controller and action names-->
-  <UseLowercaseRoutes>False</UseLowercaseRoutes>
+  <UseLowercaseRoutes>True</UseLowercaseRoutes>
   <!--The namespace that the links are generated in (e.g. "Links", as in Links.Content.nerd_jpg)-->
   <LinksNamespace>Links</LinksNamespace>
+  <!--The namespace that raw URLS used for bundles are generated-->
+  <AssetsNamespace>Assets</AssetsNamespace>
   <!--If true, links to static files include a query string containing the file's last change time.
 This way, when the static file changes, the link changes and guarantees that the client will re-request the resource.
 e.g. when true, the link looks like: "/Content/nerd.jpg?2009-09-04T12:25:48"
@@ -54,9 +63,13 @@ See http://mvccontrib.codeplex.com/workitem/7163 for potential issues with this 
   <!--Static files to exclude from the generated links-->
   <ExcludedStaticFileExtensions>
     <Extension>.cs</Extension>
+    <Extension>.cshtml</Extension>
+    <Extension>.aspx</Extension>
+    <Extension>.ascx</Extension>
   </ExcludedStaticFileExtensions>
   <!--Files to exclude from the generated views-->
   <ExcludedViewExtensions>
+    <Extension>.cs</Extension>
     <Extension>.master</Extension>
     <Extension>.js</Extension>
     <Extension>.css</Extension>

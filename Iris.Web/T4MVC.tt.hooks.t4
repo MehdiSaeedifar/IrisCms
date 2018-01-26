@@ -3,7 +3,7 @@
 
 This file contains hooks and extra code used by T4MVC.tt. The main goal is to avoid the need for users
 to fork the 'official' template in order to achieve what they want.
- 
+
 */
 
 static bool AddTimestampToStaticLink(ProjectItem projectItem) {
@@ -23,7 +23,7 @@ internal static class T4MVCHelpers {
     private static string ProcessVirtualPathDefault(string virtualPath) {
         // The path that comes in starts with ~/ and must first be made absolute
         string path = VirtualPathUtility.ToAbsolute(virtualPath);
-        
+
         // Add your own modifications here before returning the path
         return path;
     }
@@ -35,8 +35,8 @@ internal static class T4MVCHelpers {
     public static Func<string, string> TimestampString = System.Web.Mvc.T4Extensions.TimestampString;
 
     // Logic to determine if the app is running in production or dev environment
-    public static bool IsProduction() { 
-        return (HttpContext.Current != null && !HttpContext.Current.IsDebuggingEnabled); 
+    public static bool IsProduction() {
+        return (HttpContext.Current != null && !HttpContext.Current.IsDebuggingEnabled);
     }
 }
 
