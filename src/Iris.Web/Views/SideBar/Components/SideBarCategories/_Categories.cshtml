@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Iris.Model.SideBar.CategoryModel>
+
+@foreach (var category in Model)
+{
+    <li class="nav-header" title="@category.CategoryDescription"><span class="sidebar-title">@category.CategoryName</span></li>
+
+    foreach (var article in category.articles)
+    {
+        <li>@Html.ActionLink(article.ArticleTitle, "Index", "Article", new { id = article.ArticleId, title = Html.ResolveTitleForUrl(article.ArticleTitle) }, new { description = article.ArticleTitle })</li>
+    }
+}

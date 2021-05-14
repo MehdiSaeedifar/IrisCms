@@ -1,0 +1,25 @@
+﻿@model Iris.Model.AdminModel.EditLabelModel
+<div class="container-fluid" id="div-user-detail">
+    @using (Html.AjaxBeginForm("Edit", "Label", new AjaxOptions { UpdateTargetId = "result", InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnBegin = "showLoading", OnComplete = "hideLoading" }, new { @class = "form-horizontal", id = "add-label-form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(label => label.Id)
+        <div class="control-group">
+            <label class="control-label" for="Name">نام برچسب</label>
+            <div class="controls">
+                @Html.TextBoxFor(label => label.Name, new { placeholder = "نام برچسب" })
+            </div>
+            @Html.ValidationMessageFor(label => label.Name)
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Description">توضیحات</label>
+            <div class="controls">
+                @Html.TextBoxFor(label => label.Description, new { placeholder = "توضیحات" })
+            </div>
+            @Html.ValidationMessageFor(label => label.Description)
+        </div>
+        <div id="result"></div>
+        <input type="submit" name="btn-submit" value="انجام ویرایش" class="btn btn-success" />
+        <input type="button" name="btn-colose" id="btn-close" value="انصراف" class="btn btn-danger" onclick="$dialog.dialog('close');" />
+    }
+</div>

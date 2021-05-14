@@ -1,0 +1,24 @@
+﻿@* Filter Section *@
+
+@using (Html.AjaxBeginForm("DataTable", "User", new AjaxOptions { UpdateTargetId = "user-table", InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnBegin = "showLoading", OnComplete = "hideLoading", OnSuccess = "loadAjaxComponents" }))
+{
+    @Html.Hidden("term", ViewBag.TERM as string)
+    @Html.Hidden("searchBy", ViewBag.SEARCHBY as string)
+    <div class="row-fluid">
+        <div class="span3">
+            <span style="vertical-align: top;">نمایش به صورت</span>
+            @Html.DropDownList("order", ViewBag.OrderByList as IEnumerable<SelectListItem>, new { style = "width:100px" })
+        </div>
+        <div class="span3">
+            <span style="vertical-align: top;">بر اساس</span>
+            @Html.DropDownList("orderBy", ViewBag.OrderByItems as IEnumerable<SelectListItem>, new { style = "width:120px" })
+        </div>
+        <div class="span3">
+            <span style="vertical-align: top;">تعداد در هر صفحه</span>
+            @Html.DropDownList("count", ViewBag.CountList as IEnumerable<SelectListItem>, new { style = "width:60px" })
+        </div>
+        <div class="span3">
+            <input type="submit" name="btn-submit" value="برو" class="btn" />
+        </div>
+    </div>
+}

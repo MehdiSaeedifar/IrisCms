@@ -1,0 +1,23 @@
+﻿<div class="navbar" style="margin-bottom: 10px;">
+    <div class="navbar-inner">
+        @Html.ActionLink("EBooksWorld", "Index", "Home", null, new { @class = "brand" })
+        <ul class="nav">
+            <li>@Html.ActionLink("خانه", "Index", "Home")</li>
+            @if (!User.Identity?.IsAuthenticated ??false)
+            {
+                <li>@Html.AjaxActionLink("ورود / ثبت نام", "LogOn", "User", new { area = "", returnUrl = Html.ReturnUrl(Context, Url) }, new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "logOnModal", LoadingElementDuration = 300, LoadingElementId = "loadingMessage", OnSuccess = "LogOnForm.onSuccess" }, new { role = "button", data_toggle = "modal", data_i_logon_link = "true", rel = "nofollow" })
+                </li>
+            }
+            @await Component.InvokeAsync("NavbarItems")
+            <li>@Html.ActionLink("تماس با ما", "Index", "ContactUs", null, new { rel = "nofollow" })</li>
+        </ul>
+        @using (Html.BeginForm("Index", "Search", FormMethod.Get, new { style = "margin-bottom:0", @class = "form-search" }))
+        {
+            <div class="input-append pull-left visible-desktop" style="margin-top: 5px;">
+                <input type="text" data-i-search-input="true" class="search-query" name="term" value="@ViewBag.Term" data-autocomplete="true" data-autocomplete-url ="@Url.Action("AutoCompleteSearch", "Search")" placeholder="عنوان،نویسنده،ناشر،ISBN" >
+                <button class="btn btn-primary" type="submit">جست و جو</button>
+            </div>
+        }
+    </div>
+</div>
+

@@ -1,0 +1,11 @@
+﻿@using Iris.Web.Helpers
+<div class="navbar">
+    <div class="navbar-inner">
+        <a class="brand" href="#">برگه ها</a>
+        <ul class="nav">
+            <li class="active">@Html.LinkDialog("افزودن مطلب", Url.Action("Add", "Article"), "GET", null, "dialog", new DialogOptions { Height = "600", Width = "800", Title = "افزودن مطلب", IsModal = "true", ShowEffect = "size", ShowDir = "down", HideEffect = "clip", HideDir = "right" })</li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+        </ul>
+    </div>
+</div>

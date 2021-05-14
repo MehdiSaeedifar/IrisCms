@@ -1,0 +1,84 @@
+﻿@model Iris.DomainClasses.Entities.User
+<style>
+    div.tab-content div#userProfile
+    {
+        font-size: 12px;
+    }
+
+    div#userProfile div#avatar
+    {
+        padding: 10px;
+        margin: 10px;
+    }
+
+    div#userProfile div#userNote
+    {
+        padding: 10px;
+        margin: 10px;
+        border: 1px solid #cccccc;
+        border-left: none;
+        border-right: none;
+        background-color: #f8f8f8;
+        min-height: 350px;
+        overflow: auto;
+        -ms-word-wrap: break-word;
+        word-wrap: break-word;
+    }
+</style>
+<div id="avatar" class="thumbnail span2">
+    <img src="@Html.UserAvatarPath(Model.UserName, ViewContext)" alt="@Model.UserName" title ="@Model.UserName" style="border-radius:3px;" />
+</div>
+<div id="userDetail" class="span4">
+    <table class="table pull-right">
+        <tr>
+            <td style="border-top: none;">شماره کاربری</td>
+            <td style="border-top: none;">@Html.ConvertToPersianString(Model.Id)</td>
+        </tr>
+        <tr>
+            <td>نام کاربری</td>
+            <td>@Model.UserName</td>
+        </tr>
+        <tr>
+            <td>ایمیل</td>
+            <td>@Model.Email</td>
+        </tr>
+        <tr>
+            <td>تاریخ ایجاد</td>
+            <td>@Html.ConvertToPersianDateTime(Model.CreatedDate, "D")</td>
+        </tr>
+        <tr>
+            <td>تاریخ آخرین ورود</td>
+            <td>@Html.ConvertToPersianDateTime(Convert.ToDateTime(Model.LastLoginDate), "D")</td>
+        </tr>
+        <tr>
+            <td>تاریخ تعویض کلمه عبور</td>
+            <td>@Html.ConvertToPersianDateTime(Convert.ToDateTime(Model.LastPasswordChange), "D")</td>
+        </tr>
+        <tr>
+            <td>تاریخ مسدود شدن</td>
+            <td>@Html.ConvertToPersianDateTime(Convert.ToDateTime(Model.BanedDate), "D")</td>
+        </tr>
+        <tr>
+            <td>نام و نام خانوادگی</td>
+            <td>@Model.UserMetaData.FirstName @Model.UserMetaData.LastName</td>
+        </tr>
+        <tr>
+            <td>رشته تحصیلی</td>
+            <td>@Model.UserMetaData.Major</td>
+        </tr>
+        <tr>
+            <td>تاریخ تولد</td>
+            <td>@Html.ConvertToPersianDateTime(Convert.ToDateTime(Model.UserMetaData.BirthDay), "D")</td>
+        </tr>
+    </table>
+</div>
+<div class="span5 pull-left" id="userNote">
+    @if (string.IsNullOrWhiteSpace(Model.UserMetaData.Description))
+    {
+        <p>توضیحات درباره من خالی است.</p>
+    }
+    else
+    {
+        @Model.UserMetaData.Description
+    }
+</div>

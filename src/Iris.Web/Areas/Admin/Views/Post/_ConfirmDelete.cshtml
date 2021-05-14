@@ -1,0 +1,22 @@
+﻿<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="alert">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>هشدار!</strong> آیا شما از حذف این پست مطمئن هستید؟
+            </div>
+            @using (Html.AjaxBeginForm("Delete", "Post", new { id = ViewBag.PostId }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, OnBegin = "showLoading", UpdateTargetId = "result", OnSuccess = "loadAjaxComponents", OnComplete = "hideLoading" }, null))
+            {
+                @Html.AntiForgeryToken()
+                <div id="result"></div>
+                <input type="submit" class="btn btn-success" value="تایید" />
+                <input type="button" id="btnClose" class="btn btn-danger" name="btnCancel" value="انصراف" />
+            }
+        </div>
+    </div>
+</div>
+<script>
+    run(function () {
+        $('#btnClose').on('click', function () { $dialog.dialog('close'); });
+    });
+</script>

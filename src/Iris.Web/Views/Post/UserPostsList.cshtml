@@ -1,0 +1,6 @@
+﻿@{
+    ViewBag.Title = string.Format("پست های ارسالی {0}", ViewBag.UserName);
+}
+<div id="userPosts">
+    @Html.Action("UserPosts", "Post", new { userName = ViewBag.UserName })
+</div>

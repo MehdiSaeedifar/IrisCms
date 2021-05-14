@@ -1,0 +1,9 @@
+﻿@using Iris.Web.Helpers
+<div class="navbar">
+    <div class="navbar-inner">
+        <a class="brand" href="#">مدیریت کاربران</a>
+        <ul class="nav">
+            <li>@Html.ButtonDialog("افزودن کاربر", Url.Action("Add", "User"), "GET", null, "dialog", new DialogOptions { Height = "600", Width = "450", Title = "کاربر جدید", IsModal = "true", ShowEffect = "size", ShowDir = "down", HideEffect = "fold", HideDir = "right" }, "btn btn-info")</li>
+        </ul>
+    </div>
+</div>

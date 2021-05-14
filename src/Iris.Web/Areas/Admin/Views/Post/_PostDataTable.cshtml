@@ -1,0 +1,80 @@
+﻿@using Iris.Web.Helpers
+@model IEnumerable<Iris.Model.AdminModel.PostDataTableModel>
+@{
+    int currentPage = ViewBag.CurrentPage;
+    int count = ViewBag.Count;
+    int max = ViewBag.TotalRecords / count;
+    int firstPage = ((currentPage - 2) <= 0) ? 0 : currentPage - 3;
+    int lastPage = ((currentPage + 2) >= max) ? max : currentPage + 3;
+}
+<div id="user-table">
+    <table style="width: 100%;" class="table iris-table">
+        <thead>
+            <tr>
+                <td></td>
+                <td>#</td>
+                <td>عنوان</td>
+                <td>نویسنده</td>
+                <td>وضعیت</td>
+                <td>وضعیت نظرات</td>
+                <td>تعداد بازدیدها</td>
+                <td>برچسب ها</td>
+                <td style="text-align: center">عملیات</td>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var counter = ((currentPage - 1) * count) + 1;
+            }
+            @foreach (var post in Model)
+            {
+
+                <tr>
+                    <td>
+                        <input type="checkbox" name="PostsId" value="@post.Id" />
+                    </td>
+                    <td>@Html.ConvertToPersianString(counter)</td>
+                    <td style="max-width:250px;">@post.Title</td>
+                    <td>@post.PostAuthor</td>
+                    <td>@post.Status</td>
+                    <td>@((post.CommentStatus == true) ? "آزاد" : "قفل شده")</td>
+                    <td style="text-align: center;">@Html.ConvertToPersianString(post.VisitedNumber)</td>
+                    <td>
+                        @foreach (var label in post.labels)
+                        { @(label.Name + ",");
+                        }
+                    </td>
+                    <td>
+                        @Html.ButtonDialog("جزئیات", @Url.Action("Detail", "User"), "GET", "userId=" + @post.Id, "dialog", new DialogOptions { Height = "600", IsModal = "true", Title = "اطلاعات کاربری", Width = "450" }, "btn btn-info")
+                        @Html.AjaxActionLink("ویرایش جدید", "EditPostCkEditor", "Post", new { id = post.Id }, new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "main-content", OnSuccess = "loadAjaxComponents", OnComplete = "hideLoading", OnBegin = "showLoading" }, new { @class = "btn" })
+                        @Html.ButtonDialog("ویرایش", Url.Action("EditPost", "Post"), "GET", "id=" + @post.Id, "dialog", new DialogOptions { Height = "600", Width = "800", IsModal = "true", Title = "ویرایش پست", ShowDir = "down", ShowEffect = "blind" }, "btn btn-primary")
+                        @Html.ButtonDialog("حذف", Url.Action("ConfirmDelete", "Post"), "GET", "id=" + @post.Id, "dialog", new DialogOptions { Height = "200", Width = "450", IsModal = "true", Title = "حذف پست", ShowDir = "down", ShowEffect = "explode", HideEffect = "explode" }, "btn btn-danger")
+                    </td>
+
+                </tr>
+                        ++counter;
+            }
+        </tbody>
+    </table>
+
+
+    <div class="pagination pagination-centered">
+        <ul>
+            <li>@Html.AjaxActionLink("ابتدا", "GetPostDataTable", "Post", new { page = 0 }, new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, OnBegin = "showLoading", UpdateTargetId = "user-table", OnSuccess = "loadAjaxComponents", OnComplete = "hideLoading" }, null)</li>
+            @for (int i = firstPage; i <= lastPage; i++)
+            {
+                if (i + 1 == currentPage)
+                {
+                    <li class="active"><a href="#">@Html.ConvertToPersianString(i + 1)</a></li>
+                }
+                else
+                {
+                    <li>
+                        @Html.AjaxActionLink(Html.ConvertToPersianString(i + 1).ToString(), "GetPostDataTable", "Post", new { page = i }, new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, OnBegin = "showLoading", UpdateTargetId = "user-table", OnSuccess = "loadAjaxComponents", OnComplete = "hideLoading" }, null)
+                    </li>
+                }
+            }
+            <li>@Html.AjaxActionLink("انتها", "GetPostDataTable", "Post", new { page = max }, new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, OnBegin = "showLoading", UpdateTargetId = "user-table", OnSuccess = "loadAjaxComponents", OnComplete = "hideLoading" }, null)</li>
+        </ul>
+    </div>
+</div>

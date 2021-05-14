@@ -1,0 +1,11 @@
+﻿@using Iris.Web.Helpers
+<div class="navbar">
+    <div class="navbar-inner">
+        <a class="brand" href="#">مدیریت برچسب ها</a>
+        <ul class="nav">
+            <li class="active">@Html.LinkDialog("افزودن برچسب جدید", Url.Action("Add", "Label"), "GET", null, "dialog", new DialogOptions { Height = "220", Width = "450", Title = "افزودن برچسب جدید", IsModal = "true", ShowEffect = "fade", ShowDir = "down", HideEffect = "scale", HideDir = "right" })</li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,153 @@
+﻿@using Iris.Web
+@using Iris.Web.Helpers
+@using Microsoft.AspNetCore.Mvc
+@using Microsoft.AspNetCore.Mvc.Rendering
+@model IEnumerable<Iris.Model.AdminModel.CommentDataTableModel>
+@{
+    int currentPage = ViewBag.CurrentPage + 1;
+    int count = ViewBag.Count;
+    int max = ViewBag.TotalRecords / count;
+    int firstPage = ((currentPage - 2) <= 0) ? 0 : currentPage - 3;
+    int lastPage = ((currentPage + 2) >= max) ? max : currentPage + 3;
+}
+<div id="comment-table">
+    <table style="width: 100%;" class="table iris-table">
+        <thead>
+            <tr>
+                <td></td>
+                <td>نویسنده</td>
+                <td>نظر</td>
+                <td>وضعیت</td>
+                <td>عملیات</td>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var IsAnnonymous = false;
+            }
+            @foreach (var comment in Model)
+            {
+                IsAnnonymous = (string.IsNullOrEmpty(comment.AuthorName)) ? false : true;
+            
+                <tr>
+                    <td style="width: 30px;">
+                        <input type="checkbox" name="CommentsId" class="comments-id" value="@comment.Id" />
+                    </td>
+                    <td style="max-width: 80px;">
+                        <div>
+                            <div>
+                                <img src="@comment.AvatarPath" alt="" style="width:50px;height:50px;" />
+                            </div>
+                            <div style="margin-top: 10px;">
+                                @if (IsAnnonymous)
+                                {
+                                    <span>@comment.AuthorName</span>
+                                    <span class="label label-info">کاربر مهمان</span>
+                                }
+                                else
+                                {
+                                    <span>@comment.UserName</span>
+                                    <span class="label label-success">کاربر سایت</span>
+                                }
+                            </div>
+                        </div>
+                    </td>
+                    <td style="text-align: right; max-width: 300px;">
+                        <div>
+                            <div>
+                                <div id="sent-time">
+                                    ارسال شده در:
+                                    @Html.ConvertToPersianDateTime(Convert.ToDateTime(comment.AddDate), "h,t")
+                                </div>
+                            </div>
+                            <div>
+                                <div style="-ms-word-wrap: break-word; word-wrap: break-word; max-width: 500px; max-height: 100px; overflow-y: auto; border-top: solid 1px #aed5fa; border-bottom: solid 1px #aed5fa; margin: 10px 0px 10px 0px;">
+                                    @comment.Body
+                                </div>
+                            </div>
+                            <div>
+                                <div style="float: right; margin-left: 100px;">
+                                    در پاسخ به:
+                                    @comment.PostTitle
+                                </div>
+                                <div style="float: right;">
+                                    <span>تعداد آرا:</span>
+                                    <span>@Html.ConvertToPersianString(comment.LikeCount)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td id="comment-status@(comment.Id)">
+                        @if (Convert.ToBoolean(comment.IsApproved))
+                        {
+                            @await Component.InvokeAsync("ApproveButtons"
+                            , new { id = comment.Id, type = "disapproved" })
+                        }
+                        else
+                        {
+                            @await Component.InvokeAsync("ApproveButtons"
+                            , new { id = comment.Id, type = "approved" })
+                           
+                        }
+
+                    </td>
+                    <td>
+                        @Html.ButtonDialog("ویرایش", Url.Action("Edit", "Comment"), "GET", "id=" + comment.Id, "dialog", new DialogOptions { Height = "370", Width = "450", IsModal = "true", Title = "ویرایش برچسب", ShowDir = "down", ShowEffect = "drop", HideEffect = "drop", HideDir = "up" }, "btn btn-primary")
+                        @Html.ButtonDialog("حذف", Url.Action("ConfirmDelete", "Comment"), "GET", "id=" + comment.Id, "dialog", new DialogOptions { Height = "200", Width = "450", IsModal = "true", Title = "حذف دیدگاه", ShowDir = "down", ShowEffect = "explode", HideEffect = "explode" }, "btn btn-danger")
+                    </td>
+
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+
+    @* Page Navigation *@
+
+    <div class="pagination pagination-centered">
+        <ul>
+            <li>@Html.AjaxActionLink("ابتدا", "DataTable", "Comment", new { page = 0, term = ViewBag.TERM, count = ViewBag.COUNT, order = ViewBag.ORDER, orderBy = ViewBag.ORDERBY, searchBy = ViewBag.SEARCHBY }, new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, OnBegin = "showLoading", UpdateTargetId = "comment-table", OnSuccess = "loadAjaxComponents", OnComplete = "hideLoading" }, null)</li>
+            @for (int i = firstPage; i <= lastPage; i++)
+            {
+                if (i + 1 == currentPage)
+                {
+                <li class="active"><a href="#">@Html.ConvertToPersianString(i + 1)</a></li>
+                }
+                else
+                {
+                <li>@Html.AjaxActionLink(Html.ConvertToPersianString(i + 1).ToString(), "DataTable", "Comment", new { page = i, term = ViewBag.TERM, count = ViewBag.COUNT, order = ViewBag.ORDER, orderBy = ViewBag.ORDERBY, searchBy = ViewBag.SEARCHBY }, new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, OnBegin = "showLoading", UpdateTargetId = "comment-table", OnSuccess = "loadAjaxComponents", OnComplete = "hideLoading" }, null)
+                </li>
+                }
+            }
+            <li>@Html.AjaxActionLink("انتها", "DataTable", "Comment", new { page = max, term = ViewBag.TERM, count = ViewBag.COUNT, order = ViewBag.ORDER, orderBy = ViewBag.ORDERBY, searchBy = ViewBag.SEARCHBY }, new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, OnBegin = "showLoading", UpdateTargetId = "comment-table", OnSuccess = "loadAjaxComponents", OnComplete = "hideLoading" }, null)</li>
+        </ul>
+    </div>
+
+    @* Filter Section *@
+
+    @using (Html.AjaxBeginForm("DataTable", "Comment", new AjaxOptions { UpdateTargetId = "comment-table", InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnBegin = "showLoading", OnComplete = "hideLoading", OnSuccess = "loadAjaxComponents" }))
+    {
+        @Html.Hidden("term", ViewBag.TERM as string)
+        @Html.Hidden("searchBy", ViewBag.SEARCHBY as string)
+        <div class="row-fluid">
+            <div class="span3">
+                <span style="vertical-align: top;">نمایش به صورت</span>
+                @Html.DropDownList("order", ViewBag.OrderByList as IEnumerable<SelectListItem>, new { style = "width:100px" })
+            </div>
+            <div class="span3">
+                <span style="vertical-align: top;">بر اساس</span>
+                @Html.DropDownList("orderBy", ViewBag.OrderByItems as IEnumerable<SelectListItem>, new { style = "width:120px" })
+            </div>
+            <div class="span3">
+                <span style="vertical-align: top;">تعداد در هر صفحه</span>
+                @Html.DropDownList("count", ViewBag.CountList as IEnumerable<SelectListItem>, new { style = "width:60px" })
+            </div>
+            <div class="span3">
+                <input type="submit" name="btn-submit" value="برو" class="btn" />
+            </div>
+        </div>
+    }
+
+</div>
+

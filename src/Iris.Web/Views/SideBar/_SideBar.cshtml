@@ -1,0 +1,16 @@
+﻿<div class="span2" id="sidebar">
+    <div class="well sidebar-nav">
+        <ul class="nav nav-list">
+            <li class="active"><a class="i-font-koodak" style="background-color: rgb(3, 48, 90);"><i class="icon-list-alt icon-white"></i><span class="sidebar-title" style="color: white;">بخش های سایت</span></a></li>
+            @await Component.InvokeAsync("SideBarCategories")
+            @await Component.InvokeAsync("SideBarLabels")
+            <li class="nav-header">
+                <img src="~/Content/Images/rss.png" alt="feeds" style="width:12px;" />
+                <span class="sidebar-title">فیدها</span>
+            </li>
+            <li>@Html.ActionLink("فید کتاب های سایت", "Posts", "Feed")</li>
+            <li>@Html.ActionLink("فید دیدگاه های سایت", "Comments", "Feed")</li>
+            @await Component.InvokeAsync("SideBarStatistics")
+        </ul>
+    </div>
+</div>

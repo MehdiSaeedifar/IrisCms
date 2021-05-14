@@ -1,0 +1,259 @@
+﻿@model Iris.Model.AdminModel.EditPostModel
+
+<div class="container-fluid" id="div-user-detail">
+    @using (Html.AjaxBeginForm("EditPost", "Post", new AjaxOptions { UpdateTargetId = "add-result", InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnBegin = "showLoading", OnComplete = "hideLoading" }, new { @class = "form-horizontal", id = "add-user-form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(post => post.PostId)
+        <div class="control-group">
+            <label class="control-label" for="PostTitle">عنوان پست</label>
+            <div class="controls">
+                @Html.TextBoxFor(post => post.PostTitle, new { placeholder = "عنوان پست", @class = "input-xxlarge" })
+            </div>
+            @Html.ValidationMessageFor(post => post.PostTitle)
+        </div>
+
+        <div class="control-group">
+            <label for="PostBody">متن پست</label>
+            <div class="controls" style="margin-right: 0px">
+                @Html.TextAreaFor(post => post.PostBody, new { style = "height: 250px;" })
+            </div>
+            @Html.ValidationMessageFor(post => post.PostBody)
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="PostKeyword">کلمات کلیدی</label>
+            <div class="control">
+                @Html.TextBoxFor(post => post.PostKeyword, new { placeholder = "کلمات کلیدی", @class = "input-xxlarge", title = "کلمات کلیدی را با , از یکدیگر جدا کنید" })
+            </div>
+            @Html.ValidationMessageFor(post => post.PostKeyword)
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="PostDescription">توضیحات</label>
+            <div class="controls">
+                @Html.TextAreaFor(post => post.PostDescription, new { placeholder = "توضیحات", @class = "input-xxlarge", data_i_redactor = "true" })
+            </div>
+            @Html.ValidationMessageFor(post => post.PostDescription)
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="LabelsId">برچسب ها</label>
+            <div class="controls">
+                @Html.ListBoxFor(post => post.LabelsId, ViewBag.Post_labels as MultiSelectList, new { @class = "chzn-rtl input-xxlarge", data_placeholder = "برچسب های مورد نظر را انتخاب کنید" })
+            </div>
+            @Html.ValidationMessageFor(post => post.LabelsId)
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="PostStatus">وضعیت پست</label>
+            <div class="controls">
+                @Html.DropDownListFor(post => post.PostStatus, ViewBag.Post_Status as SelectList)
+            </div>
+            @Html.ValidationMessageFor(post => post.PostStatus)
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="PostCommentStatus">وضعیت نظرات</label>
+            <div class="controls">
+                @Html.DropDownListFor(post => post.PostCommentStatus, ViewBag.CommentStatus as IEnumerable<SelectListItem>)
+            </div>
+            @Html.ValidationMessageFor(post => post.PostCommentStatus)
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Book_Name">نام کتاب</label>
+            <div class="controls">
+                @Html.TextBoxFor(post => post.Book.Name, new { placeholder = "نام کتاب", @class = "input-xxlarge" })
+            </div>
+            @Html.ValidationMessageFor(post => post.Book.Name)
+        </div>
+        <div class="control-group">
+            <label for="Book_Description">توضیحات کتاب</label>
+            <div class="controls" style="margin-right: 0px">
+                @Html.TextAreaFor(post => post.Book.Description, new { style = "height:200px;", data_i_redactor = "true" })
+            </div>
+            @Html.ValidationMessageFor(post => post.Book.Description)
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Book_Author">نویسنده کتاب</label>
+            <div class="controls">
+                @Html.TextBoxFor(post => post.Book.Author, new { placeholder = "نویسنده کتاب", @class = "input-xxlarge" })
+            </div>
+            @Html.ValidationMessageFor(post => post.Book.Author)
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Book_Publisher">ناشر کتاب</label>
+            <div class="controls">
+                @Html.TextBoxFor(post => post.Book.Publisher, new { placeholder = "ناشر کتاب", @class = "input-xxlarge" })
+            </div>
+            @Html.ValidationMessageFor(post => post.Book.Publisher)
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Book_ISBN">ISBN</label>
+            <div class="controls">
+                @Html.TextBoxFor(post => post.Book.ISBN, new { placeholder = "ISBN", @class = "input-xxlarge", style = "direction:ltr" })
+            </div>
+            @Html.ValidationMessageFor(post => post.Book.ISBN)
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Book_Year">سال انتشار</label>
+            <div class="controls">
+                @Html.TextBoxFor(post => post.Book.Year, new { placeholder = "سال انتشار", @class = "input-xlarge" })
+            </div>
+            @Html.ValidationMessageFor(post => post.Book.Year)
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Book_Page">تعداد صفحات</label>
+            <div class="controls">
+                @Html.TextBoxFor(post => post.Book.Page, new { placeholder = "تعداد صفحات", @class = "input-xlarge" })
+            </div>
+            @Html.ValidationMessageFor(post => post.Book.Page)
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Book_Language">زبان کتاب</label>
+            <div class="controls">
+                @Html.TextBoxFor(post => post.Book.Language, new { placeholder = "زبان کتاب", @class = "input-xlarge" })
+            </div>
+            @Html.ValidationMessageFor(post => post.Book.Page)
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="BookImage_Title">عنوان عکس</label>
+            <div class="controls">
+                @Html.TextBoxFor(post => post.BookImage.Title, new { placeholder = "عنوان عکس کتاب", @class = "input-xlarge" })
+            </div>
+            @Html.ValidationMessageFor(post => post.BookImage.Title)
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="BookImage_Description">توضیحات عکس</label>
+            <div class="controls">
+                @Html.TextBoxFor(post => post.BookImage.Description, new { placeholder = "توضیحات عکس", @class = "input-xlarge" })
+            </div>
+            @Html.ValidationMessageFor(post => post.BookImage.Description)
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="BookImage_Path">آدرس عکس</label>
+            <div class="controls">
+                @Html.TextBoxFor(post => post.BookImage.Path, new { placeholder = "آدرس اینترنتی عکس", @class = "input-xxlarge i-ltr" })
+            </div>
+            @Html.ValidationMessageFor(post => post.BookImage.Path)
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="book-img">عکس کتاب</label>
+            <div class="controls">
+                <div id="book_img" style="width: 330px; height: 200px; border: 1px solid #808080; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;">
+                    <em>عکسی انتخاب نشده</em>
+                </div>
+            </div>
+        </div>
+
+
+        <button class="btn btn-info btn-i-link">لینک دانلود اول</button>
+        <div class="i-hidden" style="margin: 20px;">
+            <div class="control-group">
+                <label class="control-label" for="DownloadLinks_DownloadLink1_Link">لینک دانلود اول</label>
+                <div class="controls">
+                    @Html.TextBoxFor(post => post.Links.DownloadLink1.Link, new { placeholder = "لینک دانلود اول", @class = "input-xxlarge i-ltr" })
+                </div>
+                @Html.ValidationMessageFor(post => post.Links.DownloadLink1.Link)
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="DownloadLinks_DownloadLink1_FileFormat">نوع فایل</label>
+                <div class="controls">
+                    @Html.TextBoxFor(post => post.Links.DownloadLink1.FileFormat, new { placeholder = "نوع فایل", @class = "input-xlarge i-ltr" })
+                </div>
+                @Html.ValidationMessageFor(post => post.Links.DownloadLink1.FileFormat)
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="DownloadLinks_DownloadLink1_FileSize">حجم فایل</label>
+                <div class="controls">
+                    @Html.TextBoxFor(post => post.Links.DownloadLink1.FileSize, new { placeholder = "حجم فایل", @class = "input-xlarge" })
+                </div>
+                @Html.ValidationMessageFor(post => post.Links.DownloadLink1.FileSize)
+            </div>
+        </div>
+
+        <button class="btn btn-info btn-i-link">لینک دانلود دوم</button>
+        <div class="i-hidden" style="margin: 20px;">
+            <div class="control-group">
+                <label class="control-label" for="DownloadLinks_DownloadLink2_Link">لینک دانلود دوم</label>
+                <div class="controls">
+                    @Html.TextBoxFor(post => post.Links.DownloadLink2.Link, new { placeholder = "لینک دانلود دوم", @class = "input-xxlarge i-ltr" })
+                </div>
+                @Html.ValidationMessageFor(post => post.Links.DownloadLink2.Link)
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="DownloadLinks_DownloadLink2_FileFormat">نوع فایل</label>
+                <div class="controls">
+                    @Html.TextBoxFor(post => post.Links.DownloadLink2.FileFormat, new { placeholder = "نوع فایل", @class = "input-xlarge i-ltr" })
+                </div>
+                @Html.ValidationMessageFor(post => post.Links.DownloadLink2.FileFormat)
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="DownloadLinks_DownloadLink1_FileSize">حجم فایل</label>
+                <div class="controls">
+                    @Html.TextBoxFor(post => post.Links.DownloadLink2.FileSize, new { placeholder = "حجم فایل", @class = "input-xlarge" })
+                </div>
+                @Html.ValidationMessageFor(post => post.Links.DownloadLink2.FileSize)
+            </div>
+        </div>
+
+        <button class="btn btn-info btn-i-link">لینک دانلود سوم</button>
+        <div class="i-hidden" style="margin: 20px;">
+            <div class="control-group">
+                <label class="control-label" for="DownloadLinks_DownloadLink3_Link">لینک دانلود سوم</label>
+                <div class="controls">
+                    @Html.TextBoxFor(post => post.Links.DownloadLink3.Link, new { placeholder = "لینک دانلود سوم", @class = "input-xxlarge i-ltr" })
+                </div>
+                @Html.ValidationMessageFor(post => post.Links.DownloadLink3.Link)
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="DownloadLinks_DownloadLink3_FileFormat">نوع فایل</label>
+                <div class="controls">
+                    @Html.TextBoxFor(post => post.Links.DownloadLink3.FileFormat, new { placeholder = "نوع فایل", @class = "input-xlarge i-ltr" })
+                </div>
+                @Html.ValidationMessageFor(post => post.Links.DownloadLink3.FileFormat)
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="DownloadLinks_DownloadLink3_FileSize">حجم فایل</label>
+                <div class="controls">
+                    @Html.TextBoxFor(post => post.Links.DownloadLink3.FileSize, new { placeholder = "حجم فایل", @class = "input-xlarge" })
+                </div>
+                @Html.ValidationMessageFor(post => post.Links.DownloadLink3.FileSize)
+            </div>
+        </div>
+
+        <button class="btn btn-info btn-i-link">لینک دانلود چهارم</button>
+        <div class="i-hidden" style="margin: 20px;">
+            <div class="control-group">
+                <label class="control-label" for="DownloadLinks_DownloadLink4_Link">لینک دانلود چهارم</label>
+                <div class="controls">
+                    @Html.TextBoxFor(post => post.Links.DownloadLink4.Link, new { placeholder = "لینک دانلود چهارم", @class = "input-xxlarge i-ltr" })
+                </div>
+                @Html.ValidationMessageFor(post => post.Links.DownloadLink4.Link)
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="DownloadLinks_DownloadLink4_FileFormat">نوع فایل</label>
+                <div class="controls">
+                    @Html.TextBoxFor(post => post.Links.DownloadLink4.FileFormat, new { placeholder = "نوع فایل", @class = "input-xlarge i-ltr" })
+                </div>
+                @Html.ValidationMessageFor(post => post.Links.DownloadLink4.FileFormat)
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="DownloadLinks_DownloadLink4_FileSize">حجم فایل</label>
+                <div class="controls">
+                    @Html.TextBoxFor(post => post.Links.DownloadLink4.FileSize, new { placeholder = "حجم فایل", @class = "input-xlarge" })
+                </div>
+                @Html.ValidationMessageFor(post => post.Links.DownloadLink4.FileSize)
+
+            </div>
+        </div>
+        <div id="add-result" style="padding: 10px;"></div>
+        <input type="submit" id="btn-add" class="btn btn-success" value="ویرایش پست" />
+
+    }
+</div>
+
+    <script type="text/javascript">
+        run(function () {
+            bindChosen('#LabelsId'); initializeTooltip({ show: { effect: "blind", duration: 100 } }); $('#BookImage_Path').on('change', function () { loadImagePreview('#book_img', $('#BookImage_Path').val()); }); showDownloadLinks(); $('#BookImage_Path').trigger('change');
+                
+            CKEDITOR.replace('PostBody', { contentsLangDirection: 'rtl', stylesSet: 'my_custom_style' });
+            CKEDITOR.replace('Book_Description', { contentsLangDirection: 'rtl', stylesSet: 'my_custom_style' });
+        });
+    </script>

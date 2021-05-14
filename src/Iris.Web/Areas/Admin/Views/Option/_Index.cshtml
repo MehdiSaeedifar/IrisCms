@@ -1,0 +1,90 @@
+﻿@model Iris.Model.SiteConfig
+<style>
+    #frm-update-options label
+    {
+        width: 200px;
+    }
+</style>
+@using (Html.AjaxBeginForm("Index", "Option", new { area = "admin" }, new AjaxOptions { UpdateTargetId = "result", InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnBegin = "showLoading", OnComplete = "hideLoading" }, new { @class = "form-horizontal", id = "frm-update-options" }))
+{
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>اطلاعات سایت</legend>
+        <div class="control-group">
+            <label class="control-label" for="SiteUrl">آدرس سایت</label>
+            <div class="controls">
+                @Html.TextBoxFor(op => op.SiteUrl)
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="BlogName">عنوان سایت</label>
+            <div class="controls">
+                @Html.TextBoxFor(op => op.BlogName)
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="BlogKeywords">کلمات کلیدی</label>
+            <div class="controls">
+                @Html.TextBoxFor(op => op.BlogKeywords)
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="BlogDescription">توضیحات</label>
+            <div class="controls">
+                @Html.TextBoxFor(op => op.BlogDescription)
+            </div>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>تنظیمات اطلاع رسانی</legend>
+        <div class="control-group">
+            <label class="control-label" for="AdminEmail">ایمیل برای اطلاع رسانی</label>
+            <div class="controls">
+                @Html.TextBoxFor(op => op.AdminEmail)
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="CommentsNotify">اطلاع رسانی دیدگاه ها</label>
+            <div class="controls">
+                @Html.CheckBoxFor(op => op.CommentsNotify)
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="CommentModeratingStatus">تایید نظرات پیش از نمایش</label>
+            <div class="controls">
+                @Html.CheckBoxFor(op => op.CommentModeratingStatus)
+            </div>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>سرور ارسال ایمیل</legend>
+        <div class="control-group">
+            <label class="control-label" for="MailServerUrl">سرویس دهنده ایمیل</label>
+            <div class="controls">
+                @Html.TextBoxFor(op => op.MailServerUrl)
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="MailServerPort">درگاه</label>
+            <div class="controls">
+                @Html.TextBoxFor(op => op.MailServerPort)
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="MailServerLogin">شناسه ورود</label>
+            <div class="controls">
+                @Html.TextBoxFor(op => op.MailServerLogin)
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="MailServerPass">رمز</label>
+            <div class="controls">
+                @Html.TextBoxFor(op => op.MailServerPass)
+            </div>
+        </div>
+    </fieldset>
+    
+    <div id="result"></div>
+    <input type="submit" name="btn-submit" value="ویرایش تنظیمات" class="btn btn-primary" />
+}

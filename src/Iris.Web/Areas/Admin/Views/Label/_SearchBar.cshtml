@@ -1,0 +1,20 @@
+﻿@using (Html.AjaxBeginForm("DataTable", "Label", new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "label-table", OnBegin = "showLoading", OnSuccess = "loadAjaxComponents", OnComplete = "hideLoading" }))
+{
+    <input type="text"  name="term" placeholder="جست و جو" class="search-query" data-autocomplete="@Url.Action("AutoCompleteSearch", "Label")" data-filter="Name" data-min-length="1">
+    <input type="submit" name="btnSubmit" value="جست و جو" class="btn btn-info" />
+    <button data-slide-toggle-id="#search-types" class="btn">پیشرفته</button>
+    <div id="search-types" style="display: none;">
+        <label class="radio">
+            <input type="radio" name="searchBy" value="UserName" checked>
+            نام کاربری
+        </label>
+        <label class="radio">
+            <input type="radio" name="searchBy" value="UserId">
+            کد کاربری
+        </label>
+        <label class="radio">
+            <input type="radio" name="searchBy" value="FullName">
+            نام و نام خانوادگی
+        </label>
+    </div>
+}

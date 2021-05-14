@@ -1,0 +1,37 @@
+﻿@using Iris.Web.Helpers
+@model IEnumerable<Iris.DomainClasses.Entities.Page>
+@functions {
+    void ShowNavBar(IEnumerable<Iris.DomainClasses.Entities.Page> pages) { 
+    foreach (var pageItem in pages)
+    {
+        if (pageItem != null)
+        {
+            if (pageItem.Children.Count == 0)
+            {
+                <text><li>@Html.ActionLink(pageItem.Title, "Index", "Page", new { id = pageItem.Id, title = Html.ResolveTitleForUrl(pageItem.Title) }, new { tabindex = "-1" })</li></text>
+            }
+
+            if (pageItem.Children.Count > 0 && pageItem.Parent == null)
+            {         
+                @:<li class="dropdown"><a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#">@pageItem.Title<b class="caret"></b></a><ul class="dropdown-menu" role="menu" aria-labelledby="dLabel"><li>@Html.ActionLink(pageItem.Title, "Index", "Page", new { id = pageItem.Id, title = Html.ResolveTitleForUrl(pageItem.Title) }, new { tabindex = "-1" })</li>
+                {
+                    ShowNavBar(pageItem.Children);
+                }
+                @:</ul></li>
+            }
+
+            if (pageItem.Children.Count > 0 && pageItem.Parent != null)
+            {         
+                <text><li class="dropdown-submenu">@Html.ActionLink(pageItem.Title, "Index", "Page", new { id = pageItem.Id, title = Html.ResolveTitleForUrl(pageItem.Title) }, new { tabindex = "-1" })<ul class="dropdown-menu"></text>
+                {
+                    ShowNavBar(pageItem.Children);
+                }
+                @:</ul></li>
+            }
+
+        }
+    }
+    }
+}
+
+@{ ShowNavBar(Model); }

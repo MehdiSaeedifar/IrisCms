@@ -1,0 +1,10 @@
+﻿@if (ViewBag.Status == "approved")
+{
+    <span class="label label-warning">تایید نشده</span>
+    @Html.AjaxActionLink("تایید کردن", "Approve", "Comment", new { id = ViewBag.Id }, new AjaxOptions { UpdateTargetId = "comment-status" + ViewBag.Id, InsertionMode = InsertionMode.Replace, HttpMethod = "GET", OnBegin = "showLoading", OnComplete = "hideLoading" }, new { @class = "btn btn-success btn-mini" })
+}
+else
+{
+    <span class="label label-success">تایید شده</span>
+    @Html.AjaxActionLink("تایید نکردن", "DisApprove", "Comment", new { id = ViewBag.Id }, new AjaxOptions { UpdateTargetId = "comment-status" + ViewBag.Id, InsertionMode = InsertionMode.Replace, HttpMethod = "GET", OnBegin = "showLoading", OnComplete = "hideLoading" }, new { @class = "btn btn-warning btn-mini" })
+}

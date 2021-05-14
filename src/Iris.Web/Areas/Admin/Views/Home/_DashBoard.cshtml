@@ -1,0 +1,86 @@
+﻿@using Iris.Web.Helpers
+@using Microsoft.AspNetCore.Mvc
+@using Microsoft.AspNetCore.Mvc.Rendering
+<div class="navbar navbar-inverse navbar-fixed-top" id="dashboard">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="#" style="color: white;">IRIS CMS</a>
+            <div class="nav-collapse collapse">
+                <ul class="nav nav-pills pull-left">@* begin User dropdown list*@
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="float: right;">@User.Identity.Name<b class="caret"></b>
+                        </a>
+                        <div style="float: left; width: 28px; height: 25px; margin-top: 5px;">
+                            <img src="@ViewBag.AvatarPath" alt="" style="width:30px;height:30px; border-radius:2px;">
+                        </div>
+                        <ul class="dropdown-menu" style="min-width: 200px;">
+                            <li style="padding: 10px;">
+                                <img src="@ViewBag.AvatarPath" alt="" style="width:80px;height:85px; position:absolute;top:19px;right:6px; border-radius:5px;">
+                            </li>
+                            <li style="margin-right: 85px;"><a href="@Url.Action("ProfilePage", "User", new { area = "" })">پروفایل من</a></li>
+                            <li style="margin-right: 85px;">@Html.AjaxActionLink("ویرایش شناسه من", "UpdateProfile", "User", new { area = "" }, new AjaxOptions { HttpMethod = "GET", OnSuccess = "Profile.Edit.onSuccess", LoadingElementDuration = 300, LoadingElementId = "loadingMessage" })
+                            </li>
+                            @using (Html.AjaxBeginForm("LogOut", "User", new { area = "" }, new AjaxOptions { HttpMethod = "POST", OnSuccess = "reloadPage", LoadingElementDuration = 300, LoadingElementId = "loadingMessage" }, new { id = "frmLogOut" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <li style="margin-right: 85px;">
+                                    <button id="btnLogOut" type="submit" style="display: none;">خروج</button>
+                                    <a href="javascript:document.getElementById('btnLogOut').click()">خروج</a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                </ul>@* end User dropdown list*@
+                <p class="navbar-text pull-left">درود،</p>
+                @if (User.IsInRole("admin") || User.IsInRole("moderator"))
+                {
+                    <div class="btn-group">@* begin new dropdown list*@
+                        <a class="btn dropdown-toggle btn-inverse" data-toggle="dropdown" href="#">مدیریت  <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("صفحه اصلی", "Index", "Home",new {area="Admin"})</li>
+                        </ul>
+                    </div>
+                    <div class="btn-group">@* begin new dropdown list*@
+                        <a class="btn dropdown-toggle btn-inverse" data-toggle="dropdown" href="#">سایت  <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("نمایش سایت", "Index", "Home", new { area = "" }, null)</li>
+                        </ul>
+                    </div>
+
+                    <div class="btn-group">@* begin new dropdown list*@
+                        <a class="btn dropdown-toggle btn-inverse" data-toggle="dropdown" href="#"><i class="icon-plus icon-white"></i>جدید  <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li>@Html.LinkDialog("کاربر", Url.Action("Add", "User"), "GET", null, "dialog", new DialogOptions { Height = "600", Width = "450", Title = "کاربر جدید", IsModal = "true", ShowEffect = "size", ShowDir = "down", HideEffect = "fold", HideDir = "right" })</li>
+
+                            <li>@Html.LinkDialog("پست", Url.Action("Add", "Post"), "GET", null, "dialog", new DialogOptions { Height = "600", Width = "800", Title = "پست جدید", IsModal = "true", ShowEffect = "size", ShowDir = "down", HideEffect = "fold", HideDir = "right" })</li>
+
+                            <li>@Html.LinkDialog("برچسب", Url.Action("Add", "Label"), "GET", null, "dialog", new DialogOptions { Height = "220", Width = "450", Title = "برچسب جدید", IsModal = "true", ShowEffect = "fade", ShowDir = "down", HideEffect = "scale", HideDir = "right" })</li>
+
+                            <li>@Html.LinkDialog("برگه", Url.Action("Add", "Page"), "GET", null, "dialog", new DialogOptions { Height = "600", Width = "800", Title = "برگه جدید", IsModal = "true", ShowEffect = "size", ShowDir = "down", HideEffect = "clip", HideDir = "right" })</li>
+                        </ul>
+                    </div>
+                }
+@* end new dropdown list*@
+
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+<div id="updateProfile" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+<script type="text/javascript">
+    var Profile = new Object();
+    Profile.Edit = new Object();
+    Profile.Edit.onSuccess = function (data) {
+        $('div#updateProfile').html(data).modal('show');
+    };
+</script>

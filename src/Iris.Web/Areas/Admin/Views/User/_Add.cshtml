@@ -1,0 +1,87 @@
+﻿@model Iris.Model.AdminModel.AddUserModel
+
+<div class="container-fluid" id="div-user-detail">
+    @using (Html.AjaxBeginForm("AddUser", "User", new AjaxOptions { UpdateTargetId = "add-result", InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnBegin = "showLoading", OnComplete = "hideLoading" }, new { @class = "form-horizontal", id = "add-user-form" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="control-group">
+            <label class="control-label" for="UserName">نام کاربری</label>
+            <div class="controls">
+                @Html.TextBoxFor(x => x.UserName, new { placeholder = "نام کاربری" })
+            </div>
+            @Html.ValidationMessageFor(x => x.UserName)
+        </div>
+        
+        <div class="control-group">
+            <label class="control-label" for="Password">کلمه عبور</label>
+            <div class="controls">
+                @Html.PasswordFor(x => x.Password, new { placeholder = "کلمه عبور", style = "direction:ltr;" })
+            </div>
+            @Html.ValidationMessageFor(x => x.Password)
+        </div>
+        
+        <div class="control-group">
+            <label class="control-label" for="ConfirmPassword">تکرار کلمه عبور</label>
+            <div class="controls">
+                @Html.PasswordFor(x => x.ConfirmPassword, new { placeholder = "تکرار کلمه عبور", style = "direction:ltr;" })
+            </div>
+            @Html.ValidationMessageFor(x => x.ConfirmPassword)
+        </div>
+        
+        <div class="control-group">
+            <label class="control-label" for="Email">ایمیل</label>
+            <div class="controls">
+                @Html.TextBoxFor(x => x.Email, new { placeholder = "ایمیل", style = "direction:ltr;" })
+            </div>
+            @Html.ValidationMessageFor(x => x.Email)
+        </div>
+        
+        <div class="control-group">
+            <label class="control-label" for="FirstName">نام</label>
+            <div class="controls">
+                @Html.TextBoxFor(x => x.FirstName, new { placeholder = "نام" })
+            </div>
+            @Html.ValidationMessageFor(x => x.FirstName)
+        </div>
+        
+        <div class="control-group">
+            <label class="control-label" for="LastName">نام خانوادگی</label>
+            <div class="controls">
+                @Html.TextBoxFor(x => x.LastName, new { placeholder = "نام خانوادگی" })
+            </div>
+            @Html.ValidationMessageFor(x => x.LastName)
+        </div>
+        
+        <div class="control-group">
+            <label class="control-label" for="Major">رشته</label>
+            <div class="controls">
+                @Html.TextBoxFor(x => x.Major, new { placeholder = "رشته تحصیلی" })
+            </div>
+            @Html.ValidationMessageFor(x => x.Major)
+        </div>
+        
+        <div class="control-group">
+            <label class="control-label" for="Description">توضیحات</label>
+            <div class="controls">
+                @Html.TextAreaFor(x => x.Description)
+            </div>
+            @Html.ValidationMessageFor(x => x.Description)
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="BirtDay">تاریخ تولد</label>
+            <div class="controls">
+                @Html.TextBoxFor(user => user.BirthDay, new { id = "date-picker", placeholder = "تاریخ تولد", style = "direction: ltr" })
+            </div>
+            @Html.ValidationMessageFor(x => x.BirthDay)
+
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="">نقش کاربر</label>
+            <div class="controls">
+                @Html.DropDownListFor(x => x.RoleId, ViewBag.RolesList as IEnumerable<SelectListItem>)
+            </div>
+        </div>
+        <div id="add-result"></div>
+        <input type="submit" class="btn btn-success" name="btn-submit" value="افزودن کاربر" />
+    }
+</div>

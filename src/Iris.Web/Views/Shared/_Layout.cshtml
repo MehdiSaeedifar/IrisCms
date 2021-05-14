@@ -1,0 +1,125 @@
+﻿@using Microsoft.AspNetCore.Http.Extensions
+<!DOCTYPE html>
+<html>
+<head>
+    @Html.Action("Index", "MetaTag", new { title = ViewBag.Title, keywords = ViewBag.Keywords, description = ViewBag.Description })
+    <link rel="canonical" href="@Context.Request.GetDisplayUrl()" />
+    <meta http-equiv="Content-Language" content="fa" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    @await RenderSectionAsync("metatags", false)
+    <link rel="shortcut icon" href="~/Content/Images/fav/iefavicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="~/Content/Images/fav/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="~/Content/Images/fav/apple-touch-icon-iphone.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="~/Content/Images/fav/apple-touch-icon-ipad.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="~/Content/Images/fav/apple-touch-icon-iphone4.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="~/Content/Images/fav/apple-touch-icon-ipad3.png" />
+    <link title="فید کتاب های سایت" href="@Url.Action("Posts", "Feed")" type="application/rss+xml" rel="alternate" />
+        <link title="فید دیدگاه های سایت" href="@Url.Action("Comments", "Feed")" type="application/rss+xml" rel="alternate" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="/bundle/bootstrap-css.css" />
+    <link rel="stylesheet" href="/bundle/autocompleteandanimations.css" />
+    <link rel="stylesheet" href="/bundle/sitecss.css" />
+    @RenderSection("styles", false)
+</head>
+<body>
+    <cache enabled="false">
+        @if (User.Identity.IsAuthenticated)
+        {
+            @Html.Action("RenderDashBoard", "Home", new {area = "Admin"})
+            <style type="text/css">
+                body {
+                    padding-top: 40px;
+                }
+            </style>
+        }
+    </cache>
+<div class="container-fluid" id="wrapper">
+    <div class="row-fluid" id="header">
+        <div class="span4" id="header-img">
+            <h1>
+                <a title="مرجع دانلود کتاب های کامپیوتر و IT" href="@Url.Action("Index", "Home")">EBooks World</a>
+            </h1>
+            <h4>Computer & IT Ebooks Centre</h4>
+        </div>
+        <!-- end header image div -->
+        <div id="header-social-networks-container" class="pull-left visible-tablet visible-desktop">
+            <a href="https://t.me/ebooksworldir" title="EBooksWorld در تلگرام">
+                <img src="~/Content/images/telegram.png" alt="Telegram">
+            </a>
+            <a href="https://www.instagram.com/ebooksworldir" title="EBooksWorld در اینستاگرام">
+                <img src="~/Content/images/instagram.png" alt="EBooksWorld در اینستاگرام">
+            </a>
+            <a href="https://www.facebook.com/ebooksworldir" rel="nofollow" title="EBooksWorld در Facebook">
+                <img src="~/Content/images/facebook.png" alt="Facebook">
+            </a>
+            <a rel="nofollow" target="_blank" href="https://plus.google.com/106709386676017239470" title="EBooksWorld در +Google">
+                <img src="~/Content/images/google_plus.png" alt="Google-Plus">
+            </a>
+            <a href="#">
+                <img src="~/Content/images/twitter.png" alt="Twitter">
+            </a>
+        </div>
+        <!-- end social networks div -->
+        @using (Html.BeginForm("Index", "Search", FormMethod.Get, new {style = "margin-bottom:0", @class = "form-search"}))
+        {
+            <div class="input-append pull-right hidden-desktop" style="margin: 10px;">
+                <input type="text" data-i-search-input="true" class="search-query" name="term" value="@ViewBag.Term" data-autocomplete="true" data-autocomplete-url="@Url.Action("AutoCompleteSearch", "Search")" placeholder="عنوان،نویسنده،ناشر،ISBN"/>
+                <button class="btn btn-primary" type="submit">جست و جو</button>
+            </div>
+        }
+    </div>
+    <!-- end header div -->
+    <!-- begin navbar div-->
+    <div class="row-fluid " id="navbar">
+        @Html.Action("NavBar", "Home")
+    </div>
+    <!-- end navbar div -->
+    <div id="content-wrapper">
+        <div class="row-fluid">
+            @Html.Action("Announce", "Home")
+            @Html.Action("Slider", "Home")
+        </div>
+        <!-- end slider div -->
+        <div class="row-fluid">
+            <!-- begin sidebar and announce div -->
+            @Html.Action("Index", "SideBar")
+            <!-- end announce-wrapper div -->
+            <div class="span10 " id="main-content">
+                @RenderBody()
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div id="loadingMessage">
+        <img src="~/Content/Images/loading4.gif" alt="loading..."/>
+        <div>
+            <p>لطفا منتظر بمانید...</p>
+        </div>
+    </div>
+</div>
+<!-- end sidebar and announce div -->
+<!-- end container div -->
+<footer>
+    <div id="footer">
+        <div id="footer-bar" style="text-align: center;">
+            <p style="margin: 0;"><span>با افتخار نیرو گرفته از IRIS Blue</span></p>
+            <label class="label label-important">BETA VERSION</label>
+        </div>
+    </div>
+</footer>
+<!-- begin logon modal form -->
+<div id="logOnModal" style="z-index: 99999999;" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+</div>
+<!-- end logon modal form -->
+<script src="/bundle/jquery.js" type="text/javascript"></script>
+<script src="/bundle/bootstrap.js" type="text/javascript"></script>
+<script src="/bundle/jqueryuitools.js" type="text/javascript"></script>
+<script src="/bundle/sitejs.js" type="text/javascript"></script>
+@RenderSection("scripts", false)
+
+</body>
+</html>

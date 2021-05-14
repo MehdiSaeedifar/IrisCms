@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Iris.Datalayer\Iris.Datalayer.csproj" />
+    <ProjectReference Include="..\Iris.DomainClasses\Iris.DomainClasses.csproj" />
+    <ProjectReference Include="..\Iris.Model\Iris.Model.csproj" />
+    <ProjectReference Include="..\Iris.Utilities\Iris.Utilities.csproj" />
+  </ItemGroup>
+
+</Project>

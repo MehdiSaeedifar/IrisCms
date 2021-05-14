@@ -1,0 +1,136 @@
+﻿@using DNTPersianUtils.Core
+@model Iris.Model.EditProfileModel
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 style="font-family: Helvetica Neue, Helvetica, Arial, sans-serif;">ویرایش شناسه من</h3>
+</div>
+<div class="modal-body">
+    <style>
+        #frmEditProfile label
+        {
+            width: 150px;
+        }
+    </style>
+    <fieldset>
+        <legend>آواتار کاربری</legend>
+        <div class="thumbnail span3">
+            <img src="@Model.AvatarPath" style="width:80px;height:80px;" />
+            @Html.AjaxActionLink("حذف آواتار", "RemoveAvatar", "User", new { area = "" }, new AjaxOptions
+            {
+                Confirm = "آیا می خواهید آواتار خود را حذف کنید؟",
+                HttpMethod = "Post",
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "remove-result",
+                LoadingElementDuration = 300,
+                LoadingElementId = "loadingMessage"
+            }, new { @class = "btn btn-warning btn-mini" })
+            <div id="remove-result"></div>
+            @using (Html.BeginForm("ChangeAvatar", "User", new { area = "" }, FormMethod.Post, true,new { enctype = "multipart/form-data", id = "form-upload" }))
+            {
+                @Html.AntiForgeryToken()
+                <input type="file" name="avatarFile" id="avatarFile" />
+                <div>
+                    <input type="submit" name="btn-submit" value="ارسال" class="btn btn-success" />
+                </div>
+                <div id="upload-result"></div>
+                <div class="progress progress-striped active" style="max-width: 40%; margin-top: 20px; display: none;">
+                    <div class="bar" id="progressbar" style="width: 0%;"></div>
+                </div>
+            }
+        </div>
+    </fieldset>
+    @using (Html.AjaxBeginForm("UpdateProfile", "User", new { area = "" }, new AjaxOptions { UpdateTargetId = "result", InsertionMode = InsertionMode.Replace, HttpMethod = "POST", LoadingElementDuration = 300, LoadingElementId = "loadingMessage" }, new { @class = "form-horizontal", id = "frmEditProfile" }))
+    {
+        @Html.AntiForgeryToken()
+        <fieldset>
+            <legend>مشخصات فردی</legend>
+            <div class="control-group">
+                <label class="control-label" for="FirstName">نام</label>
+                <div class="controls">
+                    @Html.TextBoxFor(user => user.FirstName)
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="LastName">نام خانوادگی</label>
+                <div class="controls">
+                    @Html.TextBoxFor(user => user.LastName)
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="Email">ایمیل</label>
+                <div class="controls">
+                    @Html.TextBoxFor(user => user.Email)
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="Major">رشته تحصیلی</label>
+                <div class="controls">
+                    @Html.TextBoxFor(user => user.Major)
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="BirthDay">تاریخ تولد</label>
+                <div class="controls">
+                    <input type="text" name="BirthDay" id="date-picker" placeholder="تاریخ تولد" style="direction: ltr" value="@Model.BirthDay?.ToShortPersianDateString()" data-val-regex-pattern="^([1][234][0-9]{2})/[0-9]{1,2}/([0-9]{1,2})$" data-val-regex="تاریخ وارد شده معتبر نمی باشد" data-val-date="The field BirthDay must be a date." data-val="true" />
+                    @Html.ValidationMessageFor(user => user.BirthDay)
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="Description">توضیحات</label>
+                <div class="controls">
+                    @Html.TextAreaFor(user => user.Description, new { @class = "input-xlarge", style = "height:200px;" })
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>کلمه عبور</legend>
+            <div class="control-group">
+                <label class="control-label" for="OldPassword">کلمه عبور کنونی</label>
+                <div class="controls">
+                    @Html.PasswordFor(user => user.OldPassword)
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="NewPassword">کلمه عبور جدید</label>
+                <div class="controls">
+                    @Html.PasswordFor(user => user.NewPassword)
+                    @Html.ValidationMessageFor(user => user.NewPassword)
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="ConfirmNewPassword">تکرار کلمه عبور جدید</label>
+                <div class="controls">
+                    @Html.PasswordFor(user => user.ConfirmNewPassword)
+                    @Html.ValidationMessageFor(user => user.ConfirmNewPassword)
+                </div>
+            </div>
+        </fieldset>
+        <div id="result"></div>
+        <input type="submit" id="btnUpdateProfile" name="btn-submit" value="ویرایش شناسه من" class="btn btn-primary" />
+        <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">بستن</button>
+    }
+</div>
+<div class="modal-footer" style="text-align: right;">
+</div>
+<script src="/bundle/jqueryform.js" type="text/javascript"></script>
+<script type="text/javascript">
+    run(function () {
+        $.validator.unobtrusive.parse('#frmEditProfile');
+        $('#date-picker').datepicker({ changeMonth: true, changeYear: true });
+        //form plugin
+        var bar = $('#progressbar');
+        var barContainer = bar.parent('div');
+        $('#form-upload').ajaxForm({
+            beforeSend: function () {
+            },
+            uploadProgress: function (event, position, total, percentComplete) {
+                var percentVal = percentComplete + '%';
+                bar.css('width', percentVal);
+            },
+            target: '#upload-result',
+            resetForm: true,
+            success: function () { barContainer.slideUp(); },
+            beforeSubmit: function (arr, $form, options) { barContainer.slideDown(); }
+        });
+    });
+</script>

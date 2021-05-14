@@ -1,0 +1,78 @@
+﻿@model Iris.Model.RegisterModel
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 style="font-family: Helvetica Neue, Helvetica, Arial, sans-serif;">ثبت نام کاربر جدید</h3>
+</div>
+<div class="modal-body">
+    @using (Html.AjaxBeginForm("Register", "User", new AjaxOptions { HttpMethod = "POST", OnBegin = "", OnComplete = "", OnSuccess = "RegisterUser.Form.onSuccess", LoadingElementDuration = 300, LoadingElementId = "loadingMessage" }, new { @class = "form-horizontal", id = "registerForm" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="control-group">
+            <label class="control-label" style="width: 110px;" for="registerEmail">ایمیل</label>
+            <div class="controls">
+                @Html.TextBoxFor(user => user.Email, new { placeholder = "Email", @class = "ltr", id = "registerEmail" })
+                <img src="~/Content/Images/loading1.gif" alt="loading" style="width:24px;display:none;" />
+                <span id="emailValidationDiv" style="margin-right: 10px;"></span>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" style="width: 110px;" for="UserName">نام کاربری</label>
+            <div class="controls">
+                @Html.TextBoxFor(user => user.UserName, new { placeholder = "UserName", @class = "ltr" })
+                <img src="~/Content/Images/loading1.gif" alt="loading" style="width:24px;display:none;" />
+                <span id="userNameValidationDiv" style="margin-right: 10px;"></span>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" style="width: 110px;" for="Password">کلمه عبور</label>
+            <div class="controls">
+                @Html.PasswordFor(user => user.Password, new { placeholder = "Password", @class = "ltr" })
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" style="width: 110px;" for="ConfirmPassword">تکرار کلمه عبور</label>
+            <div class="controls">
+                @Html.PasswordFor(user => user.ConfirmPassword, new { placeholder = "Confirm Password", @class = "ltr" })
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" style="width: 110px;" for="Captcha">انسان یاب!</label>
+            <div class="controls">
+                <dnt-captcha asp-captcha-generator-max="9000"
+                             asp-captcha-generator-min="1"
+                             asp-captcha-generator-language="English"
+                             asp-captcha-generator-display-mode="SumOfTwoNumbers"
+                             asp-use-relative-urls="true"
+                             asp-placeholder="جواب"
+                             asp-validation-error-message="پاسخ صحیح را وارد نمایید"
+                             asp-font-name="Tahoma"
+                             asp-font-size="20"
+                             asp-fore-color="#333333"
+                             asp-back-color="#ccc"
+                             asp-text-box-class="text-box single-line form-control col-md-4"
+                             asp-text-box-template="<div class='input-group span-4' style='margin-right:0;'><span class='input-group-addon'></span>{0}</div>"
+                             asp-validation-message-class="text-danger"
+                             asp-refresh-button-class="icon-refresh btn-sm"
+                             asp-use-noise="false"
+                />
+            </div>
+        </div>
+        <div id="registerResult">
+            @Html.ValidationSummary()
+        </div>
+        <input type="submit" id="btnRegister" name="name" value="" style="display: none;" />
+    }
+</div>
+<div class="modal-footer" style="text-align: right;">
+    <input type="submit" name="btn-submit" onclick="$('#btnRegister').trigger('click');" value="ثبت نام" class="btn btn-success" />
+    @Html.AjaxActionLink("ورود", "LogOn", "User"
+    , null, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "logOnModal", LoadingElementDuration = 300, LoadingElementId = "loadingMessage" }, new { @class = "btn btn-info", id = "btnLogOn" })
+    <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">بستن</button>
+</div>
+<script type="text/javascript">
+    run(function () {
+        $.validator.unobtrusive.parse('#registerForm');
+        RegisterUser.Form.validateEmail('@Url.Action("ExistsUserByEmail", "User")');
+        RegisterUser.Form.validateUserName('@Url.Action("ExistsUserByUserName", "User")');
+    });
+</script>

@@ -1,0 +1,84 @@
+﻿@model Iris.Model.AdminModel.SendingMailModel
+<div class="container-fluid">
+    @using (Html.AjaxBeginForm("Send", "Mail", new AjaxOptions { UpdateTargetId = "result", InsertionMode = InsertionMode.InsertAfter, HttpMethod = "POST", OnBegin = "showLoading", OnComplete = "hideLoading" }, new { @class = "form-horizontal" }))
+    {
+        <div class="control-group">
+            <div class="row-fluid">
+                <div class="span8">
+                    <label class="control" for="usersId">نام های کاربری دربافت کنندگان</label>
+                    <select id="usersId" name="usersId" multiple="multiple" data-i-source="@Url.Action("AutoCompleteSearch", "Mail")" class = "chzn-rtl span10", data-placeholder = "نام کاربری کاربرها را تایپ کنید" }>
+                    </select>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <label class="control-label">ارسال به:</label>
+                <label class="checkbox inline">
+                    <input type="checkbox" id="inlineCheckbox1" name="SendTo" value="all">
+                    همه
+                </label>
+                <label class="checkbox inline">
+                    <input type="checkbox" id="inlineCheckbox3" name="SendTo" value="admins">
+                    مدیران
+                </label>
+                <label class="checkbox inline">
+                    <input type="checkbox" id="inlineCheckbox2" name="SendTo" value="users">
+                    کاربران
+                </label>
+                <label class="checkbox inline">
+                    <input type="checkbox" id="inlineCheckbox3" name="SendTo" value="writers">
+                    نویسندگان
+                </label>
+                <label class="checkbox inline">
+                    <input type="checkbox" id="inlineCheckbox3" name="SendTo" value="editors">
+                    ویرایشگران
+                </label>
+            </div>
+            <div>
+                <label class="control">موضوع:</label>
+                @Html.TextBoxFor(mail => mail.Subject, new { @class = "span8" })
+            </div>
+
+            <div class="row-fluid" style="margin-top: 10px;">
+                <div class="span10">
+                    <label class="control">متن پست الکترونیکی:</label>
+                    @Html.TextAreaFor(mail => mail.Body)
+                </div>
+            </div>
+            <div class="row-fluid" style="margin-top: 20px;">
+                <div class="span5">
+                    <input type="submit" name="btn-submit" value="ارسال" class="btn btn-success" />
+                </div>
+            </div>
+
+            <div class="row-fluid" style="margin-top: 20px;">
+                <div class="span5">
+                    <div id="result"></div>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>@*end container  *@
+
+
+<script type="text/javascript">
+    load('@Url.Content("~/Scripts/chosen/ajax-chosen.js")').load('@Url.Content("~/Scripts/ckeditor/ckeditor.js")').thenRun(function () {
+        $("#usersId").ajaxChosen({
+            type: 'GET',
+            url: $('#usersId').attr('data-i-source'),
+            dataType: 'json',
+            minTermLength: 2,
+            keepTypingMsg: "ادامه دهید...",
+            lookingForMsg: "به دنبال"
+        }, function (data) {
+            var results = [];
+
+            $.each(data, function (i, val) {
+                results.push({ value: val.value, text: val.text });
+            });
+
+            return results;
+        });
+        CKEDITOR.replace('Body');
+    });
+</script>

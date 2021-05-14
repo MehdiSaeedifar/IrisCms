@@ -1,0 +1,9 @@
+﻿@using Iris.Web.Helpers
+<div class="navbar">
+    <div class="navbar-inner">
+        <a class="brand" href="#">گروه ها</a>
+        <ul class="nav">
+            <li class="active">@Html.LinkDialog("افزودن گروه", Url.Action("Add", "Category"), "GET", null, "dialog", new DialogOptions { Height = "220", Width = "450", Title = "گروه جدید", IsModal = "true", ShowEffect = "fade", ShowDir = "down", HideEffect = "scale", HideDir = "right" })</li>
+        </ul>
+    </div>
+</div>
