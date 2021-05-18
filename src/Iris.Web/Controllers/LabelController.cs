@@ -6,18 +6,26 @@ namespace Iris.Web.Controllers
 {
     public class LabelController : Controller
     {
-        private readonly IPostService _postService;
+        private readonly ILabelService _labelService;
 
-        public LabelController(IPostService postService)
+        public LabelController(ILabelService labelService)
         {
-            _postService = postService;
+            _labelService = labelService;
         }
 
         [Route("label/index/{id:int}/{title?}/{name?}")]
         public virtual ActionResult Index(int id, string name)
         {
+            var label = _labelService.GetLabel(id);
+
+            if (label is null)
+            {
+                return NotFound();
+            }
+
             ViewBag.Id = id;
-            ViewBag.Title = name;
+            ViewBag.Title = label.Name;
+
             return View();
         }
 
