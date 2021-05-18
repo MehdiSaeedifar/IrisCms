@@ -30,6 +30,7 @@ namespace Iris.Web.Controllers
             _bookSearch = bookSearch;
         }
 
+        [Route("post/index/{id:int}/{title?}")]
         public virtual ActionResult Index(int id)
         {
             var post = _postService.GetPost(id);
