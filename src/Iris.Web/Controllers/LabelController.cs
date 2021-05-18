@@ -13,6 +13,7 @@ namespace Iris.Web.Controllers
             _postService = postService;
         }
 
+        [Route("label/index/{id:int}/{title?}/{name?}")]
         public virtual ActionResult Index(int id, string name)
         {
             ViewBag.Id = id;
