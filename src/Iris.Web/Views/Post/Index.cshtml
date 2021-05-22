@@ -91,7 +91,7 @@
                 <li class="active"><a class="i-font-koodak" style="font-size: 16px;" href="javascript:;">دریافت</a></li>
             </ul>
             <div class="tab-content">
-                <div class="tab-pane active" id="downloadCaptcha" style="overflow-y:hidden;">
+                <div class="tab-pane active" id="linkCaptcha" style="overflow-y:hidden;">
                     <fieldset>
                         <legend>نام پایتخت ایران را به فارسی و با ط دسته دار بنویسید:</legend>
                         <form class="form-inline" id="captchaForm">
@@ -101,13 +101,8 @@
                         <p>اگر جواب سوال را نمی دانید به <a href="https://t.me/joinchat/G7ZlmAbg_q8CL3kn" target="_blank" style="font-weight:bold;">این گروه تلگرامی</a> مراجعه کنید.</p>
                     </fieldset>
                 </div>
-                <div class="tab-pane active" id="downloadLinks" style="display:none;">
-                    @foreach (var downloadLink in Model.DownloadLinks)
-                    {
-                        <p>
-                            <img src="~/Content/images/down.png" alt="دریافت"><a href="@downloadLink.Link">دریافت با فرمت <span>@downloadLink.FileFormat</span> و با حجم <span>@downloadLink.FileSize</span></a>
-                        </p>
-                    }
+                <div class="tab-pane active" id="links" style="display:none;">
+
                 </div>
             </div>
         </div>
@@ -164,18 +159,34 @@
 <!-- end comment div -->
 @section scripts{
     <script>
-        $('#captchaForm').on('submit', function (e) {
-            e.preventDefault();
+        $('#captchaForm').on('submit',
+            function(e) {
+                e.preventDefault();
 
-            var inputValue = $('#captchaAnswer').val();
+                var inputValue = $('#captchaAnswer').val();
 
-            if (inputValue !== 'طهران') {
-                alert('پاسخ وارد شده صحیح نیست!');
-                return;
-            }
+                $('#loadingMessage').css("display", "block");
 
-            $('#downloadCaptcha').fadeOut();
-            $('#downloadLinks').slideDown();
-        });
+                $.ajax('@Url.Action("GetDownloadLinks")',
+                        {
+                            data: JSON.stringify({ answer: inputValue, postId: @Model.Id }),
+                            contentType: 'application/json',
+                            type: 'POST'
+                        }).done(function(data) {
+
+                        $('#links').html(data);
+                        $('#linkCaptcha').fadeOut();
+                        $('#links').slideDown();
+
+
+                    })
+                    .fail(function () {
+                        alert('پاسخ وارد شده صحیح نیست!');
+                    })
+                    .always(function() {
+                        $('#loadingMessage').css("display", "none");
+                    });
+
+            });
     </script>
 }

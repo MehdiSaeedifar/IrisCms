@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using Iris.DomainClasses.Entities;
 using Iris.Model;
 using Iris.Model.AdminModel;
@@ -39,5 +41,10 @@ namespace Iris.Servicelayer.Interfaces
         IList<PostDetailModel> GetUserPosts(string userName, int page, int count);
         int GetUserPostsCount(string userName);
         IList<SiteMapModel> GetSiteMapData(int count);
+
+        Task<IList<DownloadLink>> GetDownloadLinks(
+            int postId,
+            CancellationToken cancellationToken = default
+        );
     }
 }

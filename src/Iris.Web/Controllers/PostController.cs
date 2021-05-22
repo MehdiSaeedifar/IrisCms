@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using DNTPersianUtils.Core;
 using Iris.Datalayer.Context;
 using Iris.DomainClasses.Entities;
 using Iris.Model;
@@ -86,6 +89,20 @@ namespace Iris.Web.Controllers
             return Json(new { result, count = ConvertToPersian.ConvertToPersianString(likeCount) });
         }
 
+        [HttpPost("post/links")]
+        public async Task<ActionResult> GetDownloadLinks(
+            [FromBody] GetDownloadLinksModel model,
+            CancellationToken cancellationToken
+        )
+        {
+            if (model.Answer.Trim().ApplyCorrectYeKe() != "طهران")
+            {
+                return NotFound();
+            }
+
+            return PartialView("_DownloadLinks", await _postService.GetDownloadLinks(model.PostId, cancellationToken));
+        }
+
         public virtual ActionResult SilmilarPosts(int id)
         {
             IEnumerable<MorePostsLikeThis> model = _bookSearch.GetMoreLikeThisPostItems(id);
@@ -106,5 +123,11 @@ namespace Iris.Web.Controllers
             ViewBag.UserName = userName;
             return View();
         }
+    }
+
+    public class GetDownloadLinksModel
+    {
+        public int PostId { get; set; }
+        public string Answer { get; set; }
     }
 }

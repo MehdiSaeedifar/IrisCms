@@ -1,0 +1,8 @@
+﻿@model IEnumerable<Iris.DomainClasses.Entities.DownloadLink>
+
+@foreach (var downloadLink in Model)
+{
+    <p>
+        <img src="~/Content/images/down.png" alt="دریافت"><a href="@downloadLink.Link">دریافت با فرمت <span>@downloadLink.FileFormat</span> و با حجم <span>@downloadLink.FileSize</span></a>
+    </p>
+}

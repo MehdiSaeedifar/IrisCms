@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using EFCoreSecondLevelCacheInterceptor;
 using Iris.Datalayer.Context;
 using Iris.DomainClasses.Entities;
@@ -210,7 +212,6 @@ namespace Iris.Servicelayer.EFServices
                 CommentStatus = post.CommentStatus,
                 CreatedDate = post.CreatedDate,
                 Id = post.Id,
-                DownloadLinks = post.DownloadLinks,
                 ImagePath = post.Book.Image.Path,
                 ImageDescription = post.Book.Image.Description,
                 ImageTitle = post.Book.Image.Title,
@@ -467,5 +468,16 @@ namespace Iris.Servicelayer.EFServices
         }
 
         #endregion
+
+        public async Task<IList<DownloadLink>> GetDownloadLinks(
+            int postId,
+            CancellationToken cancellationToken = default
+        )
+        {
+            return await _uow.Set<DownloadLink>()
+                .AsNoTracking()
+                .Where(link => link.PostId == postId)
+                .ToListAsync(cancellationToken);
+        }
     }
 }
