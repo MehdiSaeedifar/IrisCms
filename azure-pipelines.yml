@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
 trigger:
-- 'ebooksworld/*'
+- ebooksworld-release/*
 
 pool:
   vmImage: 'windows-latest'
@@ -13,7 +13,6 @@ variables:
   buildConfiguration: 'Release'
 
 steps:  
-
 - task: DotNetCoreCLI@2
   inputs:
     command: publish
@@ -21,7 +20,6 @@ steps:
     arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
     zipAfterPublish: false
 
-# this code takes all the files in $(Build.ArtifactStagingDirectory) and uploads them as an artifact of your build.
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(Build.ArtifactStagingDirectory)' 
