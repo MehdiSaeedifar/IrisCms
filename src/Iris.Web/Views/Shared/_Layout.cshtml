@@ -15,7 +15,7 @@
     <link rel="apple-touch-icon" sizes="114x114" href="~/Content/Images/fav/apple-touch-icon-iphone4.png" />
     <link rel="apple-touch-icon" sizes="144x144" href="~/Content/Images/fav/apple-touch-icon-ipad3.png" />
     <link title="فید کتاب های سایت" href="@Url.Action("Posts", "Feed")" type="application/rss+xml" rel="alternate" />
-        <link title="فید دیدگاه های سایت" href="@Url.Action("Comments", "Feed")" type="application/rss+xml" rel="alternate" />
+    <link title="فید دیدگاه های سایت" href="@Url.Action("Comments", "Feed")" type="application/rss+xml" rel="alternate" />
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="/bundle/autocompleteandanimations.css" />
     <link rel="stylesheet" href="/bundle/sitecss.css" />
     @RenderSection("styles", false)
+
+    <!--#{GoogleAnalytics}#-->
 </head>
 <body>
     <cache enabled="false">
