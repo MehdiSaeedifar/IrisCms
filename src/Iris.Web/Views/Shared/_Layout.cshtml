@@ -25,13 +25,32 @@
     <link rel="stylesheet" href="/bundle/sitecss.css" />
     @RenderSection("styles", false)
 
-    <!--#{GoogleAnalytics}#-->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-73782867-4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-73782867-4');
+    </script>
+
+    <script type="text/javascript">
+        var head = document.getElementsByTagName("head")[0];
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.async = 1;
+        var url = "https://beta.kaprila.com/a/show.js.php?ref=ebooksworld.ir&page_title=";
+        script.src = url + encodeURI(document.title) + "&page_url=" + document.URL;
+        head.appendChild(script);
+    </script>
+
 </head>
 <body>
     <cache enabled="false">
         @if (User.Identity.IsAuthenticated)
         {
-            @Html.Action("RenderDashBoard", "Home", new {area = "Admin"})
+            @Html.Action("RenderDashBoard", "Home", new { area = "Admin" })
             <style type="text/css">
                 body {
                     padding-top: 40px;
@@ -39,89 +58,167 @@
             </style>
         }
     </cache>
-<div class="container-fluid" id="wrapper">
-    <div class="row-fluid" id="header">
-        <div class="span4" id="header-img">
-            <h1>
-                <a title="مرجع دانلود کتاب های کامپیوتر و IT" href="@Url.Action("Index", "Home")">EBooks World</a>
-            </h1>
-            <h4>Computer & IT Ebooks Centre</h4>
-        </div>
-        <!-- end header image div -->
-        <div id="header-social-networks-container" class="pull-left visible-tablet visible-desktop">
-            <a href="https://t.me/ebooksworldir" title="EBooksWorld در تلگرام">
-                <img src="~/Content/images/telegram.png" alt="Telegram">
-            </a>
-            <a href="https://www.instagram.com/ebooksworldir" title="EBooksWorld در اینستاگرام">
-                <img src="~/Content/images/instagram.png" alt="EBooksWorld در اینستاگرام">
-            </a>
-            <a href="https://www.facebook.com/ebooksworldir" rel="nofollow" title="EBooksWorld در Facebook">
-                <img src="~/Content/images/facebook.png" alt="Facebook">
-            </a>
-            <a rel="nofollow" target="_blank" href="https://plus.google.com/106709386676017239470" title="EBooksWorld در +Google">
-                <img src="~/Content/images/google_plus.png" alt="Google-Plus">
-            </a>
-            <a href="#">
-                <img src="~/Content/images/twitter.png" alt="Twitter">
-            </a>
-        </div>
-        <!-- end social networks div -->
-        @using (Html.BeginForm("Index", "Search", FormMethod.Get, new {style = "margin-bottom:0", @class = "form-search"}))
-        {
-            <div class="input-append pull-right hidden-desktop" style="margin: 10px;">
-                <input type="text" data-i-search-input="true" class="search-query" name="term" value="@ViewBag.Term" data-autocomplete="true" data-autocomplete-url="@Url.Action("AutoCompleteSearch", "Search")" placeholder="عنوان،نویسنده،ناشر،ISBN"/>
-                <button class="btn btn-primary" type="submit">جست و جو</button>
+    <div class="container-fluid" id="wrapper">
+        <div class="row-fluid" id="header">
+            <div class="span4" id="header-img">
+                <h1>
+                    <a title="مرجع دانلود کتاب های کامپیوتر و IT" href="@Url.Action("Index", "Home")">EBooks World</a>
+                </h1>
+                <h4>Computer & IT Ebooks Centre</h4>
             </div>
-        }
-    </div>
-    <!-- end header div -->
-    <!-- begin navbar div-->
-    <div class="row-fluid " id="navbar">
-        @Html.Action("NavBar", "Home")
-    </div>
-    <!-- end navbar div -->
-    <div id="content-wrapper">
-        <div class="row-fluid">
-            @Html.Action("Announce", "Home")
-            @Html.Action("Slider", "Home")
-        </div>
-        <!-- end slider div -->
-        <div class="row-fluid">
-            <!-- begin sidebar and announce div -->
-            @Html.Action("Index", "SideBar")
-            <!-- end announce-wrapper div -->
-            <div class="span10 " id="main-content">
-                @RenderBody()
+            <!-- end header image div -->
+            <div id="header-social-networks-container" class="pull-left visible-tablet visible-desktop">
+                <a href="https://t.me/ebooksworldir" title="EBooksWorld در تلگرام">
+                    <img src="~/Content/images/telegram.png" alt="Telegram">
+                </a>
+                <a href="https://www.instagram.com/ebooksworldir" title="EBooksWorld در اینستاگرام">
+                    <img src="~/Content/images/instagram.png" alt="EBooksWorld در اینستاگرام">
+                </a>
+                <a href="https://www.facebook.com/ebooksworldir" rel="nofollow" title="EBooksWorld در Facebook">
+                    <img src="~/Content/images/facebook.png" alt="Facebook">
+                </a>
+                <a rel="nofollow" target="_blank" href="https://plus.google.com/106709386676017239470" title="EBooksWorld در +Google">
+                    <img src="~/Content/images/google_plus.png" alt="Google-Plus">
+                </a>
+                <a href="#">
+                    <img src="~/Content/images/twitter.png" alt="Twitter">
+                </a>
             </div>
-            <div class="clear"></div>
+            <!-- end social networks div -->
+            @using (Html.BeginForm("Index", "Search", FormMethod.Get, new { style = "margin-bottom:0", @class = "form-search" }))
+            {
+                <div class="input-append pull-right hidden-desktop" style="margin: 10px;">
+                    <input type="text" data-i-search-input="true" class="search-query" name="term" value="@ViewBag.Term" data-autocomplete="true" data-autocomplete-url="@Url.Action("AutoCompleteSearch", "Search")" placeholder="عنوان،نویسنده،ناشر،ISBN" />
+                    <button class="btn btn-primary" type="submit">جست و جو</button>
+                </div>
+            }
+        </div>
+        <!-- end header div -->
+        <!-- begin navbar div-->
+        <div class="row-fluid " id="navbar">
+            @Html.Action("NavBar", "Home")
+        </div>
+        <!-- end navbar div -->
+        <div id="content-wrapper">
+            <div class="row-fluid">
+                @Html.Action("Announce", "Home")
+                @Html.Action("Slider", "Home")
+            </div>
+            <!-- end slider div -->
+            <div id="kaprila_ebooksworld_ir_related-top"></div>
+            <div class="row-fluid">
+                <!-- begin sidebar and announce div -->
+                @Html.Action("Index", "SideBar")
+                <!-- end announce-wrapper div -->
+                <div class="span10 " id="main-content">
+                    <!-- kaprila linktable start --><div id="kaprila_linktable" style="background:white;">
+                        <style>
+                            .kaprila {
+                                width: 100%;
+                                margin: 0 auto;
+                                padding: 0;
+                                box-sizing: border-box;
+                            }
+
+                                .kaprila::after {
+                                    content: "";
+                                    clear: both;
+                                    display: block;
+                                    box-sizing: border-box;
+                                }
+
+                            .kpl_linktable {
+                                width: 33.33%;
+                                text-align: right;
+                                float: right;
+                                box-sizing: border-box;
+                            }
+
+                                .kpl_linktable ul {
+                                    list-style-type: none;
+                                }
+
+                                .kpl_linktable li {
+                                    list-style: none;
+                                    color: #000;
+                                    font-size: 16px;
+                                    font-family: inherit;
+                                    box-sizing: border-box;
+                                }
+
+                            @@media (max-width: 650px) {
+                                .kpl_hide {
+                                    display: none
+                                }
+
+                                .kpl_linktable {
+                                    width: 100% !important;
+                                }
+                            }
+                        </style> <div class="kaprila">
+                            <div class="kpl_linktable">
+                                <ul style="padding:0; margin: 0;">
+                                    <a target="_blank" href="https://faradars.org/how-to-learn/programming?utm_source=ebooksworld.ir&utm_medium=referral-kaprila&utm_campaign=table-link-header&utm_content=htl-programming" style="font-family:Vazir;text-align: right; text-decoration: none; color: black; display: block; margin: 3px;"><li style="list-style: none; height:45px !important; background: #FFF176; border-radius: 5px; padding:13px 10px;" onmouseover="this.style.background='#FFCD5A;" onmouseout="this.style.background='#FFF176;">آموزش <span style="font-weight: bold !important; font-size:18px">برنامه نویسی</span></li></a>
+                                    <a target="_blank" href="https://faradars.org/how-to-learn/web-design-and-programming?utm_source=ebooksworld.ir&utm_medium=referral-kaprila&utm_campaign=table-link-header&utm_content=htl-web-design-and-programming" style="font-family:Vazir;text-align: right; text-decoration: none; color: black; display: block; margin: 3px;"><li style="list-style: none; height:45px !important; background: #FFF176; border-radius: 5px; padding:13px 10px;" onmouseover="this.style.background='#FFCD5A;" onmouseout="this.style.background='#FFF176;">آموزش <span style="font-weight: bold !important; font-size:18px">طراحی سایت</span></li></a>
+                                    <a target="_blank" href="https://faradars.org/how-to-learn/computer-science-and-engineering?utm_source=ebooksworld.ir&utm_medium=referral-kaprila&utm_campaign=table-link-header&utm_content=htl-computer-science-and-engineering" style="font-family:Vazir;text-align: right; text-decoration: none; color: black; display: block; margin: 3px;"><li style="list-style: none; height:45px !important; background: #FFF176; border-radius: 5px; padding:13px 10px;" onmouseover="this.style.background='#FFCD5A;" onmouseout="this.style.background='#FFF176;">دروس <span style="font-weight: bold !important; font-size:18px">مهندسی کامپیوتر</span></li></a>
+                                    <a target="_blank" href="https://faradars.org/how-to-learn/c-sharp-programming?utm_source=ebooksworld.ir&utm_medium=referral-kaprila&utm_campaign=table-link-header&utm_content=htl-c-sharp-programming" style="font-family:Vazir;text-align: right; text-decoration: none; color: black; display: block; margin: 3px;"><li style="list-style: none; height:45px !important; background: #FFF176; border-radius: 5px; padding:13px 10px;" onmouseover="this.style.background='#FFCD5A;" onmouseout="this.style.background='#FFF176;">آموزش <span style="font-weight: bold !important; font-size:18px">برنامه نویسی #C</span></li></a>
+                                    <a target="_blank" href="https://faradars.org/how-to-learn/computer-engineering-tools?utm_source=ebooksworld.ir&utm_medium=referral-kaprila&utm_campaign=table-link-header&utm_content=htl-computer-engineering-tools" style="font-family:Vazir;text-align: right; text-decoration: none; color: black; display: block; margin: 3px;"><li style="list-style: none; height:45px !important; background: #FFF176; border-radius: 5px; padding:13px 10px;" onmouseover="this.style.background='#FFCD5A;" onmouseout="this.style.background='#FFF176;">آموزش <span style="font-weight: bold !important; font-size:18px">ابزارها مهندسی کامپیوتر</span></li></a>
+                                    <a target="_blank" href="https://faradars.org/how-to-learn/android-programming?utm_source=ebooksworld.ir&utm_medium=referral-kaprila&utm_campaign=table-link-header&utm_content=htl-android-programming" style="font-family:Vazir;text-align: right; text-decoration: none; color: black; display: block; margin: 3px;"><li style="list-style: none; height:45px !important; background: #FFF176; border-radius: 5px; padding:13px 10px;" onmouseover="this.style.background='#FFCD5A;" onmouseout="this.style.background='#FFF176;">آموزش <span style="font-weight: bold !important; font-size:18px">برنامه نویسی اندروید Android</span></li></a>
+                                </ul>
+                            </div>
+                            <div class="kpl_linktable">
+                                <ul style="padding:0; margin: 0;">
+                                    <a target="_blank" href="https://faradars.org/how-to-learn/java-programming?utm_source=ebooksworld.ir&utm_medium=referral-kaprila&utm_campaign=table-link-header&utm_content=htl-java-programming" style="font-family:Vazir;text-align: right; text-decoration: none; color: black; display: block; margin: 3px;"><li style="list-style: none; height:45px !important; background: #ffcdd2; border-radius: 5px; padding:13px 10px;" onmouseover="this.style.background='#ffa0a8;" onmouseout="this.style.background='#ffcdd2;">آموزش <span style="font-weight: bold !important; font-size:18px">جاوا JAVA</span></li></a>
+                                    <a target="_blank" href="https://faradars.org/how-to-learn/php-programming?utm_source=ebooksworld.ir&utm_medium=referral-kaprila&utm_campaign=table-link-header&utm_content=htl-php-programming" style="font-family:Vazir;text-align: right; text-decoration: none; color: black; display: block; margin: 3px;"><li style="list-style: none; height:45px !important; background: #ffcdd2; border-radius: 5px; padding:13px 10px;" onmouseover="this.style.background='#ffa0a8;" onmouseout="this.style.background='#ffcdd2;">آموزش <span style="font-weight: bold !important; font-size:18px">پی اچ پی PHP</span></li></a>
+                                    <a target="_blank" href="https://faradars.org/how-to-learn/python-programming?utm_source=ebooksworld.ir&utm_medium=referral-kaprila&utm_campaign=table-link-header&utm_content=htl-python-programming" style="font-family:Vazir;text-align: right; text-decoration: none; color: black; display: block; margin: 3px;"><li style="list-style: none; height:45px !important; background: #ffcdd2; border-radius: 5px; padding:13px 10px;" onmouseover="this.style.background='#ffa0a8;" onmouseout="this.style.background='#ffcdd2;">آموزش <span style="font-weight: bold !important; font-size:18px">پایتون Python</span></li></a>
+                                    <a target="_blank" href="https://faradars.org/how-to-learn/artificial-intelligence?utm_source=ebooksworld.ir&utm_medium=referral-kaprila&utm_campaign=table-link-header&utm_content=htl-artificial-intelligence" style="font-family:Vazir;text-align: right; text-decoration: none; color: black; display: block; margin: 3px;"><li style="list-style: none; height:45px !important; background: #ffcdd2; border-radius: 5px; padding:13px 10px;" onmouseover="this.style.background='#ffa0a8;" onmouseout="this.style.background='#ffcdd2;">آموزش <span style="font-weight: bold !important; font-size:18px">هوش مصنوعی</span></li></a>
+                                    <a target="_blank" href="https://faradars.org/how-to-learn/javascript?utm_source=ebooksworld.ir&utm_medium=referral-kaprila&utm_campaign=table-link-header&utm_content=htl-javascript" style="font-family:Vazir;text-align: right; text-decoration: none; color: black; display: block; margin: 3px;"><li style="list-style: none; height:45px !important; background: #ffcdd2; border-radius: 5px; padding:13px 10px;" onmouseover="this.style.background='#ffa0a8;" onmouseout="this.style.background='#ffcdd2;">آموزش <span style="font-weight: bold !important; font-size:18px">جاوا اسکریپت Javascript</span></li></a>
+                                    <a target="_blank" href="https://faradars.org/topic/free-courses?orderby=date&utm_source=ebooksworld.ir&utm_medium=referral-kaprila&utm_campaign=table-link-header&utm_content=free-courses" style="font-family:Vazir;text-align: right; text-decoration: none; color: black; display: block; margin: 3px;"><li style="list-style: none; height:45px !important; background: #CEFFAE; border-radius: 5px; padding:13px 10px;" onmouseover="this.style.background='#607D8B;" onmouseout="this.style.background='#CEFFAE;"><span style="font-weight: bold !important; font-size:18px">آموزش‌های رایگان</span></li></a>
+                                </ul>
+                            </div>
+                            <div class="kpl_linktable kpl_hide">
+                                <ul style="padding:0; margin: 0;">
+                                    <a target="_blank" href="https://faradars.org/how-to-learn/microsoft-excel?utm_source=ebooksworld.ir&utm_medium=referral-kaprila&utm_campaign=table-link-header&utm_content=htl-microsoft-excel" style="font-family:Vazir;text-align: right; text-decoration: none; color: black; display: block; margin: 3px;"><li style="list-style: none; height:45px !important; background: #b3e5fc; border-radius: 5px; padding:13px 10px;" onmouseover="this.style.background='#77d1f8;" onmouseout="this.style.background='#b3e5fc;">آموزش <span style="font-weight: bold !important; font-size:18px">اکسل Excel</span></li></a>
+                                    <a target="_blank" href="https://faradars.org/how-to-learn/image-and-video-processing?utm_source=ebooksworld.ir&utm_medium=referral-kaprila&utm_campaign=table-link-header&utm_content=htl-image-and-video-processing" style="font-family:Vazir;text-align: right; text-decoration: none; color: black; display: block; margin: 3px;"><li style="list-style: none; height:45px !important; background: #b3e5fc; border-radius: 5px; padding:13px 10px;" onmouseover="this.style.background='#77d1f8;" onmouseout="this.style.background='#b3e5fc;">آموزش <span style="font-weight: bold !important; font-size:18px">پردازش تصویر</span></li></a>
+                                    <a target="_blank" href="https://faradars.org/how-to-learn/linux?utm_source=ebooksworld.ir&utm_medium=referral-kaprila&utm_campaign=table-link-header&utm_content=htl-linux" style="font-family:Vazir;text-align: right; text-decoration: none; color: black; display: block; margin: 3px;"><li style="list-style: none; height:45px !important; background: #b3e5fc; border-radius: 5px; padding:13px 10px;" onmouseover="this.style.background='#77d1f8;" onmouseout="this.style.background='#b3e5fc;">آموزش <span style="font-weight: bold !important; font-size:18px">لینوکس Linux</span></li></a>
+                                    <a target="_blank" href="https://faradars.org/how-to-learn/foreign-languages?utm_source=ebooksworld.ir&utm_medium=referral-kaprila&utm_campaign=table-link-header&utm_content=htl-foreign-languages" style="font-family:Vazir;text-align: right; text-decoration: none; color: black; display: block; margin: 3px;"><li style="list-style: none; height:45px !important; background: #b3e5fc; border-radius: 5px; padding:13px 10px;" onmouseover="this.style.background='#77d1f8;" onmouseout="this.style.background='#b3e5fc;">آموزش <span style="font-weight: bold !important; font-size:18px">زبان های خارجی</span></li></a>
+                                    <a target="_blank" href="https://faradars.org/how-to-learn/computer-networks?utm_source=ebooksworld.ir&utm_medium=referral-kaprila&utm_campaign=table-link-header&utm_content=htl-computer-networks" style="font-family:Vazir;text-align: right; text-decoration: none; color: black; display: block; margin: 3px;"><li style="list-style: none; height:45px !important; background: #b3e5fc; border-radius: 5px; padding:13px 10px;" onmouseover="this.style.background='#77d1f8;" onmouseout="this.style.background='#b3e5fc;">آموزش <span style="font-weight: bold !important; font-size:18px">شبکه های کامپیوتری و امنیت</span></li></a>
+                                    <a target="_blank" href="https://faradars.org/how-to-learn/matlab?utm_source=ebooksworld.ir&utm_medium=referral-kaprila&utm_campaign=table-link-header&utm_content=htl-matlab" style="font-family:Vazir;text-align: right; text-decoration: none; color: black; display: block; margin: 3px;"><li style="list-style: none; height:45px !important; background: #b3e5fc; border-radius: 5px; padding:13px 10px;" onmouseover="this.style.background='#77d1f8;" onmouseout="this.style.background='#b3e5fc;">آموزش <span style="font-weight: bold !important; font-size:18px">برنامه نویسی متلب MATLAB</span></li></a>
+                                </ul>
+                            </div>
+                        </div>
+                    </div><!-- kaprila linktable end -->
+                    @RenderBody()
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div id="loadingMessage">
+            <img src="~/Content/Images/loading4.gif" alt="loading..." />
+            <div>
+                <p>لطفا منتظر بمانید...</p>
+            </div>
         </div>
     </div>
-    <div id="loadingMessage">
-        <img src="~/Content/Images/loading4.gif" alt="loading..."/>
-        <div>
-            <p>لطفا منتظر بمانید...</p>
+    <!-- end sidebar and announce div -->
+    <!-- end container div -->
+    <footer>
+        <div id="footer">
+            <div id="footer-bar" style="text-align: center;">
+                <p style="margin: 0;"><span>با افتخار نیرو گرفته از IRIS Blue</span></p>
+                <label class="label label-important">BETA VERSION</label>
+            </div>
         </div>
+    </footer>
+    <!-- begin logon modal form -->
+    <div id="logOnModal" style="z-index: 99999999;" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     </div>
-</div>
-<!-- end sidebar and announce div -->
-<!-- end container div -->
-<footer>
-    <div id="footer">
-        <div id="footer-bar" style="text-align: center;">
-            <p style="margin: 0;"><span>با افتخار نیرو گرفته از IRIS Blue</span></p>
-            <label class="label label-important">BETA VERSION</label>
-        </div>
-    </div>
-</footer>
-<!-- begin logon modal form -->
-<div id="logOnModal" style="z-index: 99999999;" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-</div>
-<!-- end logon modal form -->
-<script src="/bundle/jquery.js" type="text/javascript"></script>
-<script src="/bundle/bootstrap.js" type="text/javascript"></script>
-<script src="/bundle/jqueryuitools.js" type="text/javascript"></script>
-<script src="/bundle/sitejs.js" type="text/javascript"></script>
-@RenderSection("scripts", false)
+    <!-- end logon modal form -->
+    <script src="/bundle/jquery.js" type="text/javascript"></script>
+    <script src="/bundle/bootstrap.js" type="text/javascript"></script>
+    <script src="/bundle/jqueryuitools.js" type="text/javascript"></script>
+    <script src="/bundle/sitejs.js" type="text/javascript"></script>
+    @RenderSection("scripts", false)
 
 </body>
 </html>
