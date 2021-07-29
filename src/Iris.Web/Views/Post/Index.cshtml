@@ -84,8 +84,9 @@
             @Html.Raw(Model.BookBody)
         </div>
         <div class="clear"></div>
+        <div id="kaprila_ebooksworld_ir_inline"></div>
         @*@if (User.Identity.IsAuthenticated)
-            {*@
+        {*@
         <div id="post-book-download-container">
             <ul class="nav nav-tabs" id="myTab">
                 <li class="active"><a class="i-font-koodak" style="font-size: 16px;" href="javascript:;">دریافت</a></li>
@@ -107,14 +108,14 @@
             </div>
         </div>
         @*}
-            else
-            {
-                <div id="post-book-download-container">
-                    <div class="alert alert-error">
-                        برای دانلود کتاب باید در سایت <b>ثبت نام</b> کنید یا <b>وارد سایت</b> شوید
-                    </div>
+        else
+        {
+            <div id="post-book-download-container">
+                <div class="alert alert-error">
+                    برای دانلود کتاب باید در سایت <b>ثبت نام</b> کنید یا <b>وارد سایت</b> شوید
                 </div>
-            }*@
+            </div>
+        }*@
         <div id="like-result" data-loading-image="@Url.Content("~/Content/Images/loading2.gif")"></div>
         <div class="pull-right span4" id="post-book-like">
             <!-- begin post-book-like div -->
@@ -135,7 +136,7 @@
                         <img src="~/Content/Images/facebook.png" alt="Facebook" />
                     </a>
                     <a rel="nofollow" href="https://plus.google.com/share?url=@Context.Request.GetDisplayUrl()" onclick="javascript:window.open(this.href,
-  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" title="اشتراک در +Google">
+    '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" title="اشتراک در +Google">
                         <img src="~/Content/Images/google_plus.png" alt="google-plus">
                     </a>
                     <a target="_blank" rel="nofollow" title="اشتراک در Twitter" href="@string.Format("https://twitter.com/intent/tweet?text={0}&url={1}&via=MY-TWITTER-HANDLE", Model.PostTitle, Context.Request.GetDisplayUrl())">
@@ -148,6 +149,10 @@
     </div>
     <!-- end post-book-info div -->
 </div>
+
+<div id="kaprila_ebooksworld_ir_related">
+</div>
+
 @Html.Action("SilmilarPosts", "Post", new { id = Model.Id })
 <div id="comment-container">
     <!-- begin comment div -->
