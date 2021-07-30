@@ -44,7 +44,6 @@ namespace Iris.Web.Controllers
             }
 
             _postService.IncrementVisitedNumber(id);
-            _uow.SaveChanges();
 
             return View(post);
         }
