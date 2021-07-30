@@ -211,9 +211,11 @@ namespace Iris.Web
             });
 
             services.AddEFSecondLevelCache(options =>
-                    options.UseMemoryCacheProvider().DisableLogging(true)
+                options.UseMemoryCacheProvider().DisableLogging(true)
+                    .SkipCacheInvalidationCommands(commandText =>
+                        commandText.Contains("Skip Invalidate Cache", StringComparison.InvariantCultureIgnoreCase)
+                    )
 
-            // Please use the `CacheManager.Core` or `EasyCaching.Redis` for the Redis cache provider.
             );
         }
 
