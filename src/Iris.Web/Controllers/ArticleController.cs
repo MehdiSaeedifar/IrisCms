@@ -30,7 +30,7 @@ namespace Iris.Web.Controllers
             }
 
             _articleService.IncrementVisitedCount(id);
-            _uow.SaveChanges();
+
             return View(model);
         }
 

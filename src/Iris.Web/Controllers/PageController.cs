@@ -21,7 +21,7 @@ namespace Iris.Web.Controllers
 
         public virtual ActionResult Index(int id)
         {
-            var model = _pageService.Find(id);
+            var model = _pageService.Get(id);
 
             if (model == null)
             {
@@ -29,7 +29,7 @@ namespace Iris.Web.Controllers
             }
 
             _pageService.IncrementVisitedCount(id);
-            _uow.SaveChanges();
+
             return View(model);
         }
 
