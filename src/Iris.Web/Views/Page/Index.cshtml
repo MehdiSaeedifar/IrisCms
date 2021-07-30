@@ -1,5 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Http.Extensions
-@model Iris.DomainClasses.Entities.Page
+@model Iris.Model.PageModel
 @{
     ViewBag.Title = Model.Title;
     ViewBag.Keywords = Model.Keyword;
@@ -7,7 +7,7 @@
 }
 @section metatags{
     <meta http-equiv="last-modified" content="@(Model.ModifiedDate ?? Model.CreatedDate)" />
-    <meta name="author" content="@Model.User.UserName (@string.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host))" />
+    <meta name="author" content="@Model.UserName (@string.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host))" />
 }
 <div id="post-book-container">
     <div id="post-book-info">
@@ -25,7 +25,7 @@
             </div>
             <div class="pull-right" style="margin-right: 15px;">
                 <i class="icon-pencil"></i>
-                <span>توسط: </span><span>@Html.ActionLink(Model.User.UserName, "Index", "User", new { userName = Model.User.UserName }, new { title = string.Format("صفحه کاربری {0}", Model.User.UserName) })</span>
+                <span>توسط: </span><span>@Html.ActionLink(Model.UserName, "Index", "User", new { userName = Model.UserName }, new { title = string.Format("صفحه کاربری {0}", Model.UserName) })</span>
             </div>
             <div class="pull-right" style="margin-right: 15px;">
                 <i class="icon-thumbs-up"></i>
@@ -46,7 +46,7 @@
             </div>
             <div class="pull-right" id="post-book-comment-count" style="margin-right: 30px;">
                 <i class="icon-comment"></i>
-                <span>دیدگاه ها: </span><span>@Html.ConvertToPersianString(Model.Comments.Count)</span>
+                <span>دیدگاه ها: </span><span>@Html.ConvertToPersianString(Model.CommentCount)</span>
             </div>
         </div>
         <div id="like-result" style="width:60%;" data-loading-image="@Url.Content("~/Content/Images/loading2.gif")"></div>

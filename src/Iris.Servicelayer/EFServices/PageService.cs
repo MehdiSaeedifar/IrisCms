@@ -5,6 +5,7 @@ using System.Linq;
 using EFCoreSecondLevelCacheInterceptor;
 using Iris.Datalayer.Context;
 using Iris.DomainClasses.Entities;
+using Iris.Model;
 using Iris.Model.AdminModel;
 using Iris.Servicelayer.EFServices.Enums;
 using Iris.Servicelayer.Interfaces;
@@ -30,12 +31,11 @@ namespace Iris.Servicelayer.EFServices
 
         public Page Find(int id)
         {
-            return _pages
+            return _pages.AsSplitQuery()
                 .Include(page => page.User)
                 .Include(page => page.Comments)
                 .FirstOrDefault(page => page.Id == id);
         }
-
 
         public IList<Page> GetAll()
         {
@@ -254,6 +254,26 @@ namespace Iris.Servicelayer.EFServices
         public void IncrementVisitedCount(int id)
         {
             ((IrisDbContext)_uow).Database.ExecuteSqlRaw("/* Skip Invalidate Cache */UPDATE Pages SET VisitedCount += 1 WHERE Id ={0}", id);
+        }
+
+        public PageModel Get(int id)
+        {
+            return _pages.AsNoTracking()
+                .Where(page => page.Id == id)
+                .Select(page => new PageModel
+                {
+                    Body = page.Body,
+                    CommentCount = page.Comments.Count,
+                    CreatedDate = page.CreatedDate,
+                    Description = page.Description,
+                    Id = page.Id,
+                    Keyword = page.Keyword,
+                    LikeCount = page.LikeCount,
+                    ModifiedDate = page.ModifiedDate,
+                    Title = page.Title,
+                    UserName = page.User.UserName,
+                    VisitedCount = page.VisitedCount
+                }).SingleOrDefault();
         }
     }
 }

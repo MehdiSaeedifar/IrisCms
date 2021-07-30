@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Iris.DomainClasses.Entities;
+using Iris.Model;
 using Iris.Model.AdminModel;
 using Iris.Servicelayer.EFServices.Enums;
 
@@ -33,5 +34,7 @@ namespace Iris.Servicelayer.Interfaces
         int Like(int id, User user);
         int DisLike(int id, User user);
         void IncrementVisitedCount(int id);
+
+        PageModel Get(int id);
     }
 }

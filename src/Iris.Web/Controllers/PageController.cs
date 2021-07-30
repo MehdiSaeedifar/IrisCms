@@ -21,7 +21,7 @@ namespace Iris.Web.Controllers
 
         public virtual ActionResult Index(int id)
         {
-            var model = _pageService.Find(id);
+            var model = _pageService.Get(id);
 
             if (model == null)
             {
