@@ -26,8 +26,12 @@ namespace Iris.Web.Controllers
             var items = siteMapItems.Select(item => new SitemapItem
             {
                 LastUpdatedTime = item.ModifiedDate ?? item.CreatedDate,
-                Url = Url.Action("Index", "Post",
-                    new { id = item.Id, title = _htmlHelper.ResolveTitleForUrl(item.Title) })
+                Url = Url.Action(
+                    "Index",
+                    "Post",
+                    new { id = item.Id, title = _htmlHelper.ResolveTitleForUrl(item.Title) },
+                    HttpContext.Request.Scheme
+                )
             }).ToList();
 
             return new SitemapResult(items);
