@@ -70,7 +70,7 @@ ORDER BY  bkt.[Rank] DESC
 ) books) unionPosts
 
 GROUP BY Title, Name, PostId, CreatedDate, Author, ISBN, Publisher, Description
-ORDER BY CreatedDate DESC, [Rank] DESC
+ORDER BY [Rank] DESC
 ", input)
                 .AsNoTracking()
                 .ToList();
@@ -115,7 +115,7 @@ ORDER BY  bkt.[Rank] DESC
 ) books) unionPosts
 
 GROUP BY Title, Name, PostId, CreatedDate
-ORDER BY CreatedDate DESC, [Rank] DESC
+ORDER BY [Rank] DESC
 ", input)
                 .AsNoTracking()
                 .ToList();
@@ -157,7 +157,7 @@ ORDER BY score DESC
 ) books) unionPosts
 
 GROUP BY Title, PostId, CreatedDate
-ORDER BY CreatedDate DESC, score DESC
+ORDER BY score DESC
 
 
 ", postId)
