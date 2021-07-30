@@ -93,7 +93,7 @@ namespace Iris.Servicelayer.EFServices
 
         public void IncrementVisitedCount(int id)
         {
-            _articles.Find(id).VisitedCount += 1;
+            ((IrisDbContext)_uow).Database.ExecuteSqlRaw("/* Skip Invalidate Cache */UPDATE Articles SET VisitedCount += 1 WHERE Id ={0}", id);
         }
 
         public Article Find(int id)
