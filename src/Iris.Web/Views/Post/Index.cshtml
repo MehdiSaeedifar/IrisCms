@@ -92,20 +92,27 @@
                 <li class="active"><a class="i-font-koodak" style="font-size: 16px;" href="javascript:;">دریافت</a></li>
             </ul>
             <div class="tab-content">
-                <div class="tab-pane active" id="linkCaptcha" style="overflow-y:hidden;">
-                    <fieldset>
-                        <legend>نام پایتخت ایران را به فارسی و با ط دسته دار بنویسید:</legend>
-                        <form class="form-inline" id="captchaForm">
-                            <input type="text" id="captchaAnswer" placeholder="پاسخ سوال">
-                            <button type="submit" id="captchaBtn" class="btn btn-success">نمایش</button>
-                        </form>
-                        <p>اگر جواب سوال را نمی دانید به <a href="https://t.me/joinchat/G7ZlmAbg_q8CL3kn" target="_blank" style="font-weight:bold;">این گروه تلگرامی</a> مراجعه کنید.</p>
-                    </fieldset>
+                @*<div class="tab-pane active" id="linkCaptcha" style="overflow-y:hidden;">
+                        <fieldset>
+                            <legend>نام پایتخت ایران را به فارسی و با ط دسته دار بنویسید:</legend>
+                            <form class="form-inline" id="captchaForm">
+                                <input type="text" id="captchaAnswer" placeholder="پاسخ سوال">
+                                <button type="submit" id="captchaBtn" class="btn btn-success">نمایش</button>
+                            </form>
+                            <p>اگر جواب سوال را نمی دانید به <a href="https://t.me/joinchat/G7ZlmAbg_q8CL3kn" target="_blank" style="font-weight:bold;">این گروه تلگرامی</a> مراجعه کنید.</p>
+                        </fieldset>
+                    </div>*@
+                <div class="tab-pane active" id="links">
+                    @foreach (var downloadLink in Model.DownloadLinks)
+                    {
+                        <p>
+                            <img src="~/Content/images/down.png" alt="دریافت"><a href="@downloadLink.Link">دریافت با فرمت <span>@downloadLink.FileFormat</span> و با حجم <span>@downloadLink.FileSize</span></a>
+                        </p>
+                    }
                 </div>
-                <div class="tab-pane active" id="links" style="display:none;">
 
-                </div>
             </div>
+            <p class="center"><a href="https://t.me/EBooksWorldirGroup" target="_blank" style="font-weight:bold;">گروه تلگرام سایت</a></p>
         </div>
         @*}
         else

@@ -225,7 +225,8 @@ namespace Iris.Servicelayer.EFServices
                 PostTitle = post.Title,
                 PostDescription = post.Description,
                 PostKeywords = post.Keyword,
-                ModifiedDate = post.ModifiedDate
+                ModifiedDate = post.ModifiedDate,
+                DownloadLinks = post.DownloadLinks.ToList()
             }).FirstOrDefault();
         }
 
@@ -238,7 +239,7 @@ namespace Iris.Servicelayer.EFServices
 
         public void IncrementVisitedNumber(int id)
         {
-            ((IrisDbContext) _uow).Database.ExecuteSqlRaw("/* Skip Invalidate Cache */UPDATE Posts SET VisitedNumber += 1 WHERE Id ={0}", id);
+            ((IrisDbContext)_uow).Database.ExecuteSqlRaw("/* Skip Invalidate Cache */UPDATE Posts SET VisitedNumber += 1 WHERE Id ={0}", id);
         }
 
 
