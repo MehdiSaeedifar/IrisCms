@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
     <UserSecretsId>25a4ca09-5b7a-4705-969e-d18567deb292</UserSecretsId>
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
@@ -18,17 +18,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AspNetCore.Unobtrusive.Ajax" Version="1.1.3" />
-    <PackageReference Include="DNTCaptcha.Core" Version="3.6.0" />
-    <PackageReference Include="DNTCommon.Web.Core" Version="2.9.1" />
-    <PackageReference Include="LigerShark.WebOptimizer.Core" Version="3.0.304" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.6" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.6" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.6">
+    <PackageReference Include="AspNetCore.Unobtrusive.Ajax" Version="2.0.0" />
+    <PackageReference Include="DNTCaptcha.Core" Version="4.3.3" />
+    <PackageReference Include="DNTCommon.Web.Core" Version="3.3.0" />
+    <PackageReference Include="LigerShark.WebOptimizer.Core" Version="3.0.357" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.3" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>
